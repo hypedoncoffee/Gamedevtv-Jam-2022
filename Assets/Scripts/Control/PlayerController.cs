@@ -67,12 +67,14 @@ namespace GameJam.Control
 
         private bool InteractWithMovement()
         {
-            bool hasHit = Physics.Raycast(GetMouseRay(), out RaycastHit hitDetails);
+            bool hasHit = Physics.Raycast(GetMouseRay(), out RaycastHit hitDetails, Mathf.Infinity, 1 << LayerMask.NameToLayer("Terrain"));
             if (hasHit)
             {
                 if (Input.GetMouseButton(0))
                 {
-                    if(hitDetails.collider.GetComponent<FadingObject>() != null) { return false; }
+                    // TODO - Clean up showing the player they are aiming off navmesh
+                    bool affordanceDetailsHit = Physics.Raycast(GetMouseRay(), out RaycastHit affordanceDetails);
+                    if (affordanceDetailsHit && affordanceDetails.collider.GetComponent<FadingObject>() != null) { SetCursor(CursorType.None); }
                     Mover mover = GetComponent<Mover>();
                     mover.StartMoveAction(hitDetails.point, 1f);
                 }

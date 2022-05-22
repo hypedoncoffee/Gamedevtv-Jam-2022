@@ -67,6 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1740e3557539f6f44b74eeabcbf8be56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stashAmount: 0
   cursorMappings:
   - type: 0
     texture: {fileID: 2800000, guid: d4396ef3e12b50d47aa8ef5d445ed400, type: 3}
@@ -88,9 +89,9 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5
-  m_Acceleration: 8
+  m_Acceleration: 12
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 280
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -200,12 +201,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBetweenAttacks: 1.21
-  righthandTransform: {fileID: 0}
-  lefthandTransform: {fileID: 0}
-  defaultMainhandWeapon: {fileID: 0}
-  defaultOffhandWeapon: {fileID: 0}
-  currentMainhandWeapon: {fileID: 0}
-  currentOffhandWeapon: {fileID: 0}
+  weaponRange: 0
+  weaponDamage: 0
 --- !u!1001 &7037993861690669086
 PrefabInstance:
   m_ObjectHideFlags: 0
