@@ -1,11 +1,10 @@
 ﻿
-using GameJam.Saving;
 using System;
 using UnityEngine;
 
 namespace GameJam.Attributes
 {
-    public class Experience : MonoBehaviour, ISaveable
+    public class Experience : MonoBehaviour
     {
         [SerializeField] float experiencePoints;
 

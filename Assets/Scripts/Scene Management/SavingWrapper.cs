@@ -1,4 +1,4 @@
-﻿using GameJam.Saving;
+﻿
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,7 +15,6 @@ namespace GameJam.SceneManagement
         {
             Fader fader = FindObjectOfType<Fader>();
             fader.FadeOutImmediate();
-            yield return GetComponent<SavingSystem>().LoadLastScene(defaultSaveFile);
             yield return fader.FadeIn(fadeInTime);
         }
 
@@ -37,18 +36,15 @@ namespace GameJam.SceneManagement
         public void Save()
         {
             // TODO : UI Component with filename
-            GetComponent<SavingSystem>().Save(defaultSaveFile);
         }
 
         public void Load()
         {
             // TODO : UI Component with filename
-            GetComponent<SavingSystem>().Load(defaultSaveFile);
         }
         public void Delete()
         {
             // TODO : UI Component with filename
-            GetComponent<SavingSystem>().Delete(defaultSaveFile);
         }
     }
 }

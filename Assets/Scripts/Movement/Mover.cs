@@ -1,12 +1,12 @@
 ﻿using GameJam.Core;
 using UnityEngine;
 using UnityEngine.AI;
-using GameJam.Saving;
+
 using GameJam.Attributes;
 
 namespace GameJam.Movement
 {
-    public class Mover : MonoBehaviour, IAction, ISaveable
+    public class Mover : MonoBehaviour, IAction
     {
         [SerializeField] float maxSpeed = 15f;
 
@@ -66,28 +66,6 @@ namespace GameJam.Movement
         public void CancelAction()
         {
             StopMovement();
-        }
-        [System.Serializable]
-        struct MoverSaveData
-        {
-            public SerializableVector3 position;
-            public SerializableVector3 rotation;
-        }
-
-        public object CaptureState()
-        {
-            MoverSaveData data = new MoverSaveData();
-            data.position = new SerializableVector3(transform.position);
-            data.rotation = new SerializableVector3(transform.eulerAngles);
-            return data;
-        }
-
-        public void RestoreState(object state)
-        {
-            MoverSaveData data = (MoverSaveData)state;
-            GetComponent<NavMeshAgent>().Warp(data.position.ToVector());
-            transform.position = data.position.ToVector();
-            transform.eulerAngles = data.rotation.ToVector();
         }
     }
 }

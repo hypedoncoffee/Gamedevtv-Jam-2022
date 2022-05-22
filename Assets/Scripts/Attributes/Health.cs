@@ -1,12 +1,12 @@
 ﻿using GameJam.Core;
-using GameJam.Saving;
+
 using GameJam.Stats;
 using System;
 using UnityEngine;
 
 namespace GameJam.Attributes
 {
-    public class Health : MonoBehaviour, ISaveable
+    public class Health : MonoBehaviour
     {
         float currentHealth = -1f;
         [SerializeField] bool isAlive = true;

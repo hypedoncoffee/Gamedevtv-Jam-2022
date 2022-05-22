@@ -153,7 +153,7 @@ namespace Assets.Scripts.Core
                             );
                         }
                     }
-
+                    //FadingObject.GetComponent<Collider>().enabled = false;
                     ticks++;
                     yield return Wait;
                 }
@@ -189,6 +189,7 @@ namespace Assets.Scripts.Core
                         }
                     }
 
+                    //FadingObject.GetComponent<Collider>().enabled = true;
                     ticks++;
                     yield return Wait;
                 }

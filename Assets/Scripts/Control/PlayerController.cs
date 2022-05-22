@@ -1,4 +1,5 @@
-﻿using GameJam.Attributes;
+﻿using Assets.Scripts.Core;
+using GameJam.Attributes;
 using GameJam.Combat;
 using GameJam.Movement;
 using UnityEngine;
@@ -8,6 +9,23 @@ namespace GameJam.Control
     {
         Fighter fighter;
         Health health;
+
+        public enum CursorType
+        {
+            Movement,
+            Hack,
+            None
+        }
+
+        [System.Serializable]
+        struct CursorMapping
+        {
+            public CursorType type;
+            public Texture2D texture;
+            public Vector2 hotspot;
+        }
+
+        [SerializeField] CursorMapping[] cursorMappings = null;
         void Start()
         {
             fighter = GetComponent<Fighter>();
@@ -19,6 +37,8 @@ namespace GameJam.Control
             if (!health.IsAlive()) { return; }
             if (InteractWithCombat()) return;
             if (InteractWithMovement()) return;
+
+            SetCursor(CursorType.None);
         }
 
         private bool InteractWithCombat()
@@ -46,9 +66,11 @@ namespace GameJam.Control
             {
                 if (Input.GetMouseButton(0))
                 {
+                    if(hitDetails.collider.GetComponent<FadingObject>() != null) { return false; }
                     Mover mover = GetComponent<Mover>();
                     mover.StartMoveAction(hitDetails.point, 1f);
                 }
+                SetCursor(CursorType.Movement);
                 return true;
             }
             return false;
@@ -57,6 +79,24 @@ namespace GameJam.Control
         private static Ray GetMouseRay()
         {
             return Camera.main.ScreenPointToRay(Input.mousePosition);
+        }
+
+        private void SetCursor(CursorType type)
+        {
+            CursorMapping mapping = GetCursorMapping(type);
+            Cursor.SetCursor(mapping.texture, mapping.hotspot, CursorMode.Auto);
+        }
+
+        private CursorMapping GetCursorMapping(CursorType type)
+        {
+            foreach (CursorMapping mapping in cursorMappings)
+            {
+                if(mapping.type == type)
+                {
+                    return mapping;
+                }
+            }
+            return cursorMappings[0];
         }
     }
 }

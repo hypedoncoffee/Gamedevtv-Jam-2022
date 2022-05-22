@@ -1,36 +1,20 @@
 ﻿using GameJam.Attributes;
 using GameJam.Core;
 using GameJam.Movement;
-using GameJam.Saving;
+
 using System;
 using UnityEngine;
 namespace GameJam.Combat
 {
-    public class Fighter : MonoBehaviour, IAction, ISaveable
+    public class Fighter : MonoBehaviour, IAction
     {
         Health target;
         float timeSinceLastAttack = Mathf.Infinity;
         [SerializeField] float timeBetweenAttacks = 1.21f;
-        [SerializeField] Transform righthandTransform = null;
-        [SerializeField] Transform lefthandTransform = null;
-        [SerializeField] Weapon defaultMainhandWeapon = null;
-        [SerializeField] Weapon defaultOffhandWeapon = null;
-        [SerializeField] Weapon currentMainhandWeapon = null;
-        [SerializeField] Weapon currentOffhandWeapon = null;
-        // TODO: Look at implementing UUID resource loading
+        [SerializeField] float weaponRange;
+        [SerializeField] float weaponDamage;
 
         Animator animator = null;
-        void Awake()
-        {
-            if (currentMainhandWeapon == null)
-            {
-                EquipMainhandWeapon(defaultMainhandWeapon);
-            }
-            if (currentOffhandWeapon == null)
-            {
-                EquipOffhandWeapon(defaultOffhandWeapon);
-            }
-        }
 
         void Update()
         {
@@ -52,39 +36,16 @@ namespace GameJam.Combat
 
             bool GetIsInRange()
             {
-                return Vector3.Distance(transform.position, target.transform.position) < GetLongestWeaponRange();
+                float distance = Vector3.Distance(transform.position, target.transform.position);
+                return distance < GetRange();
             }
         }
 
-        private float GetLongestWeaponRange()
+        private float GetRange()
         {
-            float bestRange = 0;
-            if (currentMainhandWeapon.name != "Unarmed" && currentOffhandWeapon.name == "Unarmed")
-            {
-                bestRange = currentMainhandWeapon.GetWeaponRange();
-            } else if (currentOffhandWeapon.name != "Unarmed" && currentMainhandWeapon.name == "Unarmed")
-            {
-                bestRange = currentOffhandWeapon.GetWeaponRange();
-            } else
-            {
-                bestRange = currentMainhandWeapon.GetWeaponRange();
-            }
-            
-            return bestRange;
+            return weaponRange;
         }
 
-        public void EquipMainhandWeapon(Weapon weapon)
-        {
-            animator = GetComponent<Animator>();
-            currentMainhandWeapon = weapon;
-            weapon.Spawn(righthandTransform, lefthandTransform, animator);
-        }
-        public void EquipOffhandWeapon(Weapon weapon)
-        {
-            animator = GetComponent<Animator>();
-            currentOffhandWeapon = weapon;
-            weapon.Spawn(righthandTransform, lefthandTransform, animator);
-        }
 
         private void AttackBehaviour()
         {
@@ -107,23 +68,7 @@ namespace GameJam.Combat
         void Hit()
         {
             if (target == null) { return; }
-            if (currentMainhandWeapon.HasProjectile() || currentOffhandWeapon.HasProjectile())
-            {
-                if (currentOffhandWeapon.name == "Unarmed") {
-                    currentMainhandWeapon.LaunchProjectile(lefthandTransform, righthandTransform, target, gameObject);
-                } else {
-                    currentOffhandWeapon.LaunchProjectile(lefthandTransform, righthandTransform, target, gameObject);
-                }
-                //currentMainhandWeapon.LaunchProjectile(lefthandTransform, righthandTransform, target);
-            } else
-            {
-                target.TakeDamage(gameObject, currentMainhandWeapon.GetWeaponDamage());
-            }
-        }
-
-        void ReleaseArrow()
-        {
-            Hit();
+            target.TakeDamage(gameObject, weaponDamage);
         }
 
         public bool CanAttack(GameObject target)
@@ -157,40 +102,6 @@ namespace GameJam.Combat
         {
             GetComponent<Animator>().SetTrigger("StopAttack");
             GetComponent<Animator>().ResetTrigger("Attack");
-        }
-        [Serializable]
-        struct FighterSaveData
-        {
-            public string currentMainhandWeaponName;
-            public string currentOffhandWeaponName;
-        }
-        public object CaptureState()
-        {
-            FighterSaveData saveData = new FighterSaveData();
-            if (currentMainhandWeapon == null)
-            {
-                saveData.currentMainhandWeaponName = "Unarmed";
-            } else
-            {
-                saveData.currentMainhandWeaponName = currentMainhandWeapon.name;
-            }
-            if (currentOffhandWeapon == null)
-            {
-                saveData.currentOffhandWeaponName = "Unarmed";
-            } else
-            {
-                saveData.currentOffhandWeaponName = currentOffhandWeapon.name;
-            }
-            return saveData;
-        }
-
-        public void RestoreState(object state)
-        {
-            FighterSaveData saveData = (FighterSaveData)state;
-            Weapon mainhandWeapon = Resources.Load<Weapon>(saveData.currentMainhandWeaponName);
-            Weapon offhandWeapon = Resources.Load<Weapon>(saveData.currentOffhandWeaponName);
-            EquipMainhandWeapon(mainhandWeapon);
-            //EquipOffhandWeapon(offhandWeapon);
         }
 
         public Health GetTarget()
