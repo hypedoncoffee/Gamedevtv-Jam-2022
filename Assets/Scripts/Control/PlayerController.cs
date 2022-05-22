@@ -3,12 +3,16 @@ using GameJam.Attributes;
 using GameJam.Combat;
 using GameJam.Movement;
 using UnityEngine;
+using UnityEngine.UI;
+
 namespace GameJam.Control
 {
     public class PlayerController : MonoBehaviour
     {
         Fighter fighter;
         Health health;
+        Text textStashValue;
+        public float stashAmount;
 
         public enum CursorType
         {
@@ -30,7 +34,9 @@ namespace GameJam.Control
         {
             fighter = GetComponent<Fighter>();
             health = GetComponent<Health>();
+            textStashValue = GameObject.Find("Stash Value").GetComponent<Text>();
         }
+
         // Update is called once per frame
         void Update()
         {
@@ -97,6 +103,11 @@ namespace GameJam.Control
                 }
             }
             return cursorMappings[0];
+        }
+
+        public Text GetStashText()
+        {
+            return textStashValue;
         }
     }
 }

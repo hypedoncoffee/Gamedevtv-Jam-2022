@@ -1,18 +1,25 @@
-﻿using System;
+﻿using GameJam.Control;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace GameJam.Combat
 {
     public class ItemPickup : MonoBehaviour
     {
-        [SerializeField] Weapon weapon = null;
         [SerializeField] float timeToHide = 5f;
+        [SerializeField] float pickupValue = 100f;
+
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.CompareTag("Player"))
             {
+                PlayerController playerController = other.gameObject.GetComponent<PlayerController>();
+                Text stashText = playerController.GetStashText();
+                playerController.stashAmount = playerController.stashAmount + pickupValue;
+                stashText.text = playerController.stashAmount.ToString();
                 StartCoroutine(HideForSeconds(timeToHide));
             }
         }
@@ -21,7 +28,6 @@ namespace GameJam.Combat
         {
             ShowPickup(false);
             yield return new WaitForSeconds(timeToHide);
-            ShowPickup(true);
         }
 
         private void ShowPickup(bool show)
