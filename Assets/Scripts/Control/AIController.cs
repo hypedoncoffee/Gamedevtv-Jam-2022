@@ -62,7 +62,7 @@ namespace GameJam.Control
 
         private void PatrolBehavior()
         {
-            GetComponent<Animator>().ResetTrigger("Suspicious");
+            // GetComponent<Animator>().ResetTrigger("Suspicious");
             Vector3 nextPosition = guardLocation;
 
             // If we have a patrol path component assigned to NPC
@@ -116,8 +116,10 @@ namespace GameJam.Control
         // Called by Unity
         private void OnDrawGizmosSelected()
         {
-            Gizmos.color = Color.blue;
+            Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, chaseDistance);
+            Gizmos.color = Color.magenta;
+            Gizmos.DrawLine(transform.position, new Vector3(transform.position.x, transform.position.y, (transform.position.z + chaseDistance)));
         }
     }
 }
