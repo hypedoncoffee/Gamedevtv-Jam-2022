@@ -13,6 +13,7 @@ namespace GameJam.Control
         Health health;
         Text textStashValue;
         public float stashAmount;
+        [SerializeField] bool isInCombat = false;
 
         public enum CursorType
         {
@@ -110,6 +111,23 @@ namespace GameJam.Control
         public Text GetStashText()
         {
             return textStashValue;
+        }
+
+        public bool IsInCombat()
+        {
+            AIController[] enemies = FindObjectsOfType<AIController>();
+            foreach(AIController enemy in enemies)
+            {
+                Fighter enemyFighter = enemy.gameObject.GetComponent<Fighter>();
+                if (enemyFighter.GetTarget() != null)
+                {
+                    isInCombat = true;
+                } else
+                {
+                    isInCombat = false;
+                }
+            }
+            return isInCombat;
         }
     }
 }
