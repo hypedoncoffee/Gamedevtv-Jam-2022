@@ -4,12 +4,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ObjectiveManager : MonoBehaviour
 {
 
     [SerializeField] List<GameObject> objectives;
+    [SerializeField] public int distanceValue;
     [SerializeField] Text distanceText;
+    //[SerializeField] TextMeshProUGUI distanceText;
     [SerializeField] GameObject player;
 
     // TODO: Unused, maybe for directional arrow later ?
@@ -62,6 +65,7 @@ public class ObjectiveManager : MonoBehaviour
             distanceText.text = "No objectives";
         } else
         {
+            distanceValue = Int32.Parse(closestObjectiveDistance);
             distanceText.text = String.Format("{0} m", closestObjectiveDistance.ToString("N0"));
         }
 
