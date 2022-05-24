@@ -62,13 +62,8 @@ namespace GameJam.Combat
         {
             GetComponent<Animator>().ResetTrigger("StopAttack");
             GetComponent<Animator>().SetTrigger("Attack");
-        }
-
-        // Animation Event
-        void Hit()
-        {
             if (target == null) { return; }
-            target.TakeDamage(gameObject, weaponDamage);
+            target.TakeDamage(weaponDamage);
         }
 
         public bool CanAttack(GameObject target)
@@ -81,6 +76,7 @@ namespace GameJam.Combat
             }
             return targetToTest != null && targetToTest.IsAlive();
         }
+
         public void Attack(GameObject combatTarget)
         {
             GetComponent<ActionScheduler>().StartAction(this);

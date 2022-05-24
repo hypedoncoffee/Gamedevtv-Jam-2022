@@ -1,4 +1,5 @@
 ﻿using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 namespace GameJam.Attributes
@@ -8,39 +9,37 @@ namespace GameJam.Attributes
         // TODO - Replace with real UI
         private Health playerHealth;
 
-        private Health health;
-        private GameObject healthBarParent = null;
-        private Image healthBarImage = null;
+        private float health;
+        [SerializeField] private GameObject healthBarParent = null;
+        [SerializeField] private Image healthBarImage = null;
 
         private void Awake()
         {
-            //health = GetComponent<Health>();
             playerHealth = GameObject.FindWithTag("Player").GetComponent<Health>();
-            //health.OnHealthUpdated += HandleHealthUpdated;
+            playerHealth.HandleHealthUpdated += HandleHealthUpdated;
         }
 
         private void Update()
         {
-            GetComponent<Text>().text = String.Format("{0:0}%", playerHealth.GetPercentage());
-        }
+            health = playerHealth.GetHealth();
+            float healthPercentage = playerHealth.GetPercentage();
+            TextMeshPro tmpro = GetComponent<TextMeshPro>();
+            string color = "green";
 
-        private void OnDestroy()
-        {
-            //health.OnHealthUpdated -= HandleHealthUpdated;
-        }
-
-        private void OnMouseEnter()
-        {
-            //healthBarParent.SetActive(true);
-        }
-
-        private void OnMouseExit()
-        {
-            //healthBarParent.SetActive(false);
+            if (healthPercentage > 75)
+            {
+                color = "green";
+            } else if (healthPercentage <= 75 && healthPercentage > 40) {
+                color = "yellow";
+             } else if (healthPercentage <= 40) {
+                color = "red";
+             }
+            tmpro.text = String.Format("<color={0}> {1} </color>", color, health);
         }
 
         private void HandleHealthUpdated(float currentHealth, float maxHealth)
         {
+            // TODO : Remove if go for ground health display
             //healthBarImage.fillAmount = currentHealth / maxHealth;
         }
     }

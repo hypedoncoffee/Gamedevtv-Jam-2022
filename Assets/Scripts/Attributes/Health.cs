@@ -8,12 +8,13 @@ namespace GameJam.Attributes
 {
     public class Health : MonoBehaviour
     {
-        float currentHealth = -1f;
+        [SerializeField] float currentHealth = -1f;
         [SerializeField] bool isAlive = true;
+        [SerializeField] float maxHealth = 100f;
         Animator animator;
 
         #region RTS Code
-        public event Action<float, float> OnHealthUpdated;
+        public event Action<float, float> HandleHealthUpdated;
         #endregion
         private void Awake()
         {
@@ -25,7 +26,7 @@ namespace GameJam.Attributes
             // If health is uninitialized, set to default. This prevents race condition with restore state
             if (currentHealth < 0)
             {
-                currentHealth = GetComponent<BaseStats>().GetStat(Stat.Health);
+                currentHealth = maxHealth;
             }
         }
 
@@ -34,14 +35,13 @@ namespace GameJam.Attributes
             return isAlive;
         }
 
-        public void TakeDamage(GameObject instigator, float damage)
+        public void TakeDamage(float damage)
         {
             currentHealth = Mathf.Max(currentHealth - damage, 0);
-            OnHealthUpdated?.Invoke(currentHealth, GetComponent<BaseStats>().GetStat(Stat.Health));
+            HandleHealthUpdated?.Invoke(currentHealth, maxHealth);
             if (currentHealth == 0)
             {
-                Die(instigator);
-                AwardExperience(instigator);
+                Die();
             }
             if (isAlive)
             {
@@ -49,7 +49,7 @@ namespace GameJam.Attributes
             }
         }
 
-        private void Die(GameObject instigator)
+        private void Die()
         {
             if (!isAlive) { return; }
             isAlive = false;
@@ -59,33 +59,14 @@ namespace GameJam.Attributes
             animator.SetTrigger("Die");
         }
 
-        private void AwardExperience(GameObject instigator)
-        {
-            Experience experience = instigator.GetComponent<Experience>();
-            if (experience == null) return;
-            if (instigator != null)
-            {
-                experience.GainExperience(GetComponent<BaseStats>().GetStat(Stat.ExperienceReward));
-            }
-        }
-
-        public object CaptureState()
-        {
-            return currentHealth;
-        }
-
-        public void RestoreState(object state)
-        {
-            currentHealth = (float)state;
-            if (currentHealth == 0)
-            {
-                Die(null);
-            }
-        }
-
         public float GetPercentage()
         {
-            return 100 * (currentHealth / GetComponent<BaseStats>().GetStat(Stat.Health));
+            return 100 * (currentHealth / maxHealth);
+        }
+
+        public float GetHealth()
+        {
+            return currentHealth;
         }
     }
 }

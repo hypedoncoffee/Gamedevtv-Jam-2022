@@ -31,6 +31,9 @@ namespace Assets.Scripts.Core
         [SerializeField]
         private float FadeSpeed = 1;
 
+        [SerializeField]
+        private float distanceBehindCamera = 5f;
+
         [Header("Read Only Data")]
         [SerializeField]
         private List<FadingObject> ObjectsBlockingView = new List<FadingObject>();
@@ -50,7 +53,7 @@ namespace Assets.Scripts.Core
 
             while (true)
             {
-                int hits = Physics.RaycastNonAlloc(Camera.transform.position, (Player.transform.position - Camera.transform.position).normalized, Hits, Vector3.Distance(Camera.transform.position, Player.transform.position), LayerMask);
+                int hits = Physics.RaycastNonAlloc(Camera.transform.position - (Camera.transform.forward * distanceBehindCamera), (Player.transform.position - Camera.transform.position).normalized, Hits, Vector3.Distance(Camera.transform.position, Player.transform.position), LayerMask);
                 if (hits > 0)
                 {
                     for (int i = 0; i < hits; i++)
