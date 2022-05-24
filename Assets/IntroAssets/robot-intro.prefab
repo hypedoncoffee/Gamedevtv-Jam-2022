@@ -829,8 +829,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: {x: 0, y: 0, z: 1}
-  destroyTime: 6
-  moveSpeed: 4.1
+  destroyTime: 14
+  moveSpeed: 4.15
 --- !u!205 &5145506730336354622
 LODGroup:
   m_ObjectHideFlags: 0
