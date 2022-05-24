@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18029168, g: 0.22572425, b: 0.30693048, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8269,6 +8269,30 @@ PrefabInstance:
     - target: {fileID: 7037993860967584181, guid: 9e0baddfc60136b48883c53a36918cef, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7037993860967584189, guid: 9e0baddfc60136b48883c53a36918cef, type: 3}
+      propertyPath: cursorMappings.Array.data[0].hotspot.x
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 7037993860967584189, guid: 9e0baddfc60136b48883c53a36918cef, type: 3}
+      propertyPath: cursorMappings.Array.data[0].hotspot.y
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 7359237335626473461, guid: 9e0baddfc60136b48883c53a36918cef, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7359237335626473461, guid: 9e0baddfc60136b48883c53a36918cef, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7359237335626473461, guid: 9e0baddfc60136b48883c53a36918cef, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7359237335626473461, guid: 9e0baddfc60136b48883c53a36918cef, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.18
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e0baddfc60136b48883c53a36918cef, type: 3}
