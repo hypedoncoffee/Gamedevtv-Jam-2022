@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using NameReader;
+using UX.CharacterInfo;
 public class PlayerUIManager : MonoBehaviour
 {
     //Essential player meters
     [SerializeField] TextMeshProUGUI healthbar,ammobar,sentencebar,namebar;
     
     //Compass
-    [SerializeField] Transform objectivePointer,compassPointer;
+    [SerializeField] Transform objectiveRef,objectivePointer,compassPointer;
 
     [SerializeField] string lastname,firstname,crime;
 
@@ -19,6 +19,7 @@ public class PlayerUIManager : MonoBehaviour
     float objectivePointerRate=12;
     [SerializeField] Transform northPoint,objectivePoint;
     string healthcolor="white";
+    string lastcrime;
     Transform objectiveObj;
 
     // Start is called before the first frame update
@@ -32,28 +33,58 @@ public class PlayerUIManager : MonoBehaviour
     {
         if(objectivePoint!=null)
         {
-            objectivePoint.LookAt(objectivePoint);
-            objectivePointer.rotation = Quaternion.Slerp(objectivePointer.rotation,objectivePoint.rotation,objectivePointerRate*Time.deltaTime);
+            objectiveRef.LookAt(objectivePoint);
+            objectivePointer.rotation = Quaternion.Slerp(objectivePointer.rotation,objectiveRef.rotation,objectivePointerRate*Time.deltaTime);
         }
     }
 
     public void SetObjective(Transform objective)
     {
+        if(objective!=objectiveObj)
+        {
         //destroy old objective point?
+
         //get objective location
         objectiveObj = objective;
         objectivePoint = new GameObject("Waypoint").transform;
         objectivePoint.position = objective.position;
-        objectivePoint.rotation = objective.rotation;
+        }
     }
 
-    public void SetName()
+    public void SetName(string fname,string lname,string crime,string years)
     {
-        namebar.text = names.ReadList("firstname")+", "+names.ReadList("firstname");
+        namebar.text = lname+", "+fname;
+        sentencebar.text = crime+"\n<size=150%>"+years + " yrs.</size>";
     }
+
+    public void SetYears(string years)
+    {
+        sentencebar.text = lastcrime + "\n<size=150%>"+years+ "yrs.</size>";
+    }
+
+    public string nextColor(int nextHealth)
+    {
+        if (nextHealth > 67)
+            return "green";
+        
+        else if (nextHealth > 33 && nextHealth <= 67)
+            return "yellow";
+            
+            else if (nextHealth <= 33)
+            return "red";
+            else
+                return  "red";
+        
+    }
+
 
     public void SetHealth(int health)
     {
-
+        
+        healthbar.text="<color="+nextColor(health)+">"+health.ToString();
+    }
+    public void SetAmmo(int ammo)
+    {
+        ammobar.text=ammo.ToString();
     }
 }

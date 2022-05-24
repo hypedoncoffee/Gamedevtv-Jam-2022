@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
-namespace NameReader
+namespace UX.CharacterInfo
 {
 
 public class NamePicker : MonoBehaviour

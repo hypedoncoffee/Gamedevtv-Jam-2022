@@ -7,12 +7,17 @@ public class UIPanelMask : MonoBehaviour
   [SerializeField] private bool hiddenByDefault;
   [SerializeField] private float maskRate;
   //[SerializeField] private bool useXAxis,useYAxis;
-  AudioSource foley;
+  [SerializeField] AudioSource foley;
 [SerializeField]  AudioClip swishUp,swishDown;
     // Start is called before the first frame update
-    void Start()
+    
+    void Awake()
     {
       foley = GetComponent<AudioSource>();
+
+    }
+    void Start()
+    {
       if(foley==null) foley = this.gameObject.AddComponent<AudioSource>();
       
           

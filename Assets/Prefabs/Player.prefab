@@ -68,7 +68,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1740e3557539f6f44b74eeabcbf8be56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lastName: 
+  firstName: 
+  crime: 
+  years: 0
+  minSentence: 15
+  maxSentence: 50
+  textStashValue: {fileID: 0}
   stashAmount: 0
+  isInCombat: 0
+  projectileSpawnLocation: {fileID: 0}
+  playerProjectile: {fileID: 0}
   cursorMappings:
   - type: 0
     texture: {fileID: 2800000, guid: d4396ef3e12b50d47aa8ef5d445ed400, type: 3}
@@ -144,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: -1
   isAlive: 1
+  isPlayer: 1
   maxHealth: 100
 --- !u!95 &7037993860967584187
 Animator:
@@ -190,7 +201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeBetweenAttacks: 1.21
   weaponRange: 10
-  weaponDamage: 0
+  weaponDamage: 5
 --- !u!1 &7306383982235431608
 GameObject:
   m_ObjectHideFlags: 0
@@ -521,6 +532,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7373979974368678412, guid: f3cb8d30c1c654f04a52f6d7ff50059c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7373979974854939401, guid: f3cb8d30c1c654f04a52f6d7ff50059c, type: 3}
+      propertyPath: m_fontSizeMin
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7373979974854939401, guid: f3cb8d30c1c654f04a52f6d7ff50059c, type: 3}
+      propertyPath: m_enableWordWrapping
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

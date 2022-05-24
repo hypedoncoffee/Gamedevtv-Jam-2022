@@ -4,16 +4,33 @@ using GameJam.Combat;
 using GameJam.Movement;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UX.CharacterInfo;
 namespace GameJam.Control
 {
     public class PlayerController : MonoBehaviour
     {
+        //references
         Fighter fighter;
         Health health;
-        Text textStashValue;
+        CharacterTransition deathUI;
+        NamePicker names;
+
+        [Header("Character Information")]
+        [SerializeField] string lastName;
+        [SerializeField] string firstName;
+        [SerializeField] string crime;
+        [SerializeField] int years;
+        [Space(5)]
+
+        [Header("Character Modifying Vars")]
+        [SerializeField] int minSentence;
+        [SerializeField] int maxSentence;
+        [Space(5)]
+        [SerializeField] Text textStashValue;
         public float stashAmount;
+        //For music
         [SerializeField] bool isInCombat = false;
+        [Header("Combat Vars")]
         [SerializeField] Transform projectileSpawnLocation;
         [SerializeField] GameObject playerProjectile;
 
@@ -35,9 +52,23 @@ namespace GameJam.Control
         [SerializeField] CursorMapping[] cursorMappings = null;
         void Start()
         {
+            deathUI = FindObjectOfType<CharacterTransition>();
+            names = FindObjectOfType<NamePicker>();
             fighter = GetComponent<Fighter>();
             health = GetComponent<Health>();
             textStashValue = GameObject.Find("Stash Value").GetComponent<Text>();
+            SetNewCharacter(true);
+        }
+
+        public void SetNewCharacter(bool successful)
+        {
+            //restore health to full value
+            //call animation
+            lastName= names.ReadList("lastname");
+            firstName = names.ReadList("firstname");
+            crime = names.ReadList("crime");
+            years = Mathf.RoundToInt(Random.Range(minSentence,maxSentence));
+            deathUI.DisplayNewCharacter(successful,firstName,lastName,crime,years.ToString());
         }
 
         // Update is called once per frame

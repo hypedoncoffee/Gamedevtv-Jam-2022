@@ -7,56 +7,77 @@ public class DynamicMusicManager : MonoBehaviour
     [SerializeField] float checkTimer=2.5f;
     [SerializeField] float objectiveHypeThreshold=20;
     [SerializeField] PlayerController player;
-    [SerializeField] AudioSource mainAudio,dangerAudio,hypeAudio;
+    [SerializeField] AudioSource mainAudio,dangerAudio,hypeAudio,deathAudio;
     [SerializeField] ObjectiveManager objectiveManager;
     [SerializeField] private float fadeRate = 20f;
+    bool alive =true;
     // Start is called before the first frame update
     void Start()
     {
+        if(player==null) player = FindObjectOfType<PlayerController>();
+        if(objectiveManager==null) objectiveManager = FindObjectOfType<ObjectiveManager>();
         StartCoroutine(MusicChecker());
-        //for debug ToggleIntenseMusic(true);
+        //for debug ToggleObjectiveMusic(true);
     }
 
     IEnumerator MusicChecker()
     {   //sorry not sorry
         while(true)
         {
+            if(checkTimer==0)
+            {
+                Debug.LogError("That's a nice infinite loop you got there.  Set Music Manager's check timer.");
+                checkTimer = 2;
+            } 
+            yield return new WaitForSeconds(checkTimer);
+            if(alive)
+            {
 
-        if(checkTimer==0)
-        {
-            Debug.LogError("That's a nice infinite loop you got there.  Set Music Manager's check timer.");
-            checkTimer = 2;
-        } 
-        yield return new WaitForSeconds(checkTimer);
-        if(player.IsInCombat())
-        {
-            ToggleDangerMusic(true);
+                if(player.IsInCombat())
+                {
+                    ToggleDangerMusic(true);
+                }
+                else
+                {
+                    ToggleDangerMusic(false);
+                }
+                
+                //Calculate absolute distance from player to objective
+                float playerDistance = objectiveManager.distanceValue;
+                if(playerDistance<objectiveHypeThreshold)
+                {
+                    ToggleObjectiveMusic(true);
+                }
+                else
+                {
+                    ToggleObjectiveMusic(false);
+                }
+            }
         }
-        else
-        {
-            ToggleDangerMusic(false);
-        }
-        
-        //Calculate absolute distance from player to objective
-        float playerDistance = objectiveManager.distanceValue;
-        if(playerDistance<objectiveHypeThreshold)
-        {
-            ToggleIntenseMusic(true);
-        }
-        else
-        {
-            ToggleIntenseMusic(false);
-        }
-        }
+
+    }
+    public void PlayerDeathMusic(bool enabled)
+    {
+        alive=!enabled;
+        hypeAudio.volume = 0;
+        dangerAudio.volume = 0;
+        ToggleMainMusic(!enabled);
+        if(enabled) deathAudio.Play();
+        else deathAudio.Stop();
     }
 
-    public void ToggleIntenseMusic(bool enabled)
+    public void ToggleObjectiveMusic(bool enabled)
     {
         if(enabled)
         StartCoroutine(FadeIn(hypeAudio));
         else StartCoroutine(FadeOut(hypeAudio));
     }
-
+    public void ToggleMainMusic(bool enabled)
+    {
+        if(enabled)
+        StartCoroutine(FadeIn(mainAudio));
+        else StartCoroutine(FadeOut(mainAudio));
+    }
     public void ToggleDangerMusic(bool enabled)
     {
         if(enabled)

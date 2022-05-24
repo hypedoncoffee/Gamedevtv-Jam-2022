@@ -67,8 +67,12 @@ public class ObjectiveManager : MonoBehaviour
         } else
         {
             distanceValue = (int)(closestObjectiveDistance);
-            distanceText.text = String.Format("{0} m", closestObjectiveDistance.ToString("N0"));
+            if(distanceText!=null)
+                distanceText.text = String.Format("{0} m", closestObjectiveDistance.ToString("N0"));
         }
-
+        //Give player ui the objective reference
+        if(closestObjective!=null)
+        FindObjectOfType<PlayerUIManager>().SetObjective(closestObjective.transform);
+        //Todo: Having no objectives results in the objective never going above 0m distance
     }
 }
