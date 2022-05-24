@@ -66,7 +66,7 @@ public class ObjectiveManager : MonoBehaviour
             distanceText.text = "No objectives";
         } else
         {
-            distanceValue = Int32.Parse(closestObjectiveDistance);
+            distanceValue = (int)(closestObjectiveDistance);
             distanceText.text = String.Format("{0} m", closestObjectiveDistance.ToString("N0"));
         }
 
