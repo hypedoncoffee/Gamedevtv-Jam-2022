@@ -13,11 +13,14 @@ namespace GameJam.Control
         Health health;
         Text textStashValue;
         public float stashAmount;
+        [SerializeField] bool isInCombat = false;
+        [SerializeField] Transform projectileSpawnLocation;
+        [SerializeField] GameObject playerProjectile;
 
         public enum CursorType
         {
             Movement,
-            Hack,
+            Attack,
             None
         }
 
@@ -55,7 +58,7 @@ namespace GameJam.Control
                 CombatTarget target = hit.transform.GetComponent<CombatTarget>();
                 if (target == null) continue;
                 if (!fighter.CanAttack(target.gameObject)) { continue; }
-
+                SetCursor(CursorType.Attack);
                 if (Input.GetMouseButton(0))
                 {
                     fighter.Attack(target.gameObject);
@@ -110,6 +113,28 @@ namespace GameJam.Control
         public Text GetStashText()
         {
             return textStashValue;
+        }
+
+        public bool IsInCombat()
+        {
+            AIController[] enemies = FindObjectsOfType<AIController>();
+            foreach(AIController enemy in enemies)
+            {
+                Fighter enemyFighter = enemy.gameObject.GetComponent<Fighter>();
+                if (enemyFighter.GetTarget() != null)
+                {
+                    isInCombat = true;
+                } else
+                {
+                    isInCombat = false;
+                }
+            }
+            return isInCombat;
+        }
+        public void LaunchProjectile(Projectile playerProjectile, Transform projectileSpawnLocation, Health target)
+        {
+            Projectile projectileInstance = Instantiate(playerProjectile, projectileSpawnLocation.position, Quaternion.identity);
+            projectileInstance.SetTarget(target);
         }
     }
 }

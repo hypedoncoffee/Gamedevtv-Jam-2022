@@ -53,7 +53,8 @@ public class ObjectiveManager : MonoBehaviour
     {
         foreach (GameObject objective in objectives)
         {
-            float distanceToObjective = Vector3.Distance(player.transform.position, objective.transform.position);
+            // TODO - See if vector is ever negative
+            float distanceToObjective = Mathf.Abs(Vector3.Distance(player.transform.position, objective.transform.position));
             if (distanceToObjective < closestObjectiveDistance)
             {
                 closestObjectiveDistance = distanceToObjective;
