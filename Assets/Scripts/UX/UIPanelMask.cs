@@ -53,7 +53,7 @@ public class UIPanelMask : MonoBehaviour
     {
       for(var i = 1f; i > 0f; i-=maskRate)
         {
-          yield return new WaitForSeconds(0.016f);
+          yield return new WaitForSecondsRealtime(0.016f);
           this.transform.localScale=new Vector3(transform.localScale.x-maskRate,transform.localScale.y-maskRate,1f);
         }
           this.transform.localScale = new Vector3(0,0f,1f);

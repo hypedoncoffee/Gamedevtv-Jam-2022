@@ -279,6 +279,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.2399999, y: 1.6799998, z: 1.2399999}
   m_Center: {x: 0, y: 0.8399999, z: 0}
+--- !u!114 &46392974 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 641804653066132120, guid: 14715dcd389c2b136a6d7139de16c84d, type: 3}
+  m_PrefabInstance: {fileID: 77261856}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96606e6ef4bbdb4be9ffe6450a99c4dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &55537441
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -581,6 +592,18 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 641804651669323540, guid: 14715dcd389c2b136a6d7139de16c84d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 46392974}
+    - target: {fileID: 641804651669323540, guid: 14715dcd389c2b136a6d7139de16c84d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ReturnToMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 641804651669323540, guid: 14715dcd389c2b136a6d7139de16c84d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PauseScreen, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 641804651669323543, guid: 14715dcd389c2b136a6d7139de16c84d, type: 3}
       propertyPath: m_Material
       value: 
@@ -693,6 +716,10 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 2100000, guid: 633a406660c1ea4459daaf7f11c79017, type: 2}
+    - target: {fileID: 641804652623090453, guid: 14715dcd389c2b136a6d7139de16c84d, type: 3}
+      propertyPath: m_text
+      value: Main Menu
+      objectReference: {fileID: 0}
     - target: {fileID: 641804652640402020, guid: 14715dcd389c2b136a6d7139de16c84d, type: 3}
       propertyPath: m_Material
       value: 

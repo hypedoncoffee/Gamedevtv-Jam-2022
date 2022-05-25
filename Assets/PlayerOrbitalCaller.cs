@@ -6,16 +6,29 @@ using UnityEngine.UI;
 
 public class PlayerOrbitalCaller : MonoBehaviour
 {
+
+    Vector3 hitPoint;
     [SerializeField] GameObject laserObj;
     private int ammo;
     //UI element for ammo TextMeshProUGUI ammobar;
-    public void CallLaser(Vector3 hitPoint)
+    public void CallLaser()
     {
 
-    if(hasAmmo()) //remove if tracking on main combat controller
-    Instantiate(laserObj,hitPoint,laserObj.transform.rotation);
+        if(hasAmmo()) //remove if tracking on main combat controller
+        {
 
-    ammo--;
+            StartCoroutine(LaserFire());
+            ammo--;
+        }
+    }
+
+
+    IEnumerator LaserFire()
+    {
+        hitPoint = null;
+        while(hitPoint == null)
+            yield return null;
+        Instantiate(laserObj,hitPoint,laserObj.transform.rotation);
     }
     // Start is called before the first frame update
     void Start()
@@ -29,8 +42,11 @@ public class PlayerOrbitalCaller : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void OnClick()
     {
+        //Raycast code goes here
+
+        //hitPoint = Vector3 of ray hit location
         
     }
 }
