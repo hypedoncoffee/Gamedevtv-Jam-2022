@@ -84,7 +84,10 @@ public class CharacterTransition : MonoBehaviour
     IEnumerator AssignCharactersScreen(string firstmessage,string charactermessage,string fname,string lname,string crime,string years)
 
     {
-        Time.timeScale = 0;
+        //Pause game (Disable this since it stops videos)
+        //Time.timeScale = 0;
+        
+        //
         float multiplier = 1;
         int reducechars = 4;
         int charsScrollRate = 3;
@@ -151,6 +154,8 @@ public class CharacterTransition : MonoBehaviour
                 typing=false;
         }
         yield return new WaitForSecondsRealtime(4f);
+    
+    
         Time.timeScale = 1;
         deathScreen.Hide();
         FindObjectOfType<DynamicMusicManager>().PlayerDeathMusic(false);

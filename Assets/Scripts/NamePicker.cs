@@ -8,6 +8,8 @@ namespace UX.CharacterInfo
 
 public class NamePicker : MonoBehaviour
 {
+    float DebugTimer0;
+    float DebugTimer1;
 
     //Call ReadList("firstname"),ReadList("lastname"), or ReadList("crime") to get the respective entry.
 
@@ -19,11 +21,12 @@ public class NamePicker : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ReadList("firstname");ReadList("lastname");ReadList("crime");
+        //ReadList("firstname");ReadList("lastname");ReadList("crime");
     }
 
     public string ReadList(string listName)
-    {   string nextPath;
+    {   string nextPath ="";
+        DebugTimer0 = Time.realtimeSinceStartup;
         string nextString;
         string[] lines = new string[0];
         switch(listName)
@@ -56,8 +59,10 @@ public class NamePicker : MonoBehaviour
         if(lines.Length > 0)
         {
             nextString = lines[Random.Range(0,lines.Length-1)];
-           Debug.Log(nextString);
-
+        //Debug.Log(nextString);
+            //int lineNumber = Random.Range(0,lines.Length-1);
+            //nextString = File.ReadLines(@nextPath).Skip(lineNumber).Take(1).First();;
+            Debug.Log(Time.realtimeSinceStartup - DebugTimer0 + " ms");
           return nextString;
         }
         else return null;

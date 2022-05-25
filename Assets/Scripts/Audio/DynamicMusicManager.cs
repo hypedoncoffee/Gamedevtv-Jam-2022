@@ -55,6 +55,11 @@ public class DynamicMusicManager : MonoBehaviour
                     ToggleObjectiveMusic(false);
                 }
             }
+            else 
+            {
+                ToggleDangerMusic(false);
+                ToggleObjectiveMusic(false);
+            }
         }
 
     }

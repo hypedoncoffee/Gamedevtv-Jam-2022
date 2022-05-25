@@ -5,15 +5,29 @@ using GameJam.Attributes;
 
 public class OrbitalLaser : MonoBehaviour
 {
-
+    BoxCollider collisionBox;
+    [SerializeField] int hitCount = 500;
     [SerializeField] float laserDamage = 50f;
     [SerializeField] float laserTime = 5f;
+    [SerializeField] Transform lasermodel;
+    [SerializeField] float moveSpeed = 20;
     // Start is called before the first frame update
     void Awake()
     {
         //Detect all in sphere
-        GetObjectsInBoxCollider(GetComponent<BoxCollider>());
-        Destroy(this.gameObject,laserTime);
+        collisionBox = GetComponent<BoxCollider>();
+        StartCoroutine(RunCollision());
+        Destroy(this.gameObject,laserTime+5);
+    }
+
+    IEnumerator RunCollision()
+    {
+        for(int i = 0; i < hitCount; i++)
+        {
+            if(laserTime <=1) laserTime++;//errorfix
+            yield return new WaitForSeconds((laserTime/(float)hitCount)-1);
+            GetObjectsInBoxCollider(collisionBox);
+        }
     }
 
 //https://answers.unity.com/questions/1695742/getting-a-list-of-gameobjects-in-a-collider.html
@@ -41,6 +55,6 @@ public class OrbitalLaser : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        lasermodel.Translate(Vector3.down*Time.deltaTime*moveSpeed);
     }
 }
