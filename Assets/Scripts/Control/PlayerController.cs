@@ -5,7 +5,9 @@ using GameJam.Movement;
 using UnityEngine;
 using UnityEngine.UI;
 using UX.CharacterInfo;
+using TMPro;
 namespace GameJam.Control
+
 {
     public class PlayerController : MonoBehaviour
     {
@@ -26,7 +28,7 @@ namespace GameJam.Control
         [SerializeField] int minSentence;
         [SerializeField] int maxSentence;
         [Space(5)]
-        [SerializeField] Text textStashValue;
+        [SerializeField] TextMeshProUGUI textStashValue;
         public float stashAmount;
         //For music
         [SerializeField] bool isInCombat = false;
@@ -56,7 +58,7 @@ namespace GameJam.Control
             names = FindObjectOfType<NamePicker>();
             fighter = GetComponent<Fighter>();
             health = GetComponent<Health>();
-            textStashValue = GameObject.Find("Stash Value").GetComponent<Text>();
+            textStashValue = GameObject.Find("Stash Value").GetComponent<TextMeshProUGUI>();
             SetNewCharacter(true);
         }
 
@@ -141,7 +143,7 @@ namespace GameJam.Control
             return cursorMappings[0];
         }
 
-        public Text GetStashText()
+        public TextMeshProUGUI GetStashText()
         {
             return textStashValue;
         }

@@ -10,6 +10,8 @@ public class DynamicMusicManager : MonoBehaviour
     [SerializeField] AudioSource mainAudio,dangerAudio,hypeAudio,deathAudio;
     [SerializeField] ObjectiveManager objectiveManager;
     [SerializeField] private float fadeRate = 20f;
+
+//    double timeLogged = Time.realtimeSinceStartup;
     bool alive =true;
     // Start is called before the first frame update
     void Start()
@@ -29,7 +31,7 @@ public class DynamicMusicManager : MonoBehaviour
                 Debug.LogError("That's a nice infinite loop you got there.  Set Music Manager's check timer.");
                 checkTimer = 2;
             } 
-            yield return new WaitForSeconds(checkTimer);
+            yield return new WaitForSecondsRealtime(checkTimer);
             if(alive)
             {
 
@@ -56,12 +58,12 @@ public class DynamicMusicManager : MonoBehaviour
         }
 
     }
-    public void PlayerDeathMusic(bool enabled)
+    public void PlayerDeathMusic(bool enabled,bool hardStop=false)
     {
         alive=!enabled;
         hypeAudio.volume = 0;
         dangerAudio.volume = 0;
-        ToggleMainMusic(!enabled);
+        ToggleMainMusic(!enabled,hardStop);
         if(enabled) deathAudio.Play();
         else deathAudio.Stop();
     }
@@ -72,11 +74,11 @@ public class DynamicMusicManager : MonoBehaviour
         StartCoroutine(FadeIn(hypeAudio));
         else StartCoroutine(FadeOut(hypeAudio));
     }
-    public void ToggleMainMusic(bool enabled)
+    public void ToggleMainMusic(bool enabled,bool hardStop=false)
     {
         if(enabled)
         StartCoroutine(FadeIn(mainAudio));
-        else StartCoroutine(FadeOut(mainAudio));
+        else StartCoroutine(FadeOut(mainAudio,hardStop));
     }
     public void ToggleDangerMusic(bool enabled)
     {
@@ -86,24 +88,34 @@ public class DynamicMusicManager : MonoBehaviour
     }
 
 
-    IEnumerator FadeIn(AudioSource bgmLayer)
+    IEnumerator FadeIn(AudioSource bgmLayer,bool hardStop = false)
     {
+        if(!hardStop)
+        {
+
         while(bgmLayer.volume < 1f)
         {
             yield return new WaitForSecondsRealtime(Time.deltaTime);
             bgmLayer.volume+=(Time.deltaTime*fadeRate);
         }
+        }
         bgmLayer.volume=1f;
 }
 
-    IEnumerator FadeOut(AudioSource bgmLayer)
+    IEnumerator FadeOut(AudioSource bgmLayer,bool hardStop = false)
     {
+        if(!hardStop)
+        {
+
+        
         while(bgmLayer.volume > 0f)
         {
             yield return new WaitForSecondsRealtime(Time.deltaTime);
             bgmLayer.volume-=(Time.deltaTime*fadeRate);
         }
+        }
         bgmLayer.volume=0f;
+        
 
     }
 

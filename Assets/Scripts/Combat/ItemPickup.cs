@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 namespace GameJam.Combat
 {
     public class ItemPickup : MonoBehaviour
@@ -26,7 +26,7 @@ namespace GameJam.Combat
             if (other.gameObject.CompareTag("Player"))
             {
                 PlayerController playerController = player.GetComponent<PlayerController>();
-                Text stashText = playerController.GetStashText();
+                TextMeshProUGUI stashText = playerController.GetStashText();
                 playerController.stashAmount = playerController.stashAmount + pickupValue;
                 stashText.text = playerController.stashAmount.ToString();
                 StartCoroutine(HideForSeconds(timeToHide));

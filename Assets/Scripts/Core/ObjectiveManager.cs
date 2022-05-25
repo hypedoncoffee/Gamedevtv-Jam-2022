@@ -11,8 +11,8 @@ public class ObjectiveManager : MonoBehaviour
 
     [SerializeField] List<GameObject> objectives;
     [SerializeField] public int distanceValue;
-    [SerializeField] Text distanceText;
-    //[SerializeField] TextMeshProUGUI distanceText;
+    //[SerializeField] Text distanceText;
+    [SerializeField] TextMeshProUGUI distanceText;
     [SerializeField] GameObject player;
 
     // TODO: Unused, maybe for directional arrow later ?
