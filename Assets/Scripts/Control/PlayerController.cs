@@ -89,7 +89,7 @@ namespace GameJam.Control
         void Update()
         {
             if (!health.IsAlive()) { return; }
-            if (InteractWithCombat()) return;
+            InteractWithCombat();
             if (InteractWithMovement()) return;
 
             SetCursor(CursorType.None);
@@ -97,6 +97,18 @@ namespace GameJam.Control
 
         private bool InteractWithCombat()
         {
+
+            if (Input.GetMouseButton(1))
+            {
+                RaycastHit[] rays = Physics.RaycastAll(GetMouseRay());
+                foreach (RaycastHit hit in rays)
+                {
+                    fighter.LaunchSpamProjectile(hit.point);
+                    return true;
+                }
+            }
+            return false;
+            /*
             RaycastHit[] rays = Physics.RaycastAll(GetMouseRay());
             foreach (RaycastHit hit in rays)
             {
@@ -104,13 +116,14 @@ namespace GameJam.Control
                 if (target == null) continue;
                 if (!fighter.CanAttack(target.gameObject)) { continue; }
                 SetCursor(CursorType.Attack);
-                if (Input.GetMouseButton(0))
+                if (Input.GetMouseButton(1))
                 {
                     fighter.Attack(target.gameObject);
                 }
                 return true;
             }
             return false;
+            */
         }
 
         private bool InteractWithMovement()

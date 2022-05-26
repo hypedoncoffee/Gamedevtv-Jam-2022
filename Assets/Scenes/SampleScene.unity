@@ -12075,6 +12075,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 7037993860967584189, guid: 9e0baddfc60136b48883c53a36918cef, type: 3}
+      propertyPath: disableIntro
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7037993860967584189, guid: 9e0baddfc60136b48883c53a36918cef, type: 3}
       propertyPath: textStashValue
       value: 
       objectReference: {fileID: 1818826986}

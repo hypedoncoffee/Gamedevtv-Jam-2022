@@ -81,6 +81,16 @@ namespace GameJam.Combat
             projectileInstance.SetTarget(target);
         }
 
+        public void LaunchSpamProjectile(Vector3 position)
+        {
+            if (timeSinceLastAttack > timeBetweenAttacks)
+            {
+                Projectile projectileInstance = Instantiate(projectileWeapon, projectileSpawnPoint.position, Quaternion.identity);
+                projectileInstance.FireInDirection(position);
+                timeSinceLastAttack = 0;
+            }
+        }
+
         public bool CanAttack(GameObject target)
         {
             if (target == null) { return false; }
@@ -90,6 +100,14 @@ namespace GameJam.Combat
                 GetComponent<ActionScheduler>().CancelCurrentAction();
             }
             return targetToTest != null && targetToTest.IsAlive();
+        }
+
+        public void AttackSpam()
+        {
+            if (projectileWeapon != null && projectileSpawnPoint != null)
+            {
+                LaunchProjectile();
+            }
         }
 
         public void Attack(GameObject combatTarget)
