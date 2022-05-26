@@ -10,11 +10,16 @@ namespace GameJam.Combat
     {
         [SerializeField] Health target;
         float timeSinceLastAttack = Mathf.Infinity;
-        [SerializeField] float timeBetweenAttacks = 1.21f;
+        float timeSinceLastAbility = Mathf.Infinity;
+        [SerializeField] float timeBetweenAttacks = .5f;
         [SerializeField] int weaponRange;
         [SerializeField] int weaponDamage;
         [SerializeField] Projectile projectileWeapon = null;
         [SerializeField] Transform projectileSpawnPoint = null;
+        [SerializeField] GameObject orbitalLaserPrefab = null;
+        [SerializeField] GameObject orbitalLaserParticles = null;
+
+        [SerializeField] float abilityCooldown = 1.5f;
 
         Animator animator = null;
 
@@ -22,6 +27,7 @@ namespace GameJam.Combat
         {
             // Time.deltaTime = Time since the last time update is called
             timeSinceLastAttack += Time.deltaTime;
+            timeSinceLastAbility += Time.deltaTime;
             if (target == null || !target.IsAlive()) { target = null; return; }
 
             if (!GetIsInRange())
@@ -100,6 +106,16 @@ namespace GameJam.Combat
                 GetComponent<ActionScheduler>().CancelCurrentAction();
             }
             return targetToTest != null && targetToTest.IsAlive();
+        }
+
+        internal void SpawnOrbitalLaser(Vector3 point)
+        {
+            if (timeSinceLastAbility > abilityCooldown)
+            {
+                Instantiate(orbitalLaserPrefab, point, Quaternion.identity);
+                Instantiate(orbitalLaserParticles, point, Quaternion.identity);
+                timeSinceLastAbility = 0;
+            }
         }
 
         public void AttackSpam()

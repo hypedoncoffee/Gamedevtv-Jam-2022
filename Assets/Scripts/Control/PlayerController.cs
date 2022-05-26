@@ -98,6 +98,15 @@ namespace GameJam.Control
         private bool InteractWithCombat()
         {
 
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                RaycastHit[] rays = Physics.RaycastAll(GetMouseRay());
+                foreach (RaycastHit hit in rays)
+                {
+                    fighter.SpawnOrbitalLaser(hit.point);
+                    return true;
+                }
+            }
             if (Input.GetMouseButton(1))
             {
                 RaycastHit[] rays = Physics.RaycastAll(GetMouseRay());
