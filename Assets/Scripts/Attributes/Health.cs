@@ -6,21 +6,20 @@ using UnityEngine;
 
 //only used for respawn call, remove if a more efficient method is possible
 using GameJam.Control;
+using TMPro;
 
 namespace GameJam.Attributes
 {
     public class Health : MonoBehaviour
     {
-        [SerializeField] float currentHealth = -1f;
+        [SerializeField] int currentHealth = -1;
         [SerializeField] bool isAlive = true;
         [SerializeField] bool isPlayer = false;
-        [SerializeField] float maxHealth = 100f;
+        [SerializeField] int maxHealth = 100;
         PlayerUIManager playerUI;
         Animator animator;
 
-        #region RTS Code
         public event Action<float, float> HandleHealthUpdated;
-        #endregion
         private void Awake()
         {
             animator = GetComponent<Animator>();
@@ -41,10 +40,15 @@ namespace GameJam.Attributes
             return isAlive;
         }
 
-        public void TakeDamage(float damage)
+        private void UpdateHealthUI()
+        {
+            TextMeshPro tmpro = GetComponentInChildren<TextMeshPro>();
+            tmpro.text = String.Format("<color={0}> {1} </color>", nextColor(currentHealth), currentHealth);
+        }
+
+        public void TakeDamage(int damage)
         {
             currentHealth = Mathf.Max(currentHealth - damage, 0);
-            HandleHealthUpdated?.Invoke(currentHealth, maxHealth);
             if (currentHealth == 0)
             {
                 Die();
@@ -52,7 +56,13 @@ namespace GameJam.Attributes
             if (isAlive)
             {
                 animator.SetTrigger("Hit");
-                if(isPlayer) playerUI.SetHealth((int)GetHealth());
+                if (isPlayer)
+                {
+                    playerUI.SetHealth((int)GetHealth());
+                } else
+                {
+                    UpdateHealthUI();
+                }
             }
         }
 
@@ -89,9 +99,24 @@ namespace GameJam.Attributes
             return 100 * (currentHealth / maxHealth);
         }
 
-        public float GetHealth()
+        public int GetHealth()
         {
             return currentHealth;
+        }
+
+        public string nextColor(int nextHealth)
+        {
+            if (nextHealth > 67)
+                return "green";
+
+            else if (nextHealth > 33 && nextHealth <= 67)
+                return "yellow";
+
+            else if (nextHealth <= 33)
+                return "red";
+            else
+                return "red";
+
         }
     }
 }

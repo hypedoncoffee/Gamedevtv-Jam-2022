@@ -7,7 +7,7 @@ public class OrbitalLaser : MonoBehaviour
 {
     BoxCollider collisionBox;
     [SerializeField] int hitCount = 500;
-    [SerializeField] float laserDamage = 50f;
+    [SerializeField] int laserDamage = 50;
     [SerializeField] float laserTime = 5f;
     [SerializeField] Transform lasermodel;
     [SerializeField] float moveSpeed = 20;

@@ -8,11 +8,13 @@ namespace GameJam.Combat
 {
     public class Fighter : MonoBehaviour, IAction
     {
-        Health target;
+        [SerializeField] Health target;
         float timeSinceLastAttack = Mathf.Infinity;
         [SerializeField] float timeBetweenAttacks = 1.21f;
-        [SerializeField] float weaponRange;
-        [SerializeField] float weaponDamage;
+        [SerializeField] int weaponRange;
+        [SerializeField] int weaponDamage;
+        [SerializeField] Projectile projectileWeapon = null;
+        [SerializeField] Transform projectileSpawnPoint = null;
 
         Animator animator = null;
 
@@ -63,7 +65,20 @@ namespace GameJam.Combat
             GetComponent<Animator>().ResetTrigger("StopAttack");
             GetComponent<Animator>().SetTrigger("Attack");
             if (target == null) { return; }
-            target.TakeDamage(weaponDamage);
+            if (projectileWeapon != null && projectileSpawnPoint != null)
+            {
+                LaunchProjectile();
+            } else
+            {
+                target.TakeDamage(weaponDamage);
+            }
+        }
+
+
+        public void LaunchProjectile()
+        {
+            Projectile projectileInstance = Instantiate(projectileWeapon, projectileSpawnPoint.position, Quaternion.identity);
+            projectileInstance.SetTarget(target);
         }
 
         public bool CanAttack(GameObject target)

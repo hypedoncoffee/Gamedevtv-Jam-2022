@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UX.CharacterInfo;
+using GameJam.Attributes;
+
 public class PlayerUIManager : MonoBehaviour
 {
     //Essential player meters
@@ -21,6 +23,7 @@ public class PlayerUIManager : MonoBehaviour
     string healthcolor="white";
     string lastcrime;
     Transform objectiveObj;
+    Health healthComponent;
 
     // Start is called before the first frame update
     void Start()
@@ -62,26 +65,12 @@ public class PlayerUIManager : MonoBehaviour
         sentencebar.text = lastcrime + "\n<size=150%>"+years+ "yrs.</size>";
     }
 
-    public string nextColor(int nextHealth)
-    {
-        if (nextHealth > 67)
-            return "green";
-        
-        else if (nextHealth > 33 && nextHealth <= 67)
-            return "yellow";
-            
-            else if (nextHealth <= 33)
-            return "red";
-            else
-                return  "red";
-        
-    }
 
 
     public void SetHealth(int health)
     {
         
-        healthbar.text="<color="+nextColor(health)+">"+health.ToString();
+        healthbar.text="<color="+ healthComponent.nextColor(health)+">"+health.ToString();
     }
     public void SetAmmo(int ammo)
     {
