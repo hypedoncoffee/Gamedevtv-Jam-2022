@@ -25,8 +25,8 @@ public class PlayerOrbitalCaller : MonoBehaviour
 
     IEnumerator LaserFire()
     {
-        hitPoint = null;
-        while(hitPoint == null)
+        hitPoint = Vector3.zero;
+        while(hitPoint == Vector3.zero)
             yield return null;
         Instantiate(laserObj,hitPoint,laserObj.transform.rotation);
     }

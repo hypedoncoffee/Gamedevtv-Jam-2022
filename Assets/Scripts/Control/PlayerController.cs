@@ -73,6 +73,14 @@ namespace GameJam.Control
             deathUI.DisplayNewCharacter(successful,firstName,lastName,crime,years.ToString());
         }
 
+
+        public void RestorePlayableCharacter()
+        {
+            //Reset navmesh
+
+            //Warp to HQ location, to be set later
+        }
+
         // Update is called once per frame
         void Update()
         {
@@ -157,6 +165,7 @@ namespace GameJam.Control
                 if (enemyFighter.GetTarget() != null)
                 {
                     isInCombat = true;
+                    return true;
                 } else
                 {
                     isInCombat = false;
