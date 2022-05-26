@@ -6,13 +6,13 @@ namespace GameJam.Combat
 {
     public class Projectile : MonoBehaviour
     {
-        [SerializeField] float speed = 1;
-        [SerializeField] float weaponDamage = 3f;
+        [SerializeField] float speed = 25;
+        [SerializeField] int weaponDamage = 10;
         [SerializeField] bool isHoming = false;
         [SerializeField] GameObject[] hitEffect = null;
-        [SerializeField] float maxLifeTime = 10;
+        [SerializeField] int maxLifeTime = 10;
         [SerializeField] GameObject[] destroyOnHit = null;
-        [SerializeField] float lifeAfterImpact = 2;
+        [SerializeField] int lifeAfterImpact = 0;
 
         Health target = null;
 

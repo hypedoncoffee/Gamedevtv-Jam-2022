@@ -10,9 +10,9 @@ public class CharacterTransition : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textbox;
     [SerializeField] private bool firstRun = true;
     PlayerUIManager playerUI;
-[SerializeField] float textScrollRate = .015f;
-[SerializeField] AudioClip textScrollBlip,eraseBlip;
-[SerializeField] AudioSource textAudio;
+    [SerializeField] float textScrollRate = .015f;
+    [SerializeField] AudioClip textScrollBlip,eraseBlip;
+    [SerializeField] AudioSource textAudio;
     // Start is called before the first frame update
 
     bool typing;

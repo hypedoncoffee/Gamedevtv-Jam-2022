@@ -35,6 +35,7 @@ namespace GameJam.Control
         [Header("Combat Vars")]
         [SerializeField] Transform projectileSpawnLocation;
         [SerializeField] GameObject playerProjectile;
+        [SerializeField] bool disableIntro;
 
         public enum CursorType
         {
@@ -66,11 +67,14 @@ namespace GameJam.Control
         {
             //restore health to full value
             //call animation
-            lastName= names.ReadList("lastname");
+            lastName = names.ReadList("lastname");
             firstName = names.ReadList("firstname");
             crime = names.ReadList("crime");
-            years = Mathf.RoundToInt(Random.Range(minSentence,maxSentence));
-            deathUI.DisplayNewCharacter(successful,firstName,lastName,crime,years.ToString());
+            years = Mathf.RoundToInt(Random.Range(minSentence, maxSentence));
+            if (!disableIntro)
+            {
+                deathUI.DisplayNewCharacter(successful, firstName, lastName, crime, years.ToString());
+            }
         }
 
 
