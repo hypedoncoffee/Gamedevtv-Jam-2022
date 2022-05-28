@@ -43,7 +43,10 @@ namespace GameJam.Combat
                 stashText.text = playerController.stashAmount.ToString();
                 //StartCoroutine(HideForSeconds(timeToHide));
                 pickedUp.Invoke(gameObject);
-                Destroy(gameObject);
+                if (!objectiveName.Equals("FOB"))
+                {
+                    Destroy(gameObject);
+                }
             }
         }
 
