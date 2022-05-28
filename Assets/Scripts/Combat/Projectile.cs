@@ -6,16 +6,32 @@ namespace GameJam.Combat
 {
     public class Projectile : MonoBehaviour
     {
+      //Visuals and components
+        [Header("Visuals and components")]
+        [SerializeField] ParticleSystem particlesFX;
+        [SerializeField] MeshRenderer rend;
+        [SerializeField] CapsuleCollider coll;
+        [Space(5)]
+
+        [Header("Vars")]
         [SerializeField] float speed = 25;
         [SerializeField] int weaponDamage = 10;
         [SerializeField] bool isHoming = false;
         [SerializeField] GameObject[] hitEffect = null;
         [SerializeField] int maxLifeTime = 10;
         [SerializeField] GameObject[] destroyOnHit = null;
-        [SerializeField] int lifeAfterImpact = 0;
+        [SerializeField] int lifeAfterImpact = 5;
 
         bool dumbMissile = false;
         Health target = null;
+
+        void Awake()
+        {
+            particlesFX = GetComponent<ParticleSystem>();
+            rend = GetComponent<MeshRenderer>();
+            coll=GetComponent<CapsuleCollider>();
+        }
+
 
         void Update()
         {
@@ -36,6 +52,7 @@ namespace GameJam.Combat
 
         void OnTriggerEnter(Collider other)
         {
+            particlesFX.Stop();
             if (dumbMissile)
             {
                 Health hasHealth = other.GetComponent<Health>();
@@ -71,6 +88,9 @@ namespace GameJam.Combat
             {
                 Destroy(toDoDestroy);
             }
+            particlesFX.Stop();
+            rend.enabled=false;
+            coll.enabled=false;
             Destroy(gameObject, lifeAfterImpact);
         }
 

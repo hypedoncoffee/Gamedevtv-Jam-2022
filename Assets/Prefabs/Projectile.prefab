@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 5c2aaa928b18e52518b05e75bac0e74f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -126,6 +126,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2acdd083c9332a438ad051a9dc17859, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particlesFX: {fileID: 0}
+  rend: {fileID: 0}
+  coll: {fileID: 0}
   speed: 25
   weaponDamage: 10
   isHoming: 0
@@ -133,4 +136,4 @@ MonoBehaviour:
   - {fileID: 4468831597741303198, guid: 3af91c4c68715934f9584f91100a8b67, type: 3}
   maxLifeTime: 15
   destroyOnHit: []
-  lifeAfterImpact: 0
+  lifeAfterImpact: 4
