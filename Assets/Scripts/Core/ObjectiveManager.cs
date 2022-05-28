@@ -15,24 +15,25 @@ public class ObjectiveManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI distanceText;
     [SerializeField] GameObject player;
 
-    // TODO: Unused, maybe for directional arrow later ?
+
     private GameObject closestObjective;
     private float closestObjectiveDistance = Mathf.Infinity;
+    private Vector3 playerLastPosition;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         distanceText = GameObject.Find("Objective Label").GetComponent<TextMeshProUGUI>();
     }
-    public void GenerateObjectives()
-    {
-        if (objectives.Count == 0)
-        {
-            GenerateObjectiveList();
-        };
-    }
 
-    private void GenerateObjectiveList()
+    // Update is called once per frame
+    void Update()
+    {
+        FindClosestObjectiveAndSet();
+        UpdateTopLeftUiText();
+        SetPlayerUiObjective();
+    }
+    private void ResetObjectiveList()
     {
         objectives = new List<GameObject>();
         GameObject[] pickupsInScene = GameObject.FindGameObjectsWithTag("Objective");
@@ -52,7 +53,112 @@ public class ObjectiveManager : MonoBehaviour
             }
         }
     }
-    
+
+    /// <summary>
+    /// When a player has clearance codes, their primary objective becomes dropping these off at the FOB.
+    /// This handles overriding any closest objective with a clearance code in the world scene.
+    /// </summary>
+    private bool OverrideObjectiveWhenPlayerHasClearanceCodes()
+    {
+        if (player.GetComponent<PlayerController>().HasClearanceCode())
+        {
+            objectives = new List<GameObject>() { GameObject.FindGameObjectWithTag("FOB") };
+            SetClosestObjectiveAndDistance(objectives[0]);
+            return true;
+        }
+        return false;
+    }
+    /// <summary>
+    /// Updates the non world UI with the objective information
+    /// </summary>
+    private void UpdateTopLeftUiText()
+    {
+        if (closestObjectiveDistance == Mathf.Infinity)
+        {
+            distanceText.text = "No objectives";
+        }
+        else
+        {
+            distanceValue = (int)(closestObjectiveDistance);
+            if (distanceText != null)
+                distanceText.text = String.Format("{0} is your objective. It is {1} m away", closestObjective.GetComponent<Objective>().GetObjectiveName(), closestObjectiveDistance.ToString("N0"));
+        }
+    }
+    /// <summary>
+    /// Runs through the current objective list and sets the managers closest objective and distance
+    /// </summary>
+    private void FindClosestObjectiveAndSet()
+    {
+        HandleEmptyObjectives();
+        if (OverrideObjectiveWhenPlayerHasClearanceCodes()) { return; };
+        // Eager exit
+        if (!PlayedMovedRecently()) { return; }
+        foreach (GameObject objective in objectives)
+        {
+            // TODO - See if vector is ever negative
+            SetClosestObjectiveAndDistance(objective);
+        }
+    }
+
+    private void SetClosestObjectiveAndDistance(GameObject objective)
+    {
+        float distanceToObjective = Mathf.Abs(Vector3.Distance(player.transform.position, objective.transform.position));
+        if (distanceToObjective < closestObjectiveDistance)
+        {
+            closestObjectiveDistance = distanceToObjective;
+            closestObjective = objective;
+        }
+        else if (closestObjective == objective)
+        {
+            closestObjectiveDistance = distanceToObjective;
+        }
+    }
+
+    /// <summary>
+    /// Sets the PlayerUIManager objective with the closestobjective transform position
+    /// </summary>
+    private void SetPlayerUiObjective()
+    {
+        if (closestObjective != null)
+        {
+            FindObjectOfType<PlayerUIManager>().SetObjective(closestObjective.transform);
+        }
+    }
+    /// <summary>
+    /// Resets closest objective and closest objective distance
+    /// </summary>
+    private void HandleEmptyObjectives()
+    {
+        if (objectives.Count == 0)
+        {
+            closestObjective = null;
+            closestObjectiveDistance = Mathf.Infinity;
+        }
+    }
+
+    /// <summary>
+    /// If the player hasn't moved, don't bother iterating objectives.
+    /// </summary>
+    private bool PlayedMovedRecently()
+    {
+        float oldX = playerLastPosition.x;
+        float oldY = playerLastPosition.y;
+        float oldZ = playerLastPosition.z;
+
+        float newX = player.transform.position.x;
+        float newY = playerLastPosition.y;
+        float newZ = playerLastPosition.z;
+
+        bool didNotMove = Mathf.Approximately(oldX, newX) &&
+                        Mathf.Approximately(oldY, newY) &&
+                        Mathf.Approximately(oldZ, newZ);
+        return !didNotMove;
+
+    }
+    /// <summary>
+    /// Adds an objective to the list of objectives if it does not already exist
+    /// </summary>
+    /// <param name="newObjective"></param>
     public void AddObjective(GameObject newObjective)
     {
         if (!objectives.Contains(newObjective))
@@ -60,52 +166,23 @@ public class ObjectiveManager : MonoBehaviour
             objectives.Add(newObjective);
         }
     }
-
+    /// <summary>
+    /// Subscribes to event fired by objective. This  happens when the event considers itself "completed".
+    /// </summary>
+    /// <param name="objectiveThatGotPickedUp"></param>
     public void handleObjectivePickup(GameObject objectiveThatGotPickedUp)
     {
         objectives.Remove(objectiveThatGotPickedUp);
         closestObjectiveDistance = Mathf.Infinity;
     }
-
-    // Update is called once per frame
-    void Update()
+    /// <summary>
+    /// Components can call this to ensure that there will be an objective list available for them to use
+    /// </summary>
+    public void GenerateObjectives()
     {
-        if (player.GetComponent<PlayerController>().HasClearanceCode())
+        if (objectives.Count == 0)
         {
-            GenerateObjectiveList();
-            foreach (GameObject objective in objectives)
-            {
-                if(objective.GetComponent<Objective>() && objective.GetComponent<Objective>().Equals("FOB"))
-                {
-                    closestObjective = objective.gameObject;
-                }
-            }
-        }
-        foreach (GameObject objective in objectives)
-        {
-            // TODO - See if vector is ever negative
-            float distanceToObjective = Mathf.Abs(Vector3.Distance(player.transform.position, objective.transform.position));
-            if (distanceToObjective < closestObjectiveDistance)
-            {
-                closestObjectiveDistance = distanceToObjective;
-                closestObjective = objective;
-            } else if (closestObjective == objective)
-            {
-                closestObjectiveDistance = distanceToObjective;
-            }
-        }
-        if (closestObjectiveDistance == Mathf.Infinity)
-        {
-            distanceText.text = "No objectives";
-        } else
-        {
-            distanceValue = (int)(closestObjectiveDistance);
-            if(distanceText!=null)
-                distanceText.text = String.Format("{0} is your objective. It is {1} m away", closestObjective.GetComponent<Objective>().GetObjectiveName(), closestObjectiveDistance.ToString("N0"));
-        }
-        //Give player ui the objective reference
-        if(closestObjective!=null)
-        FindObjectOfType<PlayerUIManager>().SetObjective(closestObjective.transform);
-        //Todo: Having no objectives results in the objective never going above 0m distance
+            ResetObjectiveList();
+        };
     }
 }

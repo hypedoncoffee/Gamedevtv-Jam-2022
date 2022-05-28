@@ -22,7 +22,8 @@ public class VIPManager : MonoBehaviour
     NamePicker names;
     
     
-    [System.Serializable]public struct info
+    [System.Serializable]
+    public struct info
     {
         public int id;
         public string lastName;
@@ -30,7 +31,6 @@ public class VIPManager : MonoBehaviour
         public int numberOfGuards;
         public bool defeated;
     }
-    // Start is called before the first frame update
     
     void Awake()
     {
@@ -74,14 +74,14 @@ public class VIPManager : MonoBehaviour
     {
         if(nextVIP < vips.Length-1)
         {
-
             GameObject newVIP = Instantiate(vipPrefab,vipSpawners[nextVIP].transform.position,Quaternion.identity);
-        newVIP.GetComponent<AIController>().PassVIPInfo(vips[nextVIP].lastName+", "+vips[nextVIP].firstName,vips[nextVIP].id);
-        nextVIP++;
-        
+            newVIP.GetComponent<AIController>().PassVIPInfo(vips[nextVIP].lastName+", "+vips[nextVIP].firstName,vips[nextVIP].id);
+            nextVIP++;
         }
-        else 
-        Instantiate(finalVIPPrefab,finalSpawn.transform.position,Quaternion.identity);
+        else
+        {
+            Instantiate(finalVIPPrefab,finalSpawn.transform.position,Quaternion.identity);
+        }
         //tankCode
     }
 
@@ -95,11 +95,5 @@ public class VIPManager : MonoBehaviour
                 SpawnVIP();
             }
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

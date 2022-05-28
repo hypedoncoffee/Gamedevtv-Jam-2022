@@ -35,7 +35,7 @@ public class CharacterTransition : MonoBehaviour
         
         
     }
-    public void DisplayNewCharacter(bool success,string fname,string lname,string crime,string years)
+    public void DisplayNewCharacter(bool reachedObjective,string fname,string lname,string crime,string years)
     {
         textbox.maxVisibleCharacters=0;
         string resultscolor;
@@ -53,14 +53,15 @@ public class CharacterTransition : MonoBehaviour
         }
         else 
         {
-
-            if(success)
+            // Died with clearance codes
+            if(reachedObjective)
             {
                 resultscolor = "<color=green>";
                 resultsmessage = "Assignee has completed their sentence and is now relieved of duty.\n\n";
             }
             else
             {
+                // Died without getting clearance codes
                 resultscolor = "<color=red>";
                 resultsmessage = "Assignee was terminated prematurely and body is beyond repair; specimen cannot be recovered.\nRemaining sentence will be commuted to next of kin.\n\nThis will reflect poorly on your efficiency rating.\n\n";
             }

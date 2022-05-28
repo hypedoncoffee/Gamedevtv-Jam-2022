@@ -72,7 +72,7 @@ namespace GameJam.Control
             fobSpawner.Spawn();
         }
 
-        public void SetNewCharacter(bool successful)
+        public void SetNewCharacter(bool reachedObjective)
         {
             //restore health to full value
             //call animation
@@ -82,7 +82,7 @@ namespace GameJam.Control
             years = Mathf.RoundToInt(Random.Range(minSentence, maxSentence));
             if (!disableIntro)
             {
-                deathUI.DisplayNewCharacter(successful, firstName, lastName, crime, years.ToString());
+                deathUI.DisplayNewCharacter(reachedObjective, firstName, lastName, crime, years.ToString());
             }
         }
 
