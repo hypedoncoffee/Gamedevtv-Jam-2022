@@ -60,10 +60,10 @@ namespace GameJam.Control
             charNameUI.text = lastName+", "+firstName;
         }
 
-        public void PassVIPInfo(string newname,int id)
+        public void PassVIPInfo(string newname, int id)
         {
-        charNameUI.text = newname;    
-        vipID = id;
+            charNameUI.text = newname;    
+            vipID = id;
         }
 
         public void KillVIP()

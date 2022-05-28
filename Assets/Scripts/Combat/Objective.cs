@@ -16,8 +16,9 @@ namespace GameJam.Combat
         [SerializeField] string objectiveName = "";
 
         [SerializeField] bool grantsCode;
+        [SerializeField] bool requiresCode;
 
-        public Action<GameObject> pickedUp;
+        public Action<GameObject> objectiveCompleted;
 
         private GameObject player;
 
@@ -37,12 +38,15 @@ namespace GameJam.Combat
                 if (grantsCode)
                 {
                     GrantBuff(playerController);
+                } else if (playerController.HasClearanceCode() && requiresCode)
+                {
+                    playerController.SetNewCharacter(true);
+                    return;
                 }
                 TextMeshProUGUI stashText = playerController.GetStashText();
                 playerController.stashAmount = playerController.stashAmount + pickupValue;
                 stashText.text = playerController.stashAmount.ToString();
-                //StartCoroutine(HideForSeconds(timeToHide));
-                pickedUp.Invoke(gameObject);
+                objectiveCompleted.Invoke(gameObject);
                 if (!objectiveName.Equals("FOB"))
                 {
                     Destroy(gameObject);
@@ -56,7 +60,7 @@ namespace GameJam.Combat
         private void GrantBuff(PlayerController target)
         {
             target.SetClearanceCode(true);
-            target.EnableFOB();
+            target.EnableFOB(true);
         }
         private IEnumerator HideForSeconds(float timeToHide)
         {

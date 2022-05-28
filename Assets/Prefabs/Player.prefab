@@ -125,7 +125,7 @@ MonoBehaviour:
   isInCombat: 0
   projectileSpawnLocation: {fileID: 7037993860967584163}
   playerProjectile: {fileID: 4348660479659510245, guid: 51929eedc1df05c43a71821723658efc, type: 3}
-  disableIntro: 1
+  disableIntro: 0
   hasClearanceCode: 0
   cursorMappings:
   - type: 0

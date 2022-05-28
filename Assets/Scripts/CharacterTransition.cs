@@ -162,10 +162,4 @@ public class CharacterTransition : MonoBehaviour
         FindObjectOfType<DynamicMusicManager>().PlayerDeathMusic(false);
     }
 
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

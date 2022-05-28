@@ -33,9 +33,10 @@ public class ObjectiveManager : MonoBehaviour
         UpdateTopLeftUiText();
         SetPlayerUiObjective();
     }
-    private void ResetObjectiveList()
+    public void ResetObjectiveList()
     {
         objectives = new List<GameObject>();
+        closestObjectiveDistance = Mathf.Infinity;
         GameObject[] pickupsInScene = GameObject.FindGameObjectsWithTag("Objective");
         foreach (GameObject objective in pickupsInScene)
         {
@@ -49,7 +50,7 @@ public class ObjectiveManager : MonoBehaviour
                 {
                     objectives.Add(objective);
                 }
-                objective.GetComponent<Objective>().pickedUp += handleObjectivePickup;
+                objective.GetComponent<Objective>().objectiveCompleted += handleObjectivePickup;
             }
         }
     }
@@ -60,10 +61,19 @@ public class ObjectiveManager : MonoBehaviour
     /// </summary>
     private bool OverrideObjectiveWhenPlayerHasClearanceCodes()
     {
-        if (player.GetComponent<PlayerController>().HasClearanceCode())
+        PlayerController playerController =  player.GetComponent<PlayerController>();
+        if (playerController.HasClearanceCode())
         {
-            objectives = new List<GameObject>() { GameObject.FindGameObjectWithTag("FOB") };
-            SetClosestObjectiveAndDistance(objectives[0]);
+            GameObject fob = GameObject.FindGameObjectWithTag("FOB");
+            if (!fob)
+            {
+                playerController.EnableFOB(true);
+            }
+            else
+            {
+                objectives = new List<GameObject>() { fob };
+                SetClosestObjectiveAndDistance(objectives[0]);
+            };
             return true;
         }
         return false;
@@ -80,10 +90,28 @@ public class ObjectiveManager : MonoBehaviour
         else
         {
             distanceValue = (int)(closestObjectiveDistance);
+            if (HaveNullObjectives()) { return; }
             if (distanceText != null)
                 distanceText.text = String.Format("{0} is your objective. It is {1} m away", closestObjective.GetComponent<Objective>().GetObjectiveName(), closestObjectiveDistance.ToString("N0"));
         }
     }
+
+    private bool HaveNullObjectives()
+    {
+        if (closestObjective.gameObject == null)
+        {
+            distanceText.text = "No objectives";
+            return true;
+        }
+        Objective objective = closestObjective.GetComponent<Objective>();
+        if (objective.gameObject == null)
+        {
+            distanceText.text = "No objectives";
+            return true;
+        }
+        return false;
+    }
+
     /// <summary>
     /// Runs through the current objective list and sets the managers closest objective and distance
     /// </summary>
@@ -102,6 +130,7 @@ public class ObjectiveManager : MonoBehaviour
 
     private void SetClosestObjectiveAndDistance(GameObject objective)
     {
+        if (!objective) { return; }
         float distanceToObjective = Mathf.Abs(Vector3.Distance(player.transform.position, objective.transform.position));
         if (distanceToObjective < closestObjectiveDistance)
         {
