@@ -59,8 +59,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeToHide: 5
-  pickupValue: 100
-  distanceText: {fileID: 0}
+  pickupValue: 1000
+  objectiveName: Clearance Code
+  grantsCode: 1
 --- !u!1001 &5859565219432962686
 PrefabInstance:
   m_ObjectHideFlags: 0

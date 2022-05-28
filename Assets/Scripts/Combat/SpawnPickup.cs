@@ -5,14 +5,22 @@ using UnityEngine;
 
 namespace GameJam.Combat
 {
-    public class ItemPickupZone : MonoBehaviour
+    public class SpawnPickup : MonoBehaviour
     {
         [SerializeField] float pickupSpawnRadius = 10f;
         [SerializeField] GameObject spawnedItem;
-
+        [SerializeField] bool spawnImmediately = false;
         private bool spawned = false;
 
-        private void Start()
+        private void Awake()
+        {
+            if (spawnImmediately)
+            {
+                Spawn();
+            }
+        }
+
+        public void Spawn()
         {
             if (!spawned)
             {
@@ -24,7 +32,10 @@ namespace GameJam.Combat
                     randomZ
                 );
                 spawned = true;
-                Instantiate(spawnedItem, randomPosition, transform.rotation);
+                GameObject newItem = Instantiate(spawnedItem, randomPosition, transform.rotation);
+                ObjectiveManager objectiveManager = GameObject.FindGameObjectWithTag("Player").gameObject.GetComponentInChildren<ObjectiveManager>();
+                newItem.GetComponent<Objective>().pickedUp += objectiveManager.handleObjectivePickup;
+                objectiveManager.AddObjective(newItem);
             }
         }
 

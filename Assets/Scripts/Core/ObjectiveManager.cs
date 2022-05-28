@@ -5,13 +5,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using GameJam.Control;
 
 public class ObjectiveManager : MonoBehaviour
 {
 
     [SerializeField] List<GameObject> objectives;
     [SerializeField] public int distanceValue;
-    //[SerializeField] Text distanceText;
     [SerializeField] TextMeshProUGUI distanceText;
     [SerializeField] GameObject player;
 
@@ -22,27 +22,46 @@ public class ObjectiveManager : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        // Allow time for pickups to spawn
-        Invoke("GenerateInitialPickups", 1f);
+        distanceText = GameObject.Find("Objective Label").GetComponent<TextMeshProUGUI>();
     }
-    private void GenerateInitialPickups()
+    public void GenerateObjectives()
     {
         if (objectives.Count == 0)
         {
-            objectives = new List<GameObject>();
-            GameObject[] pickupsInScene = GameObject.FindGameObjectsWithTag("Objective");
-            foreach (GameObject objective in pickupsInScene)
-            {
-                if (!objectives.Contains(objective))
-                {
-                    objectives.Add(objective);
-                    objective.GetComponent<ItemPickup>().pickedUp += handleObjectivePickup;
-                }
-            }
+            GenerateObjectiveList();
         };
     }
 
-    private void handleObjectivePickup(GameObject objectiveThatGotPickedUp)
+    private void GenerateObjectiveList()
+    {
+        objectives = new List<GameObject>();
+        GameObject[] pickupsInScene = GameObject.FindGameObjectsWithTag("Objective");
+        foreach (GameObject objective in pickupsInScene)
+        {
+            if (!objectives.Contains(objective))
+            {
+                if (objective.name.Equals("eccFOB_Base-final"))
+                {
+                    objectives.Insert(0, objective);
+                }
+                else
+                {
+                    objectives.Add(objective);
+                }
+                objective.GetComponent<Objective>().pickedUp += handleObjectivePickup;
+            }
+        }
+    }
+    
+    public void AddObjective(GameObject newObjective)
+    {
+        if (!objectives.Contains(newObjective))
+        {
+            objectives.Add(newObjective);
+        }
+    }
+
+    public void handleObjectivePickup(GameObject objectiveThatGotPickedUp)
     {
         objectives.Remove(objectiveThatGotPickedUp);
         closestObjectiveDistance = Mathf.Infinity;
@@ -51,6 +70,17 @@ public class ObjectiveManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (player.GetComponent<PlayerController>().HasClearanceCode())
+        {
+            GenerateObjectiveList();
+            foreach (GameObject objective in objectives)
+            {
+                if(objective.GetComponent<Objective>() && objective.GetComponent<Objective>().Equals("FOB"))
+                {
+                    closestObjective = objective.gameObject;
+                }
+            }
+        }
         foreach (GameObject objective in objectives)
         {
             // TODO - See if vector is ever negative
@@ -68,7 +98,7 @@ public class ObjectiveManager : MonoBehaviour
         {
             distanceValue = (int)(closestObjectiveDistance);
             if(distanceText!=null)
-                distanceText.text = String.Format("{0} m", closestObjectiveDistance.ToString("N0"));
+                distanceText.text = String.Format("{0} is your objective. It is {1} m away", closestObjective.GetComponent<Objective>().GetObjectiveName(), closestObjectiveDistance.ToString("N0"));
         }
         //Give player ui the objective reference
         if(closestObjective!=null)

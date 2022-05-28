@@ -36,6 +36,7 @@ namespace GameJam.Control
         [SerializeField] Transform projectileSpawnLocation;
         [SerializeField] GameObject playerProjectile;
         [SerializeField] bool disableIntro;
+        [SerializeField] bool hasClearanceCode = false;
 
         public enum CursorType
         {
@@ -59,8 +60,16 @@ namespace GameJam.Control
             names = FindObjectOfType<NamePicker>();
             fighter = GetComponent<Fighter>();
             health = GetComponent<Health>();
-            textStashValue = GameObject.Find("Stash Value").GetComponent<TextMeshProUGUI>();
+            // TODO - Stash == Score? Set
+            // textStashValue = GameObject.Find("Stash Value").GetComponent<TextMeshProUGUI>();
+            GetComponentInChildren<ObjectiveManager>().GenerateObjectives();
             SetNewCharacter(true);
+        }
+
+        public void EnableFOB()
+        {
+            SpawnPickup fobSpawner = GameObject.Find("FOB Base Spawn Zone").GetComponent<SpawnPickup>();
+            fobSpawner.Spawn();
         }
 
         public void SetNewCharacter(bool successful)
@@ -117,22 +126,6 @@ namespace GameJam.Control
                 }
             }
             return false;
-            /*
-            RaycastHit[] rays = Physics.RaycastAll(GetMouseRay());
-            foreach (RaycastHit hit in rays)
-            {
-                CombatTarget target = hit.transform.GetComponent<CombatTarget>();
-                if (target == null) continue;
-                if (!fighter.CanAttack(target.gameObject)) { continue; }
-                SetCursor(CursorType.Attack);
-                if (Input.GetMouseButton(1))
-                {
-                    fighter.Attack(target.gameObject);
-                }
-                return true;
-            }
-            return false;
-            */
         }
 
         private bool InteractWithMovement()
@@ -203,6 +196,16 @@ namespace GameJam.Control
         {
             Projectile projectileInstance = Instantiate(playerProjectile, projectileSpawnLocation.position, Quaternion.identity);
             projectileInstance.SetTarget(target);
+        }
+
+        public void GiveClearanceCode()
+        {
+            hasClearanceCode = true;
+        }
+
+        public bool HasClearanceCode()
+        {
+            return hasClearanceCode;
         }
     }
 }

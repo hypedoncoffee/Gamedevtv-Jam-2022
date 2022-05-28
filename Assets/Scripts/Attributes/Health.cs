@@ -7,6 +7,7 @@ using UnityEngine;
 //only used for respawn call, remove if a more efficient method is possible
 using GameJam.Control;
 using TMPro;
+using GameJam.Combat;
 
 namespace GameJam.Attributes
 {
@@ -33,6 +34,7 @@ namespace GameJam.Attributes
             {
                 currentHealth = maxHealth;
             }
+            UpdateHealthUI();
         }
 
         public bool IsAlive()
@@ -43,7 +45,10 @@ namespace GameJam.Attributes
         private void UpdateHealthUI()
         {
             TextMeshPro tmpro = GetComponentInChildren<TextMeshPro>();
-            tmpro.text = String.Format("<color={0}> {1} </color>", nextColor(currentHealth), currentHealth);
+            if (tmpro)
+            {
+                tmpro.text = String.Format("<color={0}> {1} </color>", nextColor(currentHealth), currentHealth);
+            }
         }
 
         public void TakeDamage(int damage)
@@ -69,12 +74,24 @@ namespace GameJam.Attributes
         private void Die()
         {
             if (!isAlive) { return; }
+            SpawnPickup hasItemDrop = GetComponent<SpawnPickup>();
+            if (hasItemDrop)
+            {
+                hasItemDrop.Spawn();
+                Objective isObjective = GetComponent<Objective>();
+                if (isObjective)
+                {
+                    isObjective.pickedUp.Invoke(isObjective.gameObject);
+                }
+            }
             GetComponent<ActionScheduler>().CancelCurrentAction();
             animator.ResetTrigger("Hit");
             animator.SetTrigger("Die");
             isAlive = false;
             if(!isPlayer)
             {
+                // TODO : Animation
+                Destroy(gameObject);
                 GetComponent<Collider>().enabled = false;
             }
             else

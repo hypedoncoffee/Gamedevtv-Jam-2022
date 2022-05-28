@@ -5,12 +5,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using GameJam.Attributes;
+
 namespace GameJam.Combat
 {
-    public class ItemPickup : MonoBehaviour
+    public class Objective : MonoBehaviour
     {
         [SerializeField] float timeToHide = 5f;
         [SerializeField] float pickupValue = 100f;
+        [SerializeField] string objectiveName = "";
+
+        [SerializeField] bool grantsCode;
 
         public Action<GameObject> pickedUp;
 
@@ -25,13 +30,27 @@ namespace GameJam.Combat
         {
             if (other.gameObject.CompareTag("Player"))
             {
+                // Not a dropped pickup, living objective. Exit
+                Health hasHealth = GetComponent<Health>();
+                if (hasHealth) { return; }
                 PlayerController playerController = player.GetComponent<PlayerController>();
+                if (grantsCode)
+                {
+                    GrantBuff(playerController);
+                }
                 TextMeshProUGUI stashText = playerController.GetStashText();
                 playerController.stashAmount = playerController.stashAmount + pickupValue;
                 stashText.text = playerController.stashAmount.ToString();
-                StartCoroutine(HideForSeconds(timeToHide));
-                pickedUp.Invoke(this.gameObject);
+                //StartCoroutine(HideForSeconds(timeToHide));
+                pickedUp.Invoke(gameObject);
+                Destroy(gameObject);
             }
+        }
+
+        private void GrantBuff(PlayerController target)
+        {
+            target.GiveClearanceCode();
+            target.EnableFOB();
         }
         private IEnumerator HideForSeconds(float timeToHide)
         {
@@ -46,6 +65,11 @@ namespace GameJam.Combat
             {
                 child.gameObject.SetActive(show);
             }
+        }
+
+        public string GetObjectiveName()
+        {
+            return objectiveName;
         }
     }
 

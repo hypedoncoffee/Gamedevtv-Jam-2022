@@ -19,9 +19,11 @@ GameObject:
   - component: {fileID: 731252090282484008}
   - component: {fileID: 7906172408912191566}
   - component: {fileID: 3376481441588253931}
+  - component: {fileID: -8870585533279958963}
+  - component: {fileID: 7558732742044203022}
   m_Layer: 0
   m_Name: Enemy - Evil Tank
-  m_TagString: Untagged
+  m_TagString: Objective
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102,7 +104,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -122,7 +124,7 @@ MonoBehaviour:
   currentHealth: -1
   isAlive: 1
   isPlayer: 0
-  maxHealth: 400
+  maxHealth: 10
 --- !u!95 &3436667070790348284
 Animator:
   serializedVersion: 3
@@ -183,9 +185,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcdf6fe1ed52c2144a51162b761f9601, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
   timeBetweenAttacks: 6.22
   weaponRange: 25
   weaponDamage: 40
+  projectileWeapon: {fileID: 0}
+  projectileSpawnPoint: {fileID: 0}
+  orbitalLaserPrefab: {fileID: 0}
+  orbitalLaserParticles: {fileID: 0}
+  abilityCooldown: 1.5
 --- !u!114 &3376481441588253931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,6 +208,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   suspicionTime: 3
   timeSinceLastSawPlayer: Infinity
+--- !u!114 &-8870585533279958963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3436667070790348274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef16019146071d348a249b3bb16bc4e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickupSpawnRadius: 0
+  spawnedItem: {fileID: 9174546773437332995, guid: cba9530aea08b1d459352d4480c62d49, type: 3}
+--- !u!114 &7558732742044203022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3436667070790348274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6dbeff1a46199040b378be5eb93a263, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToHide: 5
+  pickupValue: 100
+  objectiveName: VIP
 --- !u!1 &4417975282379187319
 GameObject:
   m_ObjectHideFlags: 0

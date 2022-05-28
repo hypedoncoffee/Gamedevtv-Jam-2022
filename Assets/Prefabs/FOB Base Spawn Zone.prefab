@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5508803011033054793}
-  - component: {fileID: -8504076677517401229}
+  - component: {fileID: 6634472889740972137}
   m_Layer: 0
-  m_Name: Briefcase Pickup Zone
+  m_Name: FOB Base Spawn Zone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-8504076677517401229
+--- !u!114 &6634472889740972137
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,5 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef16019146071d348a249b3bb16bc4e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupSpawnRadius: 3
-  spawnedItem: {fileID: 9174546773437332995, guid: cba9530aea08b1d459352d4480c62d49, type: 3}
+  pickupSpawnRadius: 10
+  spawnedItem: {fileID: 7766560004085958717, guid: 98c99972608f39944889a5135a51f370, type: 3}
+  spawnImmediately: 1
