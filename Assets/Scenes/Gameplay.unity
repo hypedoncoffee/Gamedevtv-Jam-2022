@@ -9270,7 +9270,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6689383371406252124, guid: 8dc3400744948903098cff159ae93a27, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.2
+      value: -1.85
       objectReference: {fileID: 0}
     - target: {fileID: 6689383371406252124, guid: 8dc3400744948903098cff159ae93a27, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10817,6 +10817,10 @@ PrefabInstance:
       propertyPath: textStashValue
       value: 
       objectReference: {fileID: 1818826986}
+    - target: {fileID: 7037993861908447365, guid: 9e0baddfc60136b48883c53a36918cef, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7229472535618866404, guid: 9e0baddfc60136b48883c53a36918cef, type: 3}
       propertyPath: m_Camera
       value: 
