@@ -128,9 +128,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2acdd083c9332a438ad051a9dc17859, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particlesFX: {fileID: 0}
-  rend: {fileID: 0}
-  coll: {fileID: 0}
+  particlesFX: {fileID: 2859488285258489752}
+  rend: {fileID: 9052023668483508777}
+  coll: {fileID: 3144784770763213143}
   speed: 25
   weaponDamage: 10
   isHoming: 0

@@ -185,10 +185,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcdf6fe1ed52c2144a51162b761f9601, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTank: 0
+  barrelTurnRate: 0
+  tankBarrel: {fileID: 0}
+  barrelRefPoint: {fileID: 0}
+  conversionVector: {x: 0, y: 0, z: 0}
+  turnMultiplier: 1
+  targetRefPoint: {fileID: 0}
   target: {fileID: 0}
   timeBetweenAttacks: 6.22
   weaponRange: 25
   weaponDamage: 40
+  turnRate: 0.65
   projectileWeapon: {fileID: 0}
   projectileSpawnPoint: {fileID: 0}
   orbitalLaserPrefab: {fileID: 0}
@@ -222,6 +230,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickupSpawnRadius: 0
   spawnedItem: {fileID: 9174546773437332995, guid: cba9530aea08b1d459352d4480c62d49, type: 3}
+  spawnImmediately: 0
 --- !u!114 &7558732742044203022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,6 +246,7 @@ MonoBehaviour:
   timeToHide: 5
   pickupValue: 100
   objectiveName: VIP
+  grantsCode: 0
 --- !u!1 &4417975282379187319
 GameObject:
   m_ObjectHideFlags: 0
@@ -417,6 +427,18 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 5012ac7f7d5a25d458e5cdf2c24c25b8, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5012ac7f7d5a25d458e5cdf2c24c25b8, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.56
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5012ac7f7d5a25d458e5cdf2c24c25b8, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.56
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5012ac7f7d5a25d458e5cdf2c24c25b8, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.56
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5012ac7f7d5a25d458e5cdf2c24c25b8, type: 3}
       propertyPath: m_LocalPosition.x

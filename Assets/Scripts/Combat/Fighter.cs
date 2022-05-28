@@ -8,12 +8,25 @@ namespace GameJam.Combat
 {
     public class Fighter : MonoBehaviour, IAction
     {
+        //hardcoded final boss stuff
+        [Header("Only fill these out for the tank!")]
+        [SerializeField] bool isTank;
+        [Range(0f,1f)] [SerializeField] float barrelTurnRate;
+        [SerializeField] Transform tankBarrel,barrelRefPoint;
+        [SerializeField] Vector3 conversionVector;
+        //ref point for turning speed
+        [Space(5)]
+        [Header("Components and vars")]
+        [SerializeField] float turnMultiplier;
+        [SerializeField] GameObject targetRefPoint;
+        //actual script
         [SerializeField] Health target;
         float timeSinceLastAttack = Mathf.Infinity;
         float timeSinceLastAbility = Mathf.Infinity;
         [SerializeField] float timeBetweenAttacks = .5f;
         [SerializeField] int weaponRange;
         [SerializeField] int weaponDamage;
+        [Range(0f,1f)] [SerializeField] float turnRate;
         [SerializeField] Projectile projectileWeapon = null;
         [SerializeField] Transform projectileSpawnPoint = null;
         [SerializeField] GameObject orbitalLaserPrefab = null;
@@ -22,6 +35,8 @@ namespace GameJam.Combat
         [SerializeField] float abilityCooldown = 1.5f;
 
         Animator animator = null;
+
+
 
         void Update()
         {
@@ -57,7 +72,10 @@ namespace GameJam.Combat
 
         private void AttackBehaviour()
         {
-            transform.LookAt(target.transform);
+            targetRefPoint.transform.LookAt(target.transform);
+            if(isTank)barrelRefPoint.transform.LookAt(target.transform,conversionVector);
+            transform.rotation = Quaternion.Slerp(transform.rotation,targetRefPoint.transform.rotation,turnRate*turnMultiplier*Time.deltaTime);
+            if(isTank)tankBarrel.rotation = Quaternion.Slerp(tankBarrel.rotation,barrelRefPoint.transform.rotation,barrelTurnRate*turnMultiplier*Time.deltaTime);
             if (timeSinceLastAttack > timeBetweenAttacks)
             {
                 // This will trigger the Hit() event
@@ -83,8 +101,18 @@ namespace GameJam.Combat
 
         public void LaunchProjectile()
         {
-            Projectile projectileInstance = Instantiate(projectileWeapon, projectileSpawnPoint.position, Quaternion.identity);
+            Projectile projectileInstance;
+            if(!isTank)
+            {
+
+            projectileInstance = Instantiate(projectileWeapon, projectileSpawnPoint.position, Quaternion.identity);
             projectileInstance.SetTarget(target);
+            }
+            else
+            {
+                projectileInstance = Instantiate(projectileWeapon, projectileSpawnPoint.position, tankBarrel.transform.rotation);            
+                projectileInstance.StraightFire(target); 
+            } 
         }
 
         public void LaunchSpamProjectile(Vector3 position)

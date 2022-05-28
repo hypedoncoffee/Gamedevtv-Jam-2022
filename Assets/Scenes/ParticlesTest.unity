@@ -482,7 +482,7 @@ GameObject:
   - component: {fileID: 550137560}
   - component: {fileID: 550137559}
   - component: {fileID: 550137558}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plane
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -943,7 +943,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1922019654974349690, guid: 51929eedc1df05c43a71821723658efc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 14.881478
+      value: 1.17
       objectReference: {fileID: 0}
     - target: {fileID: 1922019654974349690, guid: 51929eedc1df05c43a71821723658efc, type: 3}
       propertyPath: m_LocalPosition.y
@@ -980,6 +980,18 @@ PrefabInstance:
     - target: {fileID: 1922019654974349690, guid: 51929eedc1df05c43a71821723658efc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2859488285258489752, guid: 51929eedc1df05c43a71821723658efc, type: 3}
+      propertyPath: CollisionModule.m_Bounce.scalar
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2859488285258489752, guid: 51929eedc1df05c43a71821723658efc, type: 3}
+      propertyPath: CollisionModule.m_Dampen.scalar
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2859488285258489752, guid: 51929eedc1df05c43a71821723658efc, type: 3}
+      propertyPath: CollisionModule.collidesWith.m_Bits
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 4348660479659510245, guid: 51929eedc1df05c43a71821723658efc, type: 3}
       propertyPath: m_Name

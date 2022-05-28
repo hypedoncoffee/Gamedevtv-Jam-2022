@@ -27,9 +27,9 @@ namespace GameJam.Combat
 
         void Awake()
         {
-            particlesFX = GetComponent<ParticleSystem>();
-            rend = GetComponent<MeshRenderer>();
-            coll=GetComponent<CapsuleCollider>();
+            if(particlesFX==null)particlesFX = GetComponent<ParticleSystem>();
+            if(rend==null)rend = GetComponent<MeshRenderer>();
+            if(coll==null)coll=GetComponent<CapsuleCollider>();
         }
 
 
@@ -47,6 +47,13 @@ namespace GameJam.Combat
         {
             this.target = target;
             transform.LookAt(GetAimLocation());
+            Destroy(gameObject, maxLifeTime);
+        }
+        
+        public void StraightFire(Health target)
+        {
+            this.target = target;
+            //transform.LookAt(GetAimLocation());
             Destroy(gameObject, maxLifeTime);
         }
 
