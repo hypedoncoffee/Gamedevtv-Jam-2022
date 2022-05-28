@@ -189,8 +189,8 @@ MonoBehaviour:
   timeBetweenAttacks: 6.22
   weaponRange: 25
   weaponDamage: 40
-  projectileWeapon: {fileID: 0}
-  projectileSpawnPoint: {fileID: 0}
+  projectileWeapon: {fileID: 1103175307221487961, guid: 51929eedc1df05c43a71821723658efc, type: 3}
+  projectileSpawnPoint: {fileID: 3436667070790348260}
   orbitalLaserPrefab: {fileID: 0}
   orbitalLaserParticles: {fileID: 0}
   abilityCooldown: 1.5
@@ -222,6 +222,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickupSpawnRadius: 0
   spawnedItem: {fileID: 9174546773437332995, guid: cba9530aea08b1d459352d4480c62d49, type: 3}
+  spawnImmediately: 0
 --- !u!114 &7558732742044203022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,6 +238,7 @@ MonoBehaviour:
   timeToHide: 5
   pickupValue: 100
   objectiveName: VIP
+  grantsCode: 0
 --- !u!1 &4417975282379187319
 GameObject:
   m_ObjectHideFlags: 0
