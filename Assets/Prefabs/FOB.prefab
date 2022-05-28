@@ -1133,7 +1133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6dbeff1a46199040b378be5eb93a263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToHide: 5
+  timeToHide: 0
   pickupValue: 100
   objectiveName: FOB
   grantsCode: 0
