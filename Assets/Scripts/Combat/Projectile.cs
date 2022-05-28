@@ -88,9 +88,9 @@ namespace GameJam.Combat
             {
                 Destroy(toDoDestroy);
             }
-            particlesFX.Stop();
-            rend.enabled=false;
-            coll.enabled=false;
+            if(particlesFX!=null)particlesFX.Stop();
+            if(rend!=null)rend.enabled=false;
+            if(coll!=null)coll.enabled=false;
             Destroy(gameObject, lifeAfterImpact);
         }
 
