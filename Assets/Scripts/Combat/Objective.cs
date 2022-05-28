@@ -46,13 +46,16 @@ namespace GameJam.Combat
                 if (!objectiveName.Equals("FOB"))
                 {
                     Destroy(gameObject);
+                } else
+                {
+                    playerController.SetClearanceCode(false);
                 }
             }
         }
 
         private void GrantBuff(PlayerController target)
         {
-            target.GiveClearanceCode();
+            target.SetClearanceCode(true);
             target.EnableFOB();
         }
         private IEnumerator HideForSeconds(float timeToHide)

@@ -248,7 +248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  timeBetweenAttacks: 1.21
+  timeBetweenAttacks: 0.5
   weaponRange: 25
   weaponDamage: 5
   projectileWeapon: {fileID: 1103175307221487961, guid: 51929eedc1df05c43a71821723658efc, type: 3}

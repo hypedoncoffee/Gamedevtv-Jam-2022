@@ -198,9 +198,9 @@ namespace GameJam.Control
             projectileInstance.SetTarget(target);
         }
 
-        public void GiveClearanceCode()
+        public void SetClearanceCode(bool clearanceCode)
         {
-            hasClearanceCode = true;
+            hasClearanceCode = clearanceCode;
         }
 
         public bool HasClearanceCode()

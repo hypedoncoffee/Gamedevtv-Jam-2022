@@ -40,7 +40,7 @@ public class ObjectiveManager : MonoBehaviour
         {
             if (!objectives.Contains(objective))
             {
-                if (objective.name.Equals("eccFOB_Base-final"))
+                if (objective.GetComponent<Objective>().GetObjectiveName().Equals("FOB"))
                 {
                     objectives.Insert(0, objective);
                 }
@@ -89,6 +89,9 @@ public class ObjectiveManager : MonoBehaviour
             {
                 closestObjectiveDistance = distanceToObjective;
                 closestObjective = objective;
+            } else if (closestObjective == objective)
+            {
+                closestObjectiveDistance = distanceToObjective;
             }
         }
         if (closestObjectiveDistance == Mathf.Infinity)
