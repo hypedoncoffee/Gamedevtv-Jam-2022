@@ -247,10 +247,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcdf6fe1ed52c2144a51162b761f9601, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTank: 0
+  barrelTurnRate: 0
+  tankBarrel: {fileID: 0}
+  barrelRefPoint: {fileID: 0}
+  conversionVector: {x: 0, y: 0, z: 0}
+  turnMultiplier: 0
+  targetRefPoint: {fileID: 0}
   target: {fileID: 0}
   timeBetweenAttacks: 0.5
   weaponRange: 25
   weaponDamage: 5
+  turnRate: 0
   projectileWeapon: {fileID: 1103175307221487961, guid: 51929eedc1df05c43a71821723658efc, type: 3}
   projectileSpawnPoint: {fileID: 7037993860967584163}
   orbitalLaserPrefab: {fileID: 1892744599458023947, guid: bb8a32c6ed75f3f858551185a95ed67a, type: 3}
