@@ -72,10 +72,19 @@ namespace GameJam.Combat
 
         private void AttackBehaviour()
         {
-            targetRefPoint.transform.LookAt(target.transform);
-            if(isTank)barrelRefPoint.transform.LookAt(target.transform,conversionVector);
-            transform.rotation = Quaternion.Slerp(transform.rotation,targetRefPoint.transform.rotation,turnRate*turnMultiplier*Time.deltaTime);
-            if(isTank)tankBarrel.rotation = Quaternion.Slerp(tankBarrel.rotation,barrelRefPoint.transform.rotation,barrelTurnRate*turnMultiplier*Time.deltaTime);
+            if(targetRefPoint!=null)
+            {
+
+                targetRefPoint.transform.LookAt(target.transform);
+                transform.rotation = Quaternion.Slerp(transform.rotation,targetRefPoint.transform.rotation,turnRate*turnMultiplier*Time.deltaTime);
+            }
+            if(isTank)
+            {
+                tankBarrel.rotation = Quaternion.Slerp(tankBarrel.rotation,barrelRefPoint.transform.rotation,barrelTurnRate*turnMultiplier*Time.deltaTime);
+                barrelRefPoint.transform.LookAt(target.transform,conversionVector);
+            }
+            else transform.LookAt(target.transform);
+            
             if (timeSinceLastAttack > timeBetweenAttacks)
             {
                 // This will trigger the Hit() event

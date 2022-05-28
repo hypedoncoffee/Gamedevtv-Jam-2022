@@ -2,11 +2,16 @@
 using GameJam.Combat;
 using GameJam.Movement;
 using UnityEngine;
-
+using TMPro;
+using UX.CharacterInfo;
 namespace GameJam.Control
 {
     public class AIController : MonoBehaviour
     {
+        //name
+        [SerializeField] string lastName,firstName;
+        [Space(5)]
+
         [SerializeField] float chaseDistance = 5f;
         [SerializeField] PatrolPath patrolPath;
         [SerializeField] float waypointTolerance = 1f;
@@ -18,6 +23,13 @@ namespace GameJam.Control
         Health health;
         Suspicion suspicion;
         GameObject player;
+        [SerializeField] TMP_Text charNameUI;
+        [SerializeField] ParticleSystem alertFX;
+
+        //Audio stuff
+        [SerializeField] float timeSinceLastCallout;
+        [SerializeField] PatrolVoice voices;
+        [SerializeField] float minTimeBetweenCallouts = 15;
 
         #region
         Vector3 guardLocation;
@@ -34,10 +46,25 @@ namespace GameJam.Control
             mover = GetComponent<Mover>();
             guardLocation = transform.position;
             initialLookDirection = transform.rotation;
+            if(charNameUI!=null)SetName();
         }
+
+
+        void SetName()
+        {
+            NamePicker names = FindObjectOfType<NamePicker>();
+            lastName = names.ReadList("lastname");
+            firstName = names.ReadList("firstname");
+            charNameUI.text = lastName+", "+firstName;
+        }
+
         // Check every frame if the player is in the chase distance or not
         public void Update()
         {
+            //Audio hook for idle banter
+            timeSinceLastCallout += Time.deltaTime;
+
+
             if (!health.IsAlive()) { return; }
             if (InAttackRangeOfPlayer() && fighter.CanAttack(player))
             {
@@ -102,6 +129,11 @@ namespace GameJam.Control
 
         private void AttackBehavior()
         {
+            if(timeSinceLastCallout > minTimeBetweenCallouts)
+            {
+                timeSinceLastCallout = 0;
+                if(voices!=null) voices.Alert(true);
+            }
             suspicion.ResetTimeSinceLastSawPlayer();
             fighter.Attack(player);
         }

@@ -14,8 +14,8 @@ public class GameStateUIManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        
         timer = FindObjectOfType<CountupTimer>();
+        ToggleStashDisplay(false);
     }
 
     // Update is called once per frame

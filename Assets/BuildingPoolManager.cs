@@ -5,6 +5,7 @@ using UnityEngine;
 public class BuildingPoolManager : MonoBehaviour
 {
     [SerializeField] GameObject[] fullSizeBuilding,halfSizeBuilding,doubleSizeBuilding;
+    [SerializeField] GameObject[] fullSizeProp;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,8 +18,20 @@ public class BuildingPoolManager : MonoBehaviour
         BuildingPrefabs[] spawners = FindObjectsOfType<BuildingPrefabs>();
         foreach (BuildingPrefabs spawner in spawners)
         {
-            yield return new WaitForSeconds(20f/(float)spawners.Length);
+            yield return new WaitForSecondsRealtime(20f/(float)spawners.Length);
             spawner.SpawnBuilding();
+
+        }
+        SpawnAllProps();
+    }
+
+    IEnumerator SpawnAllProps()
+    {
+        PropPrefabs[] spawners = FindObjectsOfType<PropPrefabs>();
+        foreach (PropPrefabs spawner in spawners)
+        {
+            yield return new WaitForSecondsRealtime(20f/(float)spawners.Length);
+            spawner.SpawnProp();
 
         }
     }
@@ -44,6 +57,29 @@ public class BuildingPoolManager : MonoBehaviour
             return fullSizeBuilding[rng];
         }
     }
+
+    public GameObject SpawnProp (bool halfSize=false,bool doubleSize=false)
+    {
+        int rng;
+        if(halfSize)
+        {
+            rng = Random.Range(0,halfSizeBuilding.Length-1);
+            return fullSizeBuilding[rng];
+
+        }
+        else if(doubleSize)
+        {
+            rng = Random.Range(0,doubleSizeBuilding.Length-1);
+            return fullSizeBuilding[rng];
+
+        }
+        else
+        {
+            rng = Random.Range(0,fullSizeProp.Length-1);
+            return fullSizeProp[rng];
+        }
+    }
+
 
     // Update is called once per frame
     void Update()

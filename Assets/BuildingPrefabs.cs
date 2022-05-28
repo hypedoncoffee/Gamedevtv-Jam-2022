@@ -40,6 +40,7 @@ public class BuildingPrefabs : MonoBehaviour
 
     // if this doesn't work check dist or place on player
 
+/*
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -47,4 +48,5 @@ public class BuildingPrefabs : MonoBehaviour
             SpawnBuilding();
         }
     }
+*/
 }
