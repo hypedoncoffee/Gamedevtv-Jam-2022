@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupSpawnRadius: 10
-  spawnedItem: {fileID: 7766560004085958717, guid: 98c99972608f39944889a5135a51f370, type: 3}
+  spawnedItem: {fileID: 792903551317316374, guid: e2f6917d1b2d53586a15d265d29a6e4f, type: 3}
   spawnImmediately: 1
