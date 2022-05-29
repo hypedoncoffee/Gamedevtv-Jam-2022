@@ -7,7 +7,7 @@ public class DynamicMusicManager : MonoBehaviour
     [SerializeField] float checkTimer=2.5f;
     [SerializeField] float objectiveHypeThreshold=20;
     [SerializeField] PlayerController player;
-    [SerializeField] AudioSource mainAudio,dangerAudio,hypeAudio,deathAudio;
+    [SerializeField] AudioSource mainAudio,dangerAudio,hypeAudio,deathAudio,finaleAudio;
     [SerializeField] ObjectiveManager objectiveManager;
     [SerializeField] private float fadeRate = 20f;
 
@@ -79,6 +79,14 @@ public class DynamicMusicManager : MonoBehaviour
         StartCoroutine(FadeIn(hypeAudio));
         else StartCoroutine(FadeOut(hypeAudio));
     }
+
+    public void ToggleFinaleMusic(bool enabled)
+    {
+        if(enabled)
+        StartCoroutine(FadeIn(finaleAudio));
+        else StartCoroutine(FadeOut(finaleAudio));
+    }
+
     public void ToggleMainMusic(bool enabled,bool hardStop=false)
     {
         if(enabled)
@@ -95,6 +103,9 @@ public class DynamicMusicManager : MonoBehaviour
 
     IEnumerator FadeIn(AudioSource bgmLayer,bool hardStop = false)
     {
+        if(bgmLayer!=null)
+        {
+
         if(!hardStop)
         {
 
@@ -105,10 +116,14 @@ public class DynamicMusicManager : MonoBehaviour
         }
         }
         bgmLayer.volume=1f;
+        }
 }
 
     IEnumerator FadeOut(AudioSource bgmLayer,bool hardStop = false)
     {
+        if(bgmLayer!=null)
+        {
+
         if(!hardStop)
         {
 
@@ -121,6 +136,7 @@ public class DynamicMusicManager : MonoBehaviour
         }
         bgmLayer.volume=0f;
         
+        }
 
     }
 
