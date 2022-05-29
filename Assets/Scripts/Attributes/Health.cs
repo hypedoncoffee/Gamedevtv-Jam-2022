@@ -12,7 +12,9 @@ namespace GameJam.Attributes
 {
     public class Health : MonoBehaviour
     {
+        [SerializeField] PatrolVoice voices;
         [SerializeField] int currentHealth = -1;
+        Rigidbody rb;
         [SerializeField] bool isAlive = true;
         [SerializeField] bool isPlayer = false;
         [SerializeField] int maxHealth = 100;
@@ -22,6 +24,8 @@ namespace GameJam.Attributes
         public event Action<float, float> HandleHealthUpdated;
         private void Awake()
         {
+            rb= GetComponent<Rigidbody>();
+            if(voices==null) voices = GetComponent<PatrolVoice>();
             animator = GetComponent<Animator>();
             if(isPlayer) playerUI = FindObjectOfType<PlayerUIManager>();
         }
@@ -65,6 +69,7 @@ namespace GameJam.Attributes
                     playerUI.SetHealth((int)GetHealth());
                 } else
                 {
+                    voices.HurtSound();
                     UpdateHealthUI();
                 }
             }
@@ -102,11 +107,21 @@ namespace GameJam.Attributes
             if(!isPlayer)
             {
                 // TODO : Animation
-                Destroy(gameObject);
+                animator.SetTrigger("death");
+                if(voices!=null)
+                    voices.DeathSound();
+                rb.isKinematic=true;
+                rb.velocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
+                Destroy(gameObject,5f);
                 GetComponent<Collider>().enabled = false;
             }
             else
             {
+                 rb.isKinematic=true;
+                rb.velocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
+                 animator.SetTrigger("death");
                 GetComponent<PlayerController>().HandlePlayerDeath(false);
             }
         }

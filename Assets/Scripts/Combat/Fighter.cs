@@ -4,6 +4,9 @@ using GameJam.Movement;
 
 using System;
 using UnityEngine;
+using UnityEngine.UI;using TMPro;
+
+
 namespace GameJam.Combat
 {
     public class Fighter : MonoBehaviour, IAction
@@ -31,6 +34,17 @@ namespace GameJam.Combat
         [SerializeField] Transform projectileSpawnPoint = null;
         [SerializeField] GameObject orbitalLaserPrefab = null;
         [SerializeField] GameObject orbitalLaserParticles = null;
+
+
+        //Ammo management
+        [SerializeField] bool isPlayer;
+        bool reloading = false;
+        [SerializeField] Button reloadButton;
+        [SerializeField] Slider reloadSlider;
+        [SerializeField] AudioClip reloadSound;
+        float reloadTime;
+        [SerializeField] float maxReloadTime = 2f;
+        [SerializeField] int maxAmmo=30,currentAmmo=30;
 
         [SerializeField] float abilityCooldown = 1.5f;
 
@@ -95,21 +109,61 @@ namespace GameJam.Combat
 
         private void TriggerAttack()
         {
-            GetComponent<Animator>().ResetTrigger("StopAttack");
-            GetComponent<Animator>().SetTrigger("Attack");
-            if (target == null) { return; }
-            if (projectileWeapon != null && projectileSpawnPoint != null)
+            if(currentAmmo>0)
             {
-                LaunchProjectile();
-            } else
-            {
-                target.TakeDamage(weaponDamage);
+                currentAmmo-=1;
+                if(reloadSlider!=null) reloadSlider.value = currentAmmo;
+                GetComponent<Animator>().ResetTrigger("StopAttack");
+                GetComponent<Animator>().SetTrigger("Attack");
+                if (target == null) { return; }
+                if (projectileWeapon != null && projectileSpawnPoint != null)
+                {
+                    LaunchProjectile();
+                } else
+                {
+                    target.TakeDamage(weaponDamage);
+                }
             }
+            else if(isPlayer)
+            {
+                reloadButton.gameObject.SetActive(true);
+            }
+            else if (reloading)
+            {
+                if(reloadTime>0)
+                    reloadTime-=Time.deltaTime;
+                else 
+                {
+                    Reload();
+                }
+            }
+            else
+            {
+                reloadTime = maxReloadTime;
+                reloading = true;
+                //StartCoroutine(EnemyReload());
+            }
+        }
+
+        // IEnumerator EnemyReload()
+        // {
+        //     yield return new WaitForSeconds(reloadTime);
+        //     Reload();
+        // }
+
+        public void Reload()
+        {
+            currentAmmo=maxAmmo;
+            if(reloadButton!=null)reloadButton.gameObject.SetActive(false);
+            if(reloadSlider!=null)reloadSlider.value = maxAmmo;
+            GetComponent<AudioSource>().PlayOneShot(reloadSound);
+            reloading=false;
         }
 
 
         public void LaunchProjectile()
         {
+///            currentAmmo--;
             Projectile projectileInstance;
             if(!isTank)
             {

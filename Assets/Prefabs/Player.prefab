@@ -44,6 +44,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   laserObj: {fileID: 1892744599458023947, guid: bb8a32c6ed75f3f858551185a95ed67a, type: 3}
+  grenadeObj: {fileID: 0}
+  smokeObj: {fileID: 0}
 --- !u!1 &7037993860967584181
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,6 +202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c9a560159e26bc45ab2aa82649c22b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  voices: {fileID: 0}
   currentHealth: -1
   isAlive: 1
   isPlayer: 1
@@ -263,6 +266,12 @@ MonoBehaviour:
   projectileSpawnPoint: {fileID: 1406462500309347239}
   orbitalLaserPrefab: {fileID: 1892744599458023947, guid: bb8a32c6ed75f3f858551185a95ed67a, type: 3}
   orbitalLaserParticles: {fileID: 4468831597741303198, guid: db238f724756ce558b414ad8b86f39bf, type: 3}
+  isPlayer: 1
+  reloadButton: {fileID: 0}
+  reloadSlider: {fileID: 0}
+  reloadSound: {fileID: 0}
+  maxAmmo: 30
+  currentAmmo: 30
   abilityCooldown: 1.5
 --- !u!1 &7306383982235431608
 GameObject:

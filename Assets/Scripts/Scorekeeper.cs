@@ -10,11 +10,12 @@ public class Scorekeeper : MonoBehaviour
     int timeLeft;
     int vipsRouted;
     int stashesFound;
-    int stashesTotal = 10;
+    int stashesTotal;
     int enemiesRouted;
     // Start is called before the first frame update
     void Awake()
     {
+        stashesTotal = FindObjectOfType<VIPManager>().totalVIPS();
         DontDestroyOnLoad(this);
     }
 
@@ -22,8 +23,23 @@ public class Scorekeeper : MonoBehaviour
     {
         //Game manager will call this when either time runs out or the last stash is collected... or you run out of cadavers.
         //Get value of: Stashes collected, time elapsed, time remaining, cadavers used, cadavers pardoned, and enemies routed.
-
+        timeLeft =FindObjectOfType<CountupTimer>().timeLeft();
         SceneManager.LoadScene(2);
+    }
+
+    public void AssigneeRunEnd(bool reachedObjective)
+    {
+        if(reachedObjective) 
+        {
+            stashesFound++;
+            successfulAssigneeCount++;
+        }
+        totalAssigneeCount++;
+    }
+
+    public void KillVIP()
+    {
+        vipsRouted++;
     }
 
     public int SentencesServed()

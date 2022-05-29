@@ -20,6 +20,11 @@ public class CountupTimer : MonoBehaviour
         timerText = GetComponent<TextMeshProUGUI>();
     }
 
+    public int timeLeft()
+    {
+        return (int)timeRemaining;
+    }
+
     // Update is called once per frame
     void Update()
     {

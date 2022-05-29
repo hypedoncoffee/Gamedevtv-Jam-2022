@@ -8,6 +8,7 @@ namespace GameJam.Movement
 {
     public class Mover : MonoBehaviour, IAction
     {
+        [SerializeField] MovementPointer movementIcon;
         [SerializeField] float maxSpeed = 15f;
 
         NavMeshAgent navMeshAgent;
@@ -15,6 +16,7 @@ namespace GameJam.Movement
         // Start is called before the first frame update
         void OnEnable()
         {
+            movementIcon = FindObjectOfType<MovementPointer>();
             navMeshAgent = GetComponent<NavMeshAgent>();
             health = GetComponent<Health>();
             navMeshAgent.enabled = health.IsAlive();
@@ -42,6 +44,7 @@ namespace GameJam.Movement
         }
         public void MoveTo(Vector3 destination, float speedFraction)
         {
+            movementIcon.Set(destination);
             navMeshAgent.SetDestination(destination);
             navMeshAgent.speed = maxSpeed * Mathf.Clamp01(speedFraction);
             navMeshAgent.isStopped = false;
@@ -58,10 +61,12 @@ namespace GameJam.Movement
         public void StopMovement()
         {
             navMeshAgent.isStopped = true;
+            movementIcon.Hide();
         }
         public bool IsAtDestination()
         {
             return navMeshAgent.remainingDistance == 0;
+            movementIcon.Hide();
         }
 
         public void CancelAction()

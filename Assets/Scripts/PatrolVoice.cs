@@ -11,6 +11,7 @@ public class PatrolVoice : MonoBehaviour
     PatrolStates state;
     [SerializeField] AudioClip[] idleBanter;
     [SerializeField] AudioClip[] combatBanter;
+    [SerializeField] AudioClip[] tauntBanter;
     [SerializeField] AudioClip[] hurtBanter;
     [SerializeField] AudioClip[] deathBanter;
     [SerializeField] float minIdleBanterTime = 20f;
@@ -24,19 +25,31 @@ public class PatrolVoice : MonoBehaviour
 
 
 
-    public void Alert(bool enabled)
+    public void Alert(bool enabled,bool isVIP = false)
     {
         if(enabled)
         {
-
             state = PatrolStates.alert;
-            CallVoice(combatBanter);
+            if(isVIP)
+                CallVoice(tauntBanter);
+            else
+                CallVoice(combatBanter);
         }
         else 
         {
             state = PatrolStates.idle;
             StartCoroutine(IdleBanter());
         }
+    }
+
+    public void DeathSound()
+    {
+        CallVoice(deathBanter);
+    }
+
+    public void HurtSound()
+    {
+        CallVoice(hurtBanter);
     }
 
     void CallVoice(AudioClip[] clips)
