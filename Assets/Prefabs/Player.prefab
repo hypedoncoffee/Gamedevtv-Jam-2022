@@ -186,7 +186,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!114 &7037993860967584185
 MonoBehaviour:
@@ -260,7 +260,7 @@ MonoBehaviour:
   weaponDamage: 5
   turnRate: 0
   projectileWeapon: {fileID: 1103175307221487961, guid: 51929eedc1df05c43a71821723658efc, type: 3}
-  projectileSpawnPoint: {fileID: 4670881368518456374}
+  projectileSpawnPoint: {fileID: 1406462500309347239}
   orbitalLaserPrefab: {fileID: 1892744599458023947, guid: bb8a32c6ed75f3f858551185a95ed67a, type: 3}
   orbitalLaserParticles: {fileID: 4468831597741303198, guid: db238f724756ce558b414ad8b86f39bf, type: 3}
   abilityCooldown: 1.5
@@ -434,6 +434,36 @@ MonoBehaviour:
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+--- !u!1 &8670812117680583396
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1406462500309347239}
+  m_Layer: 0
+  m_Name: Refpoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1406462500309347239
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8670812117680583396}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.7, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4670881368518456374}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &144569561358245609
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -816,13 +846,13 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 5866666021909216657, guid: a30a12a2863f15a4fa0e41940255e1bf, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a30a12a2863f15a4fa0e41940255e1bf, type: 3}
---- !u!4 &7359237335626473461 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a30a12a2863f15a4fa0e41940255e1bf, type: 3}
-  m_PrefabInstance: {fileID: 7037993861690669086}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4670881368518456374 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2412161367050800168, guid: a30a12a2863f15a4fa0e41940255e1bf, type: 3}
+  m_PrefabInstance: {fileID: 7037993861690669086}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7359237335626473461 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a30a12a2863f15a4fa0e41940255e1bf, type: 3}
   m_PrefabInstance: {fileID: 7037993861690669086}
   m_PrefabAsset: {fileID: 0}
