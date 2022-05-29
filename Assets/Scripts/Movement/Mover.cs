@@ -67,6 +67,13 @@ namespace GameJam.Movement
         {
             StopMovement();
         }
+        public void ResetToSpawnPosition()
+        {
+            Vector3 spawnPosition = GameObject.Find("Player Spawn Point").GetComponent<Transform>().position;
+            navMeshAgent.updatePosition = false;
+            transform.position = spawnPosition;
+            navMeshAgent.updatePosition = true;
+        }
     }
 }
 

@@ -53,7 +53,6 @@ namespace GameJam.Combat
         public void StraightFire(Health target)
         {
             this.target = target;
-            //transform.LookAt(GetAimLocation());
             Destroy(gameObject, maxLifeTime);
         }
 

@@ -223,7 +223,16 @@ namespace Assets.Scripts.Core
 
         private FadingObject GetFadingObjectFromHit(RaycastHit Hit)
         {
-            return Hit.collider != null ? Hit.collider.GetComponent<FadingObject>() : null;
+            FadingObject fadingObject = null;
+            if (Hit.collider != null)
+            {
+                fadingObject = Hit.collider.GetComponent<FadingObject>();
+                if (!fadingObject)
+                {
+                    fadingObject = Hit.collider.GetComponentInChildren<FadingObject>();
+                }
+            }
+            return fadingObject;
         }
 
         private void ClearHits()

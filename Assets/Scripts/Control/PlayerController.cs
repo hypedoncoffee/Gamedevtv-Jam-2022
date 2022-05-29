@@ -6,6 +6,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UX.CharacterInfo;
 using TMPro;
+using UnityEngine.AI;
+
 namespace GameJam.Control
 
 {
@@ -66,26 +68,48 @@ namespace GameJam.Control
             SetNewCharacter(true);
         }
 
-        public void EnableFOB()
+        public void EnableFOB(bool enabled)
         {
-            SpawnPickup fobSpawner = GameObject.Find("FOB Base Spawn Zone").GetComponent<SpawnPickup>();
-            fobSpawner.Spawn();
+            if (enabled)
+            {
+                SpawnPickup fobSpawner = GameObject.Find("FOB Base Spawn Zone").GetComponent<SpawnPickup>();
+                fobSpawner.Respawn();
+            } else
+            {
+                Destroy(GameObject.FindGameObjectWithTag("FOB"));
+            }
         }
 
-        public void SetNewCharacter(bool successful)
+        public void SetNewCharacter(bool reachedObjective)
         {
             //restore health to full value
             //call animation
+            GetComponent<Mover>().CancelAction();
+            GetComponent<Fighter>().CancelAction();
             lastName = names.ReadList("lastname");
             firstName = names.ReadList("firstname");
             crime = names.ReadList("crime");
             years = Mathf.RoundToInt(Random.Range(minSentence, maxSentence));
-            if (!disableIntro)
+            if (!disableIntro || hasClearanceCode)
             {
-                deathUI.DisplayNewCharacter(successful, firstName, lastName, crime, years.ToString());
+                HandlePlayerDeath(reachedObjective);
             }
         }
-
+        /// <summary>
+        // protect player from taking further damage and pause gameplay
+        // move player to a spawn location
+        /// </summary>
+        /// <param name="reachedObjective">Whether or not the player reached the FOB with clearance codes</param>
+        public void HandlePlayerDeath(bool reachedObjective)
+        {
+            GetComponent<Mover>().ResetToSpawnPosition();
+            EnableFOB(false); // Must disable FOB before resetobjective list.. TODO - refactor
+            FindObjectOfType<ObjectiveManager>().ResetObjectiveList();
+            health.Respawn();
+            hasClearanceCode = false;
+            isInCombat = false;
+            deathUI.DisplayNewCharacter(reachedObjective, firstName, lastName, crime, years.ToString());
+        }
 
         public void RestorePlayableCharacter()
         {

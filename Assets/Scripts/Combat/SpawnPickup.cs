@@ -34,9 +34,25 @@ namespace GameJam.Combat
                 spawned = true;
                 GameObject newItem = Instantiate(spawnedItem, randomPosition, transform.rotation);
                 ObjectiveManager objectiveManager = GameObject.FindGameObjectWithTag("Player").gameObject.GetComponentInChildren<ObjectiveManager>();
-                newItem.GetComponent<Objective>().pickedUp += objectiveManager.handleObjectivePickup;
+                newItem.GetComponent<Objective>().objectiveCompleted += objectiveManager.handleObjectivePickup;
                 objectiveManager.AddObjective(newItem);
             }
+        }
+
+        public void Respawn()
+        {
+            float randomX = transform.position.x + UnityEngine.Random.Range(-pickupSpawnRadius / 2, pickupSpawnRadius + 2);
+            float randomZ = transform.position.z + UnityEngine.Random.Range(-pickupSpawnRadius / 2, pickupSpawnRadius + 2);
+            Vector3 randomPosition = new Vector3(
+                randomX,
+                transform.position.y,
+                randomZ
+            );
+            spawned = true;
+            GameObject newItem = Instantiate(spawnedItem, randomPosition, transform.rotation);
+            ObjectiveManager objectiveManager = GameObject.FindGameObjectWithTag("Player").gameObject.GetComponentInChildren<ObjectiveManager>();
+            newItem.GetComponent<Objective>().objectiveCompleted += objectiveManager.handleObjectivePickup;
+            objectiveManager.AddObjective(newItem);
         }
 
         // Called by Unity

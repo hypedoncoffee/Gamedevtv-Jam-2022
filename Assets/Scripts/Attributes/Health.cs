@@ -1,6 +1,5 @@
 ﻿using GameJam.Core;
 
-using GameJam.Stats;
 using System;
 using UnityEngine;
 
@@ -70,7 +69,11 @@ namespace GameJam.Attributes
                 }
             }
         }
-
+        /// <summary>
+        /// Handles if this health component is attached to an entity that has a drop. If so, it spawns the drop as a pickup.
+        /// If the entity is also an objective, invoke that objectives pickudUp method.
+        /// Cancels the entities current action with the action scheduler, and sets it to dead for future health calculations.
+        /// </summary>
         private void Die()
         {
             if (!isAlive) { return; }
@@ -81,7 +84,15 @@ namespace GameJam.Attributes
                 Objective isObjective = GetComponent<Objective>();
                 if (isObjective)
                 {
-                    isObjective.pickedUp.Invoke(isObjective.gameObject);
+                    if (isObjective.gameObject)
+                    {
+                        isObjective.objectiveCompleted.Invoke(isObjective.gameObject);
+                    }
+                }
+                AIController aiController = GetComponent<AIController>();
+                if (aiController)
+                {
+                    aiController.KillVIP();
                 }
             }
             GetComponent<ActionScheduler>().CancelCurrentAction();
@@ -96,15 +107,14 @@ namespace GameJam.Attributes
             }
             else
             {
-                //protect player from taking further damage and pause gameplay
-                //move player to a spawn location
-                GetComponent<PlayerController>().SetNewCharacter(false);
+                GetComponent<PlayerController>().HandlePlayerDeath(false);
             }
         }
-
-        private void Respawn()
+        /// <summary>
+        /// Specifically for player: reset health and other stats.
+        /// </summary>
+        public void Respawn()
         {
-            //Specifically for player: reset health and other stats.
             isAlive=true;
             GetComponent<Collider>().enabled = true;
             currentHealth = maxHealth;

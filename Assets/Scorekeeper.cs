@@ -18,13 +18,6 @@ public class Scorekeeper : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void GameEnd()
     {
         //Game manager will call this when either time runs out or the last stash is collected... or you run out of cadavers.
