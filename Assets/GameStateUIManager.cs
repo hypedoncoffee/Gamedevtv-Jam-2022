@@ -10,11 +10,11 @@ public class GameStateUIManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI assigneeBox;
     [SerializeField] Image stashImg;
     [SerializeField] Sprite holdingBox,noBox;
-    CountupTimer timer;
+    //CountupTimer timer;
     // Start is called before the first frame update
     void Awake()
     {
-        timer = FindObjectOfType<CountupTimer>();
+        //timer = FindObjectOfType<CountupTimer>();
         ToggleStashDisplay(false);
     }
 
