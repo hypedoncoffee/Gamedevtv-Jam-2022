@@ -260,7 +260,7 @@ MonoBehaviour:
   weaponDamage: 5
   turnRate: 0
   projectileWeapon: {fileID: 1103175307221487961, guid: 51929eedc1df05c43a71821723658efc, type: 3}
-  projectileSpawnPoint: {fileID: 7037993860967584163}
+  projectileSpawnPoint: {fileID: 4670881368518456374}
   orbitalLaserPrefab: {fileID: 1892744599458023947, guid: bb8a32c6ed75f3f858551185a95ed67a, type: 3}
   orbitalLaserParticles: {fileID: 4468831597741303198, guid: db238f724756ce558b414ad8b86f39bf, type: 3}
   abilityCooldown: 1.5
@@ -819,5 +819,10 @@ PrefabInstance:
 --- !u!4 &7359237335626473461 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a30a12a2863f15a4fa0e41940255e1bf, type: 3}
+  m_PrefabInstance: {fileID: 7037993861690669086}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4670881368518456374 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2412161367050800168, guid: a30a12a2863f15a4fa0e41940255e1bf, type: 3}
   m_PrefabInstance: {fileID: 7037993861690669086}
   m_PrefabAsset: {fileID: 0}

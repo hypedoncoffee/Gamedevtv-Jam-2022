@@ -25,7 +25,7 @@ public class VIPManager : MonoBehaviour
     [SerializeField] GameObject[] vipSpawners;
     [SerializeField] GameObject finalSpawn;
 
-    [SerializeField] private float spawnMoveRange = 2f;
+    [SerializeField] private float spawnMoveRange = 1f;
     [SerializeField] private float spawnOffsetRange = 1f;
 
     NamePicker names;
