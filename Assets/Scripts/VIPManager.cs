@@ -5,6 +5,9 @@ using UX.CharacterInfo;
 using GameJam.Control;
 public class VIPManager : MonoBehaviour
 {
+    [Tooltip("This controls the number of VIPs for VIP 0.")]
+    [SerializeField] int startingGuardCount=2;
+
     [Tooltip("This controls the number of VIPs killed before guard count increases.")]
     [SerializeField] int guardIncreaseRate=2;
 
@@ -40,7 +43,7 @@ public class VIPManager : MonoBehaviour
     
     void Start()
     {
-        int nextGuards = 2;
+        int nextGuards = startingGuardCount;
         vips = new info[vipCount];
 
         for(int i = 0; i < vips.Length ;i ++)
