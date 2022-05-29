@@ -3704,6 +3704,7 @@ MonoBehaviour:
   yScrollSpeed: 0.255
   raw: 0
   isImg: 0
+  isURP: 0
 --- !u!1 &570815332
 GameObject:
   m_ObjectHideFlags: 0
@@ -4859,6 +4860,7 @@ MonoBehaviour:
   yScrollSpeed: 0.25
   raw: 0
   isImg: 0
+  isURP: 0
 --- !u!170 &959432868
 AudioDistortionFilter:
   m_ObjectHideFlags: 0
@@ -5021,6 +5023,7 @@ MonoBehaviour:
   yScrollSpeed: 0.255
   raw: 0
   isImg: 0
+  isURP: 0
 --- !u!1 &1031614160
 GameObject:
   m_ObjectHideFlags: 0
@@ -15433,7 +15436,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1243370437802302431, guid: d666780c3a78aa9c4be7f8dda0fedadb, type: 3}
       propertyPath: m_Volume
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1243370437802302431, guid: d666780c3a78aa9c4be7f8dda0fedadb, type: 3}
       propertyPath: m_PlayOnAwake

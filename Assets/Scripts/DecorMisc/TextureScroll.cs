@@ -10,13 +10,18 @@ public class TextureScroll : MonoBehaviour
   [SerializeField] float xScrollSpeed,yScrollSpeed;
   [SerializeField] bool raw = false;
   [SerializeField] bool isImg;
+  [SerializeField] bool isURP = false;
   Image rendimg;
-    private float yOffset,xOffset;
+  private float yOffset,xOffset;
+  string mapping; 
     // Start is called before the first frame update
     void Awake()
     {
 //todo: support raw image for ui
-
+      if(isURP)
+        mapping = "_BaseMap";
+      else
+        mapping = "_MainTex";
       //timeLog = timeLog.realtimeSinceStartup;
         if(!raw&&!isImg)rend = GetComponent<MeshRenderer>();
         else if (isImg) rendimg = GetComponent<Image>();
@@ -37,7 +42,7 @@ public class TextureScroll : MonoBehaviour
       xOffset +=(.0167f*xScrollSpeed);
       yOffset += (.0167f*xScrollSpeed);
         yield return new WaitForSecondsRealtime(0.0167f);
-      rendraw.material.SetTextureOffset("_MainTex",new Vector2(xOffset,yOffset));
+      rendraw.material.SetTextureOffset(mapping,new Vector2(xOffset,yOffset));
       }
     }
     IEnumerator Texture()
@@ -47,7 +52,7 @@ public class TextureScroll : MonoBehaviour
       xOffset +=(.0167f*xScrollSpeed);
       yOffset += (.0167f*xScrollSpeed);
         yield return new WaitForSecondsRealtime(0.0167f);
-      rendimg.material.SetTextureOffset("_MainTex",new Vector2(xOffset,yOffset));
+      rendimg.material.SetTextureOffset(mapping,new Vector2(xOffset,yOffset));
       }
     }
 
@@ -57,6 +62,6 @@ public class TextureScroll : MonoBehaviour
       float timeNow = Time.realtimeSinceStartup;
       xOffset = timeNow * xScrollSpeed;
       yOffset = timeNow * yScrollSpeed;
-      if(!raw&&!isImg)rend.material.SetTextureOffset("_MainTex", new Vector2(xOffset, yOffset));
+      if(!raw&&!isImg)rend.material.SetTextureOffset(mapping, new Vector2(xOffset, yOffset));
     }
 }

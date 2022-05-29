@@ -95,4 +95,22 @@ public class VIPManager : MonoBehaviour
             }
         }
     }
+
+    public string VIPInfo(int vipID)
+    {
+        return vips[vipID].lastName + ", " + vips[vipID].firstName;
+    }
+
+    public int nextLivingVIP()
+    {
+        for (int i = 0; i < vips.Length;i++) 
+        {
+            if(!vips[i].defeated)
+            {
+            return vips[i].id;
+            }
+            
+        }
+        return 9999;
+    }
 }
