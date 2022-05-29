@@ -16,9 +16,9 @@ namespace GameJam.Control
 
         [SerializeField] float chaseDistance = 5f;
         [SerializeField] PatrolPath patrolPath;
-        [SerializeField] float waypointTolerance = 1f;
-        [SerializeField] float waypointDwellTime = 4f;
-        [SerializeField] float patrolSpeedFraction = 0.2f;
+        [SerializeField] float waypointTolerance = 3f;
+        [SerializeField] float waypointDwellTime = 1f;
+        [SerializeField] float patrolSpeedFraction = 1f;
 
         Fighter fighter;
         Mover mover;
@@ -58,6 +58,11 @@ namespace GameJam.Control
             lastName = names.ReadList("lastname");
             firstName = names.ReadList("firstname");
             charNameUI.text = lastName+", "+firstName;
+        }
+
+        public void SetPatrolPath(GameObject newPatrolPath)
+        {
+            patrolPath = newPatrolPath.GetComponent<PatrolPath>();
         }
 
         public void PassVIPInfo(string newname, int id)
@@ -108,7 +113,14 @@ namespace GameJam.Control
         private void PatrolBehavior()
         {
             // GetComponent<Animator>().ResetTrigger("Suspicious");
-            Vector3 nextPosition = guardLocation;
+            Vector3 nextPosition;
+            if (patrolPath)
+            {
+                nextPosition = GetCurrentWaypoint();
+            } else
+            {
+                nextPosition = guardLocation;
+            }
 
             // If we have a patrol path component assigned to NPC
             if (patrolPath != null)

@@ -24,6 +24,7 @@ namespace GameJam.Combat
 
         bool dumbMissile = false;
         Health target = null;
+        Vector3 targetPosition;
 
         void Awake()
         {
@@ -125,6 +126,8 @@ namespace GameJam.Combat
         public void FireInDirection(Vector3 position)
         {
             dumbMissile = true;
+            //targetPosition = position;
+            position.y = transform.position.y;
             transform.LookAt(position);
             Destroy(gameObject, maxLifeTime);
         }

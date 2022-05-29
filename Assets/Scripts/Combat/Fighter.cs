@@ -113,9 +113,8 @@ namespace GameJam.Combat
             Projectile projectileInstance;
             if(!isTank)
             {
-
-            projectileInstance = Instantiate(projectileWeapon, projectileSpawnPoint.position, Quaternion.identity);
-            projectileInstance.SetTarget(target);
+                projectileInstance = Instantiate(projectileWeapon, projectileSpawnPoint.position, Quaternion.identity);
+                projectileInstance.SetTarget(target);
             }
             else
             {

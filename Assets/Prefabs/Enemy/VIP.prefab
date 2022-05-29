@@ -5499,11 +5499,11 @@ MonoBehaviour:
   firstName: 
   isVIP: 1
   vipID: 9999
-  chaseDistance: 15
-  patrolPath: {fileID: 0}
-  waypointTolerance: 1
-  waypointDwellTime: 4
-  patrolSpeedFraction: 0.2
+  chaseDistance: 60
+  patrolPath: {fileID: 1430708052565208784, guid: 02878306b2c8aaf44a84ca772da3d9ac, type: 3}
+  waypointTolerance: 10
+  waypointDwellTime: 0
+  patrolSpeedFraction: 1
   charNameUI: {fileID: 8503112070172770055}
   alertFX: {fileID: 7059875016551581358}
   timeSinceLastCallout: 0
@@ -5529,9 +5529,9 @@ MonoBehaviour:
   turnMultiplier: 1
   targetRefPoint: {fileID: 0}
   target: {fileID: 0}
-  timeBetweenAttacks: 6.22
-  weaponRange: 25
-  weaponDamage: 40
+  timeBetweenAttacks: 0.2
+  weaponRange: 45
+  weaponDamage: 3
   turnRate: 0.65
   projectileWeapon: {fileID: 1103175307221487961, guid: 51929eedc1df05c43a71821723658efc, type: 3}
   projectileSpawnPoint: {fileID: 7873607532515691792}

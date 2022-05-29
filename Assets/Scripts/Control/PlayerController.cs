@@ -145,7 +145,10 @@ namespace GameJam.Control
                 RaycastHit[] rays = Physics.RaycastAll(GetMouseRay());
                 foreach (RaycastHit hit in rays)
                 {
-                    fighter.LaunchSpamProjectile(hit.point);
+                    Vector3 position = fighter.GetComponent<Transform>().position;
+                    position.z = hit.point.z;
+                    position.x = hit.point.x;
+                    fighter.LaunchSpamProjectile(position);
                     return true;
                 }
             }

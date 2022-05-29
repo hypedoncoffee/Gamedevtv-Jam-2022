@@ -12,7 +12,7 @@ namespace GameJam.Control
             //Note - you can access everything through transform as the transform manages the parenting hierarchy
             for (int i = 0; i < transform.childCount; i++)
             {
-                Gizmos.color = Color.blue;
+                Gizmos.color = Color.red;
                 Gizmos.DrawSphere(GetWaypoint(i), gizmoWaypointRadius);
                 Gizmos.DrawLine(GetWaypoint(i), GetWaypoint(GetNextIndex(i)));
             }
@@ -27,6 +27,11 @@ namespace GameJam.Control
         public Vector3 GetWaypoint(int i)
         {
             return transform.GetChild(i).position;
+        }
+
+        public Vector3 GetRandomWaypoint()
+        {
+            return transform.GetChild(Random.RandomRange(0, transform.childCount)).position;
         }
     }
 

@@ -5,6 +5,7 @@ using UX.CharacterInfo;
 using GameJam.Control;
 using GameJam.Movement;
 using UnityEngine.AI;
+using GameJam.Combat;
 
 public class VIPManager : MonoBehaviour
 {
@@ -25,8 +26,8 @@ public class VIPManager : MonoBehaviour
     [SerializeField] GameObject[] vipSpawners;
     [SerializeField] GameObject finalSpawn;
 
-    [SerializeField] private float spawnMoveRange = 1f;
-    [SerializeField] private float spawnOffsetRange = 1f;
+    [SerializeField] private float spawnMoveRange = 0f;
+    [SerializeField] private float spawnOffsetRange = 3f;
 
     NamePicker names;
     
@@ -93,15 +94,18 @@ public class VIPManager : MonoBehaviour
 
                 NavMeshHit hit;
                 GameObject guard;
-                if (NavMesh.SamplePosition(vipSpawners[nextVIP].transform.position, out hit, 100f, NavMesh.AllAreas)) 
+                if (NavMesh.SamplePosition(vipSpawners[nextVIP].transform.position, out hit, 5f, NavMesh.AllAreas)) 
                 {
                     guard = Instantiate(guardPrefab, hit.position, Quaternion.identity);
                     Vector3 walkOffset = Random.insideUnitSphere * spawnMoveRange;
                     walkOffset.y = vipSpawners[nextVIP].transform.position.y;
 
                     Mover guardMove = guard.GetComponent<Mover>();
+                    AIController guardAi = guard.GetComponent<AIController>();
+                    GameObject patrolPath = GameObject.Find("Random FOB Walk");
+                    guardAi.SetPatrolPath(patrolPath);
 
-                    guardMove.StartMoveAction(vipSpawners[nextVIP].transform.position + walkOffset, 1);
+                    //guardMove.StartMoveAction(vipSpawners[nextVIP].transform.position + walkOffset, 1);
                 }
             }
             newVIP.GetComponent<AIController>().PassVIPInfo(vips[nextVIP].lastName+", "+vips[nextVIP].firstName,vips[nextVIP].id);
