@@ -15,7 +15,7 @@ public class ObjectiveManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI distanceText;
     [SerializeField] GameObject player;
 
-
+    private VIPManager vipManager = null;
     private GameObject closestObjective;
     private float closestObjectiveDistance = Mathf.Infinity;
     private Vector3 playerLastPosition;
@@ -24,10 +24,10 @@ public class ObjectiveManager : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         distanceText = GameObject.Find("Objective Label").GetComponent<TextMeshProUGUI>();
+        vipManager = GameObject.FindObjectOfType<VIPManager>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         FindClosestObjectiveAndSet();
         UpdateTopLeftUiText();
@@ -36,6 +36,7 @@ public class ObjectiveManager : MonoBehaviour
     public void ResetObjectiveList()
     {
         objectives = new List<GameObject>();
+        vipManager.SpawnVIP();
         closestObjectiveDistance = Mathf.Infinity;
         GameObject[] pickupsInScene = GameObject.FindGameObjectsWithTag("Objective");
         foreach (GameObject objective in pickupsInScene)
