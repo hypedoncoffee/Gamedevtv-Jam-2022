@@ -15,6 +15,7 @@ public class CharacterTransition : MonoBehaviour
     [SerializeField] private UIPanelMask deathScreen;
     [SerializeField] private TextMeshProUGUI textbox;
     [SerializeField] private bool firstRun = true;
+    [SerializeField] int charsEraseRate = 8;
     PlayerUIManager playerUI;
     [SerializeField] float textScrollRate = .015f;
     [SerializeField] AudioClip textScrollBlip,eraseBlip;
@@ -146,7 +147,7 @@ public class CharacterTransition : MonoBehaviour
             while(textbox.maxVisibleCharacters>0)
             {
                 yield return new WaitForSecondsRealtime(textScrollRate/10f);
-                textbox.maxVisibleCharacters-=4;
+                textbox.maxVisibleCharacters-=charsEraseRate;
                 textAudio.PlayOneShot(eraseBlip);
             }
             textbox.text = charactermessage;

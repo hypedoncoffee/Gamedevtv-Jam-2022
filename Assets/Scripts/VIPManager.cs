@@ -118,6 +118,11 @@ public class VIPManager : MonoBehaviour
         //tankCode
     }
 
+    public int totalVIPS()
+    {
+        return vipCount;
+    }
+
     public void KillVIP(int killID)
     {
         for (int i = 0; i < vips.Length;i++) 
@@ -127,6 +132,7 @@ public class VIPManager : MonoBehaviour
                 vips[i].defeated = true;
             }
         }
+        FindObjectOfType<Scorekeeper>().KillVIP();
     }
 
     public string VIPInfo(int vipID)

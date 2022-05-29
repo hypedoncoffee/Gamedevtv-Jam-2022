@@ -102,14 +102,24 @@ namespace GameJam.Control
         /// <param name="reachedObjective">Whether or not the player reached the FOB with clearance codes</param>
         public void HandlePlayerDeath(bool reachedObjective)
         {
-            GetComponent<Mover>().ResetToSpawnPosition();
             EnableFOB(false); // Must disable FOB before resetobjective list.. TODO - refactor
-            FindObjectOfType<ObjectiveManager>().ResetObjectiveList();
-            health.Respawn();
-            hasClearanceCode = false;
             isInCombat = false;
+            FindObjectOfType<ObjectiveManager>().ResetObjectiveList();
+            hasClearanceCode = false;
+            health.Respawn();
+            FindObjectOfType<Scorekeeper>().AssigneeRunEnd(reachedObjective);
+            FindObjectOfType<GameStateUIManager>().AssigneeRunEnd(reachedObjective);
+            FindObjectOfType<VoiceManager>().PlayDeathSound(reachedObjective);
+            GetComponent<Mover>().ResetToSpawnPosition();
             deathUI.DisplayNewCharacter(reachedObjective, firstName, lastName, crime, years.ToString());
+        //StartCoroutine(PlayerDeathWait());
         }
+
+        // public IEnumerator PlayerDeathWait()
+        // {
+        //     // yield return new WaitForSeconds(4f);
+        //     // deathUI.DisplayNewCharacter(reachedObjective, firstName, lastName, crime, years.ToString());
+        // }
 
         public void RestorePlayableCharacter()
         {
