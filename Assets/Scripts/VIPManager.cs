@@ -51,7 +51,7 @@ public class VIPManager : MonoBehaviour
             vips[i].numberOfGuards = nextGuards; 
         }    
         //Threw this in Start for testing, call SpawnVIP() under any other circumstances
-        StartCoroutine(FirstVIPSpawn());
+        //StartCoroutine(FirstVIPSpawn());
     }
     IEnumerator FirstVIPSpawn()
     {
@@ -92,7 +92,6 @@ public class VIPManager : MonoBehaviour
             if(vips[i].id == killID)
             {
                 vips[i].defeated = true;
-                SpawnVIP();
             }
         }
     }
