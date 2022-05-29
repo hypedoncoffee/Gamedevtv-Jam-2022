@@ -5,7 +5,13 @@ using UnityEngine.UI;
 using TMPro;
 
 public class CharacterTransition : MonoBehaviour
-{
+{   
+    //Audio
+    [SerializeField] AudioSource paAudio;
+    [SerializeField] AudioClip[] successVoice,failureVoice;
+    [SerializeField] AudioClip firstRunVoice;
+
+    //Main
     [SerializeField] private UIPanelMask deathScreen;
     [SerializeField] private TextMeshProUGUI textbox;
     [SerializeField] private bool firstRun = true;
@@ -73,7 +79,7 @@ public class CharacterTransition : MonoBehaviour
                         "EXPIRATION DATE: "+DeathDate()+"\n"+
                         "REMAINING SENTENCE: "+years+" years\n";
         textbox.text = resultscolor + resultsmessage +"</color>"+ characterText;
-        StartCoroutine(AssignCharactersScreen(resultsmessage,characterText,fname,lname,crime,years));
+        StartCoroutine(AssignCharactersScreen(resultsmessage,characterText,fname,lname,crime,years,reachedObjective));
     }
 
     public string BailOffering()
@@ -82,7 +88,7 @@ public class CharacterTransition : MonoBehaviour
         if(rng < 45) return Mathf.RoundToInt(Random.Range(1,900)).ToString()+",000,000.00";
         else return "N/A";
     }
-    IEnumerator AssignCharactersScreen(string firstmessage,string charactermessage,string fname,string lname,string crime,string years)
+    IEnumerator AssignCharactersScreen(string firstmessage,string charactermessage,string fname,string lname,string crime,string years,bool reachedObjective)
 
     {
         //Pause game (Disable this since it stops videos)
@@ -94,9 +100,15 @@ public class CharacterTransition : MonoBehaviour
         int charsScrollRate = 3;
         if(firstRun)
         {
+            paAudio.PlayOneShot(firstRunVoice);
             reducechars += 44;
             multiplier = 5f;
             charsScrollRate = 5;
+        }
+        else
+        {
+            if(reachedObjective) paAudio.PlayOneShot(successVoice[Random.Range(0,successVoice.Length-1)]);
+            else paAudio.PlayOneShot(failureVoice[Random.Range(0,failureVoice.Length-1)]);
         }
         FindObjectOfType<DynamicMusicManager>().PlayerDeathMusic(true,true);
         deathScreen.Reveal();
