@@ -3,24 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UX.CharacterInfo;
 using GameJam.Control;
+using GameJam.Movement;
+using UnityEngine.AI;
+
 public class VIPManager : MonoBehaviour
 {
     [Tooltip("This controls the number of VIPs for VIP 0.")]
-    [SerializeField] int startingGuardCount=2;
+    [SerializeField] int startingGuardCount=3;
 
     [Tooltip("This controls the number of VIPs killed before guard count increases.")]
-    [SerializeField] int guardIncreaseRate=2;
+    [SerializeField] int guardIncreaseRate=1;
 
     [Tooltip("This controls the number of extra guards per increase.")]
-    [SerializeField] int guardIncreaseCount=2;
+    [SerializeField] int guardIncreaseCount=3;
 
     [SerializeField] GameObject vipPrefab,guardPrefab,finalVIPPrefab;
     [SerializeField] int vipCount;
     int nextVIP;
     [Space(5)]
     [SerializeField] info[] vips;
-    [SerializeField]GameObject[] vipSpawners;
-    [SerializeField]GameObject finalSpawn;
+    [SerializeField] GameObject[] vipSpawners;
+    [SerializeField] GameObject finalSpawn;
+
+    [SerializeField] private float spawnMoveRange = 2f;
+    [SerializeField] private float spawnOffsetRange = 1f;
 
     NamePicker names;
     
@@ -39,23 +45,24 @@ public class VIPManager : MonoBehaviour
     {
         names = FindObjectOfType<NamePicker>();
         vipSpawners = GameObject.FindGameObjectsWithTag("VIPSpawner");
+        InitializeVips();
     }
     
-    void Start()
+
+    private void InitializeVips()
     {
         int nextGuards = startingGuardCount;
         vips = new info[vipCount];
 
-        for(int i = 0; i < vips.Length ;i ++)
+        for (int i = 0; i < vips.Length; i++)
         {
-            if(i%guardIncreaseRate==0) nextGuards+=guardIncreaseCount;
+            nextGuards += guardIncreaseCount;
             vips[i].lastName = names.ReadList("lastname");
             vips[i].firstName = names.ReadList("firstname");
-            vips[i].numberOfGuards = nextGuards; 
-        }    
-        //Threw this in Start for testing, call SpawnVIP() under any other circumstances
-        //StartCoroutine(FirstVIPSpawn());
+            vips[i].numberOfGuards = nextGuards;
+        }
     }
+
     IEnumerator FirstVIPSpawn()
     {
         //just for testing lol
@@ -78,6 +85,25 @@ public class VIPManager : MonoBehaviour
         if(nextVIP < vips.Length-1)
         {
             GameObject newVIP = Instantiate(vipPrefab,vipSpawners[nextVIP].transform.position,Quaternion.identity);
+            for (int guardsToSpawn = 0; guardsToSpawn < vips[nextVIP].numberOfGuards; guardsToSpawn++)
+            {
+                Vector3 spawnOffset = (Random.insideUnitSphere * spawnOffsetRange);
+                spawnOffset.y = vipSpawners[nextVIP].transform.position.y;
+                vipSpawners[nextVIP].transform.position = vipSpawners[nextVIP].transform.position + spawnOffset;
+
+                NavMeshHit hit;
+                GameObject guard;
+                if (NavMesh.SamplePosition(vipSpawners[nextVIP].transform.position, out hit, 100f, NavMesh.AllAreas)) 
+                {
+                    guard = Instantiate(guardPrefab, hit.position, Quaternion.identity);
+                    Vector3 walkOffset = Random.insideUnitSphere * spawnMoveRange;
+                    walkOffset.y = vipSpawners[nextVIP].transform.position.y;
+
+                    Mover guardMove = guard.GetComponent<Mover>();
+
+                    guardMove.StartMoveAction(vipSpawners[nextVIP].transform.position + walkOffset, 1);
+                }
+            }
             newVIP.GetComponent<AIController>().PassVIPInfo(vips[nextVIP].lastName+", "+vips[nextVIP].firstName,vips[nextVIP].id);
             nextVIP++;
         }

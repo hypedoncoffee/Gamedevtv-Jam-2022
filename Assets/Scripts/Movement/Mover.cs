@@ -13,10 +13,11 @@ namespace GameJam.Movement
         NavMeshAgent navMeshAgent;
         Health health;
         // Start is called before the first frame update
-        void Start()
+        void OnEnable()
         {
             navMeshAgent = GetComponent<NavMeshAgent>();
             health = GetComponent<Health>();
+            navMeshAgent.enabled = health.IsAlive();
         }
         void Update()
         {

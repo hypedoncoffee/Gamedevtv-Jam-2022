@@ -5533,8 +5533,8 @@ MonoBehaviour:
   weaponRange: 25
   weaponDamage: 40
   turnRate: 0.65
-  projectileWeapon: {fileID: 0}
-  projectileSpawnPoint: {fileID: 0}
+  projectileWeapon: {fileID: 1103175307221487961, guid: 51929eedc1df05c43a71821723658efc, type: 3}
+  projectileSpawnPoint: {fileID: 7873607532515691792}
   orbitalLaserPrefab: {fileID: 0}
   orbitalLaserParticles: {fileID: 0}
   abilityCooldown: 1.5
@@ -5583,6 +5583,7 @@ MonoBehaviour:
   pickupValue: 100
   objectiveName: VIP
   grantsCode: 1
+  requiresCode: 0
 --- !u!82 &3964533783464119110
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5773,5 +5774,10 @@ PrefabInstance:
 --- !u!4 &809853226215693005 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5012ac7f7d5a25d458e5cdf2c24c25b8, type: 3}
+  m_PrefabInstance: {fileID: 916364097198964006}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7873607532515691792 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7058046747855499318, guid: 5012ac7f7d5a25d458e5cdf2c24c25b8, type: 3}
   m_PrefabInstance: {fileID: 916364097198964006}
   m_PrefabAsset: {fileID: 0}
