@@ -59,7 +59,7 @@ namespace GameJam.Combat
 
         void OnTriggerEnter(Collider other)
         {
-            particlesFX.Stop();
+           // particlesFX.Stop();
             if (dumbMissile)
             {
                 Health hasHealth = other.GetComponent<Health>();
