@@ -55,7 +55,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d02d6eedb57ae0f16b0c7307cb0a956d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hiddenByDefault: 1
+  hiddenByDefault: 0
   maskRate: 0.1
   foley: {fileID: 0}
   swishUp: {fileID: 8300000, guid: 34aa8541fa929ddfca956e6eafc7a8de, type: 3}
@@ -954,6 +954,7 @@ MonoBehaviour:
   yScrollSpeed: 0.1
   raw: 1
   isImg: 0
+  isURP: 0
 --- !u!1 &9043143086559473648
 GameObject:
   m_ObjectHideFlags: 0
@@ -1083,6 +1084,7 @@ MonoBehaviour:
   deathScreen: {fileID: 9043143084503259139}
   textbox: {fileID: 9043143085908558852}
   firstRun: 1
+  charsEraseRate: 8
   textScrollRate: 0.002
   textScrollBlip: {fileID: 8300000, guid: 4766a4b6a44805c95b2a96afde50cbe9, type: 3}
   eraseBlip: {fileID: 8300000, guid: 521ee01a85c71c7b6b16585e16e94d80, type: 3}
