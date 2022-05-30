@@ -4998,7 +4998,7 @@ GameObject:
   - component: {fileID: 4838717703258720584}
   m_Layer: 0
   m_Name: Enemy Patrol
-  m_TagString: Objective
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
