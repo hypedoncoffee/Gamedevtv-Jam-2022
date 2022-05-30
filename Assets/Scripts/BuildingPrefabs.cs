@@ -23,6 +23,8 @@ public class BuildingPrefabs : MonoBehaviour
 
     public void SpawnBuilding()
     {
+        
+        GetObjectsInBoxCollider(GetComponent<BoxCollider>());
         startTime = Time.realtimeSinceStartup;
         GameObject spawnBuilding = Instantiate(
             buildings.SpawnBuilding(halfSize,doubleSize),
@@ -31,7 +33,6 @@ public class BuildingPrefabs : MonoBehaviour
         spawnBuilding.transform.localScale = new Vector3(Random.Range(scaleMult-scaleMinusX,scaleMult+scalePlusX),Random.Range(scaleMult-scaleMinusY,scaleMult+scalePlusY),Random.Range(scaleMult-scaleMinusZ,scaleMult+scalePlusZ));
         //Destroy(this.gameObject);
         endTime = Time.realtimeSinceStartup;
-        GetObjectsInBoxCollider(GetComponent<BoxCollider>());
     }
 
     private void GetObjectsInBoxCollider(BoxCollider collider)

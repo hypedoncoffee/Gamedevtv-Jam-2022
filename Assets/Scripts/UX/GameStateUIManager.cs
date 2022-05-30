@@ -29,6 +29,8 @@ public class GameStateUIManager : MonoBehaviour
 
     public void FinalObjective()
     {
+        Transform finalHudBG = finalHud.transform.parent;
+        finalHudBG.gameObject.SetActive(true);
         hitList.text = "<targeting priorities rerouted>";
         
         finalHud.gameObject.SetActive(true);

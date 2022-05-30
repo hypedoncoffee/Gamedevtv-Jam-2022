@@ -46,7 +46,8 @@ public class VIPManager : MonoBehaviour
     {
         names = FindObjectOfType<NamePicker>();
         vipSpawners = GameObject.FindGameObjectsWithTag("VIPSpawner");
-        vipCount = FindObjectOfType<Difficulty>().NumberOfVips;
+        Difficulty diff = FindObjectOfType<Difficulty>();
+        if (diff) vipCount = diff.NumberOfVips;
         InitializeVips();
     }
     

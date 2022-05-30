@@ -24,7 +24,7 @@ namespace GameJam.Control
         //for specials
         bool orbital,smoke,grenade;
 
-        float maxStealth;
+        [SerializeField] float maxStealth = 100;
         float stealthLeft;
         bool stealth;
 
@@ -209,11 +209,13 @@ namespace GameJam.Control
                 if(!stealth)
                 stealth=true;
                 StealthMode(true);
+                Debug.Log("Stealth on!");
             }
             if(Input.GetKeyUp(KeyCode.LeftShift))
             {
                 if(stealth)
                 stealth=false;
+                Debug.Log("Stealth off!");
                 StealthMode(false);
             }
 
@@ -247,7 +249,7 @@ namespace GameJam.Control
             }
             if (Input.GetMouseButton(1))
             {
-                if(!deathUI.transition)
+                if(!deathUI.transition&&!stealth)
                 {
 
                 
@@ -371,6 +373,7 @@ namespace GameJam.Control
         {
             return hasClearanceCode;
         }
+        [SerializeField] AudioClip stealthUp,stealthDown;
 
         public void StealthMode(bool enabled)
         {
@@ -380,6 +383,7 @@ namespace GameJam.Control
                 playermodel.materials[0] = stealthmat;
                 playermodel.materials[1] = stealthmat;
                 playermodel.materials[4] = glowmat;
+                GetComponent<AudioSource>().PlayOneShot(stealthUp);
                 move.ReduceSpeed(true);
             //change material
             }
@@ -389,6 +393,7 @@ namespace GameJam.Control
                 playermodel.materials[0] = defaultmat[0];
                 playermodel.materials[1] = defaultmat[1];
                 playermodel.materials[4] = defaultmat[4];
+                GetComponent<AudioSource>().PlayOneShot(stealthDown);
                 move.ReduceSpeed(false);
 
             }
