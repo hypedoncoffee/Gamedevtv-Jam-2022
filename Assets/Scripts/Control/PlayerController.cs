@@ -55,18 +55,21 @@ namespace GameJam.Control
             public Texture2D texture;
             public Vector2 hotspot;
         }
-
+        private void Start()
+        {
+            GetComponentInChildren<ObjectiveManager>().GenerateObjectives();
+        }
         [SerializeField] CursorMapping[] cursorMappings = null;
-        void Start()
+        void Awake()
         {
             deathUI = FindObjectOfType<CharacterTransition>();
             names = FindObjectOfType<NamePicker>();
             fighter = GetComponent<Fighter>();
             health = GetComponent<Health>();
+            health.SetDead(true);
             playerUI = FindObjectOfType<PlayerUIManager>();
             // TODO - Stash == Score? Set
             // textStashValue = GameObject.Find("Stash Value").GetComponent<TextMeshProUGUI>();
-            GetComponentInChildren<ObjectiveManager>().GenerateObjectives();
             SetNewCharacter(true);
         }
 
@@ -93,7 +96,6 @@ namespace GameJam.Control
             firstName = names.ReadList("firstname");
             crime = names.ReadList("crime");
             years = Mathf.RoundToInt(Random.Range(minSentence, maxSentence));
-            playerUI.SetHealth((int)health.GetHealth());
             if (!disableIntro || hasClearanceCode)
             {
                 HandlePlayerDeath(reachedObjective);
@@ -108,10 +110,8 @@ namespace GameJam.Control
         {
             EnableFOB(false); // Must disable FOB before resetobjective list.. TODO - refactor
             isInCombat = false;
-            FindObjectOfType<ObjectiveManager>().ResetObjectiveList();
             hasClearanceCode = false;
             health.Respawn();
-            playerUI.SetHealth((int)health.GetHealth());
             FindObjectOfType<Scorekeeper>().AssigneeRunEnd(reachedObjective);
             FindObjectOfType<GameStateUIManager>().AssigneeRunEnd(reachedObjective);
             FindObjectOfType<VoiceManager>().PlayDeathSound(reachedObjective);
@@ -119,7 +119,6 @@ namespace GameJam.Control
 
             // STOP ENEMIES FROM TARGETING DURING CUTSCENE
             deathUI.SetPlayerobject(gameObject);
-            gameObject.SetActive(false);
 
             deathUI.DisplayNewCharacter(reachedObjective, firstName, lastName, crime, years.ToString());
 

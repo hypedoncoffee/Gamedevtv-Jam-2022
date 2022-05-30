@@ -17,7 +17,7 @@ public class CharacterTransition : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textbox;
     [SerializeField] private bool firstRun = true;
     [SerializeField] int charsEraseRate = 8;
-    PlayerUIManager playerUI;
+    [SerializeField] PlayerUIManager playerUI;
     [SerializeField] float textScrollRate = .015f;
     [SerializeField] AudioClip textScrollBlip,eraseBlip;
     [SerializeField] AudioSource textAudio;
@@ -27,9 +27,8 @@ public class CharacterTransition : MonoBehaviour
     GameObject playerObject;
 
 
-    void Start()
+    private void Awake()
     {
-        playerUI = FindObjectOfType<PlayerUIManager>();
         textbox.maxVisibleCharacters=0;
     }
 
@@ -41,9 +40,8 @@ public class CharacterTransition : MonoBehaviour
         if(m == 2) Mathf.Clamp(d,1,28);
         int y = Mathf.RoundToInt(Random.Range(2070,2082));
         return m.ToString()+"/"+d.ToString()+"/"+y.ToString();
-        
-        
     }
+
     public void DisplayNewCharacter(bool reachedObjective,string fname,string lname,string crime,string years)
     {
         textbox.maxVisibleCharacters=0;
@@ -133,12 +131,16 @@ public class CharacterTransition : MonoBehaviour
         }
         if(!firstRun)
         yield return new WaitForSecondsRealtime(2f);
-        
+
         //Get new character name
-        playerUI.SetName(fname,lname,crime,years);
-        
+        if (!playerUI)
+        {
+            playerUI = FindObjectOfType<PlayerUIManager>();
+            playerUI.SetName(fname, lname, crime, years);
+        }
+
         //Startup screen erase
-        typing=true;
+        typing =true;
         nextmsg = nextmsg + charactermessage;
         if(firstRun)
         {
@@ -174,9 +176,6 @@ public class CharacterTransition : MonoBehaviour
     
         Time.timeScale = 1;
         deathScreen.Hide();
-
-        // STOP ENEMIES FROM TARGETING DURING CUTSCENE
-        playerObject.SetActive(true);
         FindObjectOfType<DynamicMusicManager>().PlayerDeathMusic(false);
     }
 

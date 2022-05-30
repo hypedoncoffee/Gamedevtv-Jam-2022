@@ -137,7 +137,6 @@ namespace GameJam.Attributes
             isAlive=true;
             GetComponent<Collider>().enabled = true;
             currentHealth = maxHealth;
-            playerUI.SetHealth((int)GetHealth());
             //TODO: Player character reverts to rigidbody physics.  Should set back to idle with actions enabled.
         }
 
@@ -169,6 +168,11 @@ namespace GameJam.Attributes
         public string GetMaxHealthString()
         {
             return maxHealth.ToString();
+        }
+
+        public void SetDead(bool flag)
+        {
+            isAlive = !flag;
         }
     }
 }

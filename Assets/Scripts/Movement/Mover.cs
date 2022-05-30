@@ -79,6 +79,7 @@ namespace GameJam.Movement
             navMeshAgent.updatePosition = false;
             transform.position = spawnPosition;
             navMeshAgent.updatePosition = true;
+            health.SetDead(false);
         }
     }
 }
