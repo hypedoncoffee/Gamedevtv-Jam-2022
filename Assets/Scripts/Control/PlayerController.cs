@@ -82,6 +82,8 @@ namespace GameJam.Control
             playerUI = FindObjectOfType<PlayerUIManager>();
             // TODO - Stash == Score? Set
             // textStashValue = GameObject.Find("Stash Value").GetComponent<TextMeshProUGUI>();
+         
+            playerUI.Recquisition(recquisition);
             SetNewCharacter(true);
         }
 

@@ -103,6 +103,7 @@ namespace GameJam.Attributes
                 AIController aiController = GetComponent<AIController>();
                 if (aiController)
                 {
+                    FindObjectOfType<PlayerController>().IncreaseRecquisition(30);
                     aiController.KillVIP();
                     //aiController.LogName();
                 }
@@ -113,6 +114,7 @@ namespace GameJam.Attributes
             {
                 if(TryGetComponent<AIController>(out AIController aiController))
                 aiController.LogName();
+                    FindObjectOfType<PlayerController>().IncreaseRecquisition(5);
                 animator.SetTrigger("death");
                 if(voices != null)
                 {

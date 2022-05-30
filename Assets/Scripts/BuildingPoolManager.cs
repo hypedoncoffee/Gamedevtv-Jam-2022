@@ -18,8 +18,14 @@ public class BuildingPoolManager : MonoBehaviour
         BuildingPrefabs[] spawners = FindObjectsOfType<BuildingPrefabs>();
         foreach (BuildingPrefabs spawner in spawners)
         {
+            if(gameObject.active)
+            {
             yield return new WaitForSecondsRealtime(20f/(float)spawners.Length);
             spawner.SpawnBuilding();
+            }
+
+
+
 
         }
         SpawnAllProps();
