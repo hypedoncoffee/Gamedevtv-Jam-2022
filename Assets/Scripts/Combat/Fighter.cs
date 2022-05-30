@@ -36,6 +36,7 @@ namespace GameJam.Combat
         [SerializeField] GameObject orbitalLaserParticles = null;
         [SerializeField] Suspicion sus;
 
+        [SerializeField] ParticleSystem fightFX;
         //Ammo management
         [SerializeField] bool isPlayer;
         bool reloading = false;
@@ -54,6 +55,7 @@ namespace GameJam.Combat
 
         void Update()
         {
+            if(target==null&&fightFX!=null) fightFX.Stop();
             // Time.deltaTime = Time since the last time update is called
             timeSinceLastAttack += Time.deltaTime;
             timeSinceLastAbility += Time.deltaTime;
@@ -110,6 +112,7 @@ namespace GameJam.Combat
         void Awake()
         {
             sus = GetComponent<Suspicion>();
+          //  fightFX = GetComponent<ParticleSystem>();
         }
 
         private void TriggerAttack()

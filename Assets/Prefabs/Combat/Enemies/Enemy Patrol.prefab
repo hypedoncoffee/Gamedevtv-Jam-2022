@@ -5192,6 +5192,7 @@ MonoBehaviour:
   orbitalLaserPrefab: {fileID: 0}
   orbitalLaserParticles: {fileID: 0}
   sus: {fileID: 0}
+  fightFX: {fileID: 3759423981747242478}
   isPlayer: 0
   reloadButton: {fileID: 0}
   reloadSlider: {fileID: 0}
@@ -5218,6 +5219,8 @@ MonoBehaviour:
   suspicionTime: 3
   timeSinceLastSawPlayer: Infinity
   isSmoked: 0
+  coyoteTime: 0
+  maxCoyoteTime: 1
 --- !u!114 &7558732742044203022
 MonoBehaviour:
   m_ObjectHideFlags: 0

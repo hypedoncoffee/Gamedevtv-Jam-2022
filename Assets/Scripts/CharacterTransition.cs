@@ -178,7 +178,8 @@ public class CharacterTransition : MonoBehaviour
     
     
         Time.timeScale = 1;
-
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("alive",true);
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().ResetTrigger("death");
         foreach (Suspicion sus in FindObjectsOfType<Suspicion>()) sus.Ignorance(true,5f);
         deathScreen.Hide();
         transition=false;

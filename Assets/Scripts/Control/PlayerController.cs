@@ -136,7 +136,7 @@ namespace GameJam.Control
             isInCombat = false;
             hasClearanceCode = false;
             health.Respawn();
-            FindObjectOfType<Scorekeeper>().AssigneeRunEnd(reachedObjective);
+            FindObjectOfType<Scorekeeper>().AssigneeRunEnd(reachedObjective,lastName);
             FindObjectOfType<GameStateUIManager>().AssigneeRunEnd(reachedObjective);
             //FindObjectOfType<VoiceManager>().PlayDeathSound(reachedObjective);
             GetComponent<Mover>().ResetToSpawnPosition();
@@ -222,6 +222,9 @@ namespace GameJam.Control
             }
             if (Input.GetMouseButton(1))
             {
+                if(!deathUI.transition)
+                {
+
                 
                 RaycastHit[] rays = Physics.RaycastAll(GetMouseRay());
                 foreach (RaycastHit hit in rays)
@@ -256,6 +259,7 @@ namespace GameJam.Control
                         return true;
                     }
                 }
+                }
             }
             return false;
         }
@@ -267,11 +271,14 @@ namespace GameJam.Control
             {
                 if (Input.GetMouseButton(0))
                 {
+                    if(!deathUI.transition)
+                    {
                     // TODO - Clean up showing the player they are aiming off navmesh
                     bool affordanceDetailsHit = Physics.Raycast(GetMouseRay(), out RaycastHit affordanceDetails);
                     if (affordanceDetailsHit && affordanceDetails.collider.GetComponent<FadingObject>() != null) { SetCursor(CursorType.None); }
                     Mover mover = GetComponent<Mover>();
                     mover.StartMoveAction(hitDetails.point, 1f);
+                    }
                 }
                 SetCursor(CursorType.Movement);
                 return true;
@@ -354,9 +361,42 @@ namespace GameJam.Control
             }
         }
 
+        public bool CanFire(string nextability)
+        {
+            switch(nextability)
+            {
+                case "orbital":
+                if (recquisition > 180) return true;
+                break;
+                case "grenade":
+                if (recquisition > 120) return true;
+                break;
+                case "smoke":
+                if (recquisition > 60) return true;
+                break;
+            }
+            return false;
+        }
+
+        public void PrepAbility(string nextability)
+        {
+            //movespeed = 0;
+            switch(nextability)
+            {
+                case "orbital":
+                orbital=true;break;
+                case "smoke":
+                smoke=true;break;
+                case "grenade":
+                grenade=true;
+                break;
+            }   
+        }
+
         public void IncreaseRecquisition(int addreq)
         {
             recquisition+=addreq;
+            playerUI.Recquisition(recquisition);
         }
     }
 }

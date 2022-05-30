@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-
+using GameJam.Control;
 public class PlayerOrbitalCaller : MonoBehaviour
 {
 
@@ -11,9 +11,14 @@ public class PlayerOrbitalCaller : MonoBehaviour
     [SerializeField] GameObject laserObj,grenadeObj,smokeObj;
     bool canLaser,canSmoke=true,canGrenade;
     [SerializeField]int smokeRechargeTime=15,grenadeRechargeTime=50,laserRechargeTime=120;
+    [SerializeField] PlayerController player;
     //UI element for ammo TextMeshProUGUI ammobar;
     
-    
+    void Awake()
+    {
+        player = FindObjectOfType<PlayerController>();
+    }
+
     public void UnlockLaser()
     {
         canLaser=true;
@@ -26,29 +31,29 @@ public class PlayerOrbitalCaller : MonoBehaviour
 
     public void CallLaser()
     {
+        if(player.CanFire("orbital")) //remove if tracking on main combat controller
+            {
+                player.IncreaseRecquisition(-180);
+                player.PrepAbility("orbital");
+            }
 
-        if(canLaser) //remove if tracking on main combat controller
-        {
-            canLaser=false;
-            StartCoroutine(LaserFire());
-        }
     }
 
     public void CallSmoke()
     {
 
-        if(canSmoke) //remove if tracking on main combat controller
+        if(player.CanFire("smoke")) //remove if tracking on main combat controller
         {
-            canSmoke=false;
-            StartCoroutine(SmokeFire());
+            player.IncreaseRecquisition(-60);
+            player.PrepAbility("smoke");
         }
     }
     public void CallGrenade()
     {
-        if(canGrenade) //remove if tracking on main combat controller
+        if(player.CanFire("grenade")) //remove if tracking on main combat controller
         {
-            canGrenade=false;
-            StartCoroutine(GrenadeFire());
+            player.IncreaseRecquisition(-120);
+            player.PrepAbility("grenade");
         }
     }
 

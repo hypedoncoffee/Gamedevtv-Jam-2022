@@ -104,12 +104,15 @@ namespace GameJam.Attributes
                 if (aiController)
                 {
                     aiController.KillVIP();
+                    //aiController.LogName();
                 }
             }
             GetComponent<ActionScheduler>().CancelCurrentAction();
             isAlive = false;
             if(!isPlayer)
             {
+                if(TryGetComponent<AIController>(out AIController aiController))
+                aiController.LogName();
                 animator.SetTrigger("death");
                 if(voices != null)
                 {

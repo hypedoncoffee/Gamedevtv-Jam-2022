@@ -40,9 +40,12 @@ namespace GameJam.Control
         Quaternion initialLookDirection;
         int currentWaypointIndex = 0;
         float timeSinceArrivedAtWaypoint = Mathf.Infinity;
-        #endregion
+        #endregion        
+        ParticleSystem fightFX;
+
         private void Start()
         {
+//            fightFX = GetComponent<ParticleSystem>();
             fighter = GetComponent<Fighter>();
             player = GameObject.FindWithTag("Player");
             suspicion = GetComponent<Suspicion>();
@@ -52,6 +55,15 @@ namespace GameJam.Control
             initialLookDirection = transform.rotation;
             if(charNameUI!=null&&!isVIP)SetName();
             if(isPatrolling && patrolPath==null) SetPatrolPathRandom();
+        }
+
+        public void LogName()
+        {
+        Scorekeeper score = FindObjectOfType<Scorekeeper>();
+            if(!isVIP)
+            score.LogName(lastName,firstName,"Aide to Treasonous Individuals",160.ToString());
+            else
+            score.LogName(lastName,firstName,"High Treason", 700.ToString()); 
         }
 
 
@@ -172,6 +184,7 @@ namespace GameJam.Control
 
         private void AttackBehavior()
         {
+            if(fightFX!=null)fightFX.Play();
             if(timeSinceLastCallout > minTimeBetweenCallouts)
             {
                 timeSinceLastCallout = 0;

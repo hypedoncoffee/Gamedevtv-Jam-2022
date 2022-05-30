@@ -10,7 +10,10 @@ public class PlayerUIManager : MonoBehaviour
 {
     //Essential player meters
     [SerializeField] TextMeshProUGUI healthbar,ammobar,sentencebar,namebar;
-    
+
+    [SerializeField] Image smokeImg,grenadeImg,orbitalImg;
+
+    [SerializeField] Material buttonDisabled,buttonReady;
     //Compass
     [SerializeField] Transform objectiveRef,objectivePointer,compassPointer;
 
@@ -85,5 +88,22 @@ public class PlayerUIManager : MonoBehaviour
     public void Recquisition(int req)
     {
         reqslider.value = req;
+        if(req>=60)
+        {
+            smokeImg.material = buttonReady;
+        }
+        else smokeImg.material = buttonDisabled;
+
+        if(req>=120)
+        {
+            grenadeImg.material = buttonReady;
+        }
+        else grenadeImg.material = buttonDisabled;
+
+        if(req>=180)
+        {
+            orbitalImg.material = buttonReady;
+        }
+        else orbitalImg.material = buttonDisabled;
     }
 }

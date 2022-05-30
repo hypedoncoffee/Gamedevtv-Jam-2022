@@ -5518,6 +5518,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementIcon: {fileID: 0}
   maxSpeed: 6
+  focusSpeed: 6
 --- !u!54 &8819420962419830457
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5638,10 +5639,11 @@ MonoBehaviour:
   orbitalLaserPrefab: {fileID: 0}
   orbitalLaserParticles: {fileID: 0}
   sus: {fileID: 0}
+  fightFX: {fileID: 7059875016551581358}
   isPlayer: 0
   reloadButton: {fileID: 0}
   reloadSlider: {fileID: 0}
-  reloadSound: {fileID: 0}
+  reloadSound: {fileID: 8300000, guid: c7baf374a29728969b0315df8ee84b9d, type: 3}
   maxReloadTime: 2
   maxAmmo: 30
   currentAmmo: 30
@@ -5664,6 +5666,8 @@ MonoBehaviour:
   suspicionTime: 3
   timeSinceLastSawPlayer: Infinity
   isSmoked: 0
+  coyoteTime: 0
+  maxCoyoteTime: 1
 --- !u!114 &5850395448832314125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5913,7 +5917,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 65d473896dfde45b0b1468c5fed09cb5, type: 3}
   - {fileID: 8300000, guid: d36a6b972b675cabb9d2624d544e397c, type: 3}
   - {fileID: 8300000, guid: 4c538db0be2a93a9288009f797a79772, type: 3}
-  susBanter: []
+  susBanter:
+  - {fileID: 8300000, guid: 2fa4191eb3af5c5d1870842ad12feffc, type: 3}
+  - {fileID: 8300000, guid: ac7f354a955ddbe5087a92cb2c4cf748, type: 3}
+  - {fileID: 8300000, guid: 02e99afb1938e0f07963ceefc54afc48, type: 3}
+  - {fileID: 8300000, guid: b7274677d056d0c0592bac394f90eda6, type: 3}
   minIdleBanterTime: 20
   maxIdleBanterTime: 200
 --- !u!1001 &916364097198964006

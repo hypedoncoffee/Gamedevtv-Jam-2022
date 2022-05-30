@@ -6,6 +6,8 @@ public class RevealHQ : MonoBehaviour
 {
     [SerializeField] AudioClip revealAudio;
     Animator anim;
+    [SerializeField] public bool fobReady;
+    [SerializeField] GameObject radiusIndicator;
     // Start is called before the first frame update
     void Awake()
     {
@@ -19,8 +21,15 @@ public class RevealHQ : MonoBehaviour
         
     }
 
+    public void ReadyToOpen()
+    {
+        fobReady = true;
+        radiusIndicator.SetActive(true);
+    }
+
     public void RevealBase()
     {
+        radiusIndicator.SetActive(false);
         anim.SetBool("reveal",true);
         GetComponent<AudioSource>().PlayOneShot(revealAudio);//play sound?
         StartCoroutine(SetupLoop());
