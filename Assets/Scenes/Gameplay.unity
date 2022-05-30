@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18029168, g: 0.22572425, b: 0.30693048, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -24334,31 +24334,31 @@ PrefabInstance:
     - target: {fileID: 1060904679, guid: 8dc3400744948903098cff159ae93a27, type: 3}
       propertyPath: fullSizeBuilding.Array.data[7]
       value: 
-      objectReference: {fileID: 449896300326320853, guid: 9a6e5a26d56bf363086c8b6e4ee04734, type: 3}
+      objectReference: {fileID: 7861415084035678444, guid: ec5022c336fd247479201a2ab7debde7, type: 3}
     - target: {fileID: 1060904679, guid: 8dc3400744948903098cff159ae93a27, type: 3}
       propertyPath: fullSizeBuilding.Array.data[8]
       value: 
-      objectReference: {fileID: 8400647864867373402, guid: 240d383204d27f52897243662e12dbad, type: 3}
+      objectReference: {fileID: 7861415084035678444, guid: 3a1fab498bac87043bbc355a433f282f, type: 3}
     - target: {fileID: 1060904679, guid: 8dc3400744948903098cff159ae93a27, type: 3}
       propertyPath: fullSizeBuilding.Array.data[9]
       value: 
-      objectReference: {fileID: 7298758848954906125, guid: bbd3e5f96a0f5b4f582c7a72fa2ade94, type: 3}
+      objectReference: {fileID: 7861415084035678444, guid: 1d5e954754571b54c90d5d14aaeb3d33, type: 3}
     - target: {fileID: 1060904679, guid: 8dc3400744948903098cff159ae93a27, type: 3}
       propertyPath: fullSizeBuilding.Array.data[10]
       value: 
-      objectReference: {fileID: 5853924868751962836, guid: 2a27c8a6ac179d230a1de37f6bca5087, type: 3}
+      objectReference: {fileID: 7861415084035678444, guid: 78d9fbf5d7dff094aae9f34fa5bff11b, type: 3}
     - target: {fileID: 1060904679, guid: 8dc3400744948903098cff159ae93a27, type: 3}
       propertyPath: fullSizeBuilding.Array.data[11]
       value: 
-      objectReference: {fileID: 6783279937527156798, guid: cbe79810a3c611373be8d68f587f16de, type: 3}
+      objectReference: {fileID: 7861415084035678444, guid: 3413af9e3e1b6a348af43e885ee4850e, type: 3}
     - target: {fileID: 1060904679, guid: 8dc3400744948903098cff159ae93a27, type: 3}
       propertyPath: fullSizeBuilding.Array.data[12]
       value: 
-      objectReference: {fileID: 4550353874498713649, guid: 77c113e325a9cfd16b4450cc0164a3a0, type: 3}
+      objectReference: {fileID: 7861415084035678444, guid: 769c74cf5706ad249b6749f10d42c4fe, type: 3}
     - target: {fileID: 1060904679, guid: 8dc3400744948903098cff159ae93a27, type: 3}
       propertyPath: fullSizeBuilding.Array.data[13]
       value: 
-      objectReference: {fileID: 919132149155446097, guid: 8370332472d7fa00994b2bb05e8ec532, type: 3}
+      objectReference: {fileID: 7861415084035678444, guid: 958e26804990e27499db919a3f0b1733, type: 3}
     - target: {fileID: 2975175729630241273, guid: 8dc3400744948903098cff159ae93a27, type: 3}
       propertyPath: m_IsActive
       value: 0
