@@ -54,7 +54,7 @@ GameObject:
   - component: {fileID: 3573144549748755024}
   m_Layer: 0
   m_Name: Enemy - Evil Tank
-  m_TagString: Objective
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -249,6 +249,10 @@ MonoBehaviour:
   projectileSpawnPoint: {fileID: 3436667070790348260}
   orbitalLaserPrefab: {fileID: 0}
   orbitalLaserParticles: {fileID: 0}
+  grenadePrefab: {fileID: 0}
+  grenadeParticles: {fileID: 0}
+  smokePrefab: {fileID: 0}
+  smokeParticles: {fileID: 0}
   sus: {fileID: 0}
   fightFX: {fileID: 5906431854356774903}
   isPlayer: 0
