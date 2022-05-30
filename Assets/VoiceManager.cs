@@ -31,12 +31,10 @@ public class VoiceManager : MonoBehaviour
     void CallVoice(AudioClip[] clips)
     {
         int nextLine = Random.Range(0,clips.Length-1);
-        voicebox.PlayOneShot(clips[nextLine]);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (!voicebox)
+        {
+            voicebox = GetComponent<AudioSource>();
+            voicebox.PlayOneShot(clips[nextLine]);
+        }
     }
 }
