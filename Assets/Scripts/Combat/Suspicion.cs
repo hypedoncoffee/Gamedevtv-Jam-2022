@@ -13,7 +13,7 @@ namespace GameJam.Combat
             
         }
 
-
+        [SerializeField] Fighter fight;
         [SerializeField] float ignoranceTime;
         [SerializeField] float suspicionTime = 3f;
         [SerializeField] float timeSinceLastSawPlayer = Mathf.Infinity;
@@ -63,7 +63,7 @@ namespace GameJam.Combat
         {
             if(!isWatching)
             {
-                if(target!=null) target=null;
+                fight.CancelAttack();
                 ignoranceTime-=Time.deltaTime;
                 Debug.Log("Time until eyesight returns: "+ignoranceTime);
                 if(ignoranceTime<0) Ignorance(false);
