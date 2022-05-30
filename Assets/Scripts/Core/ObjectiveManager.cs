@@ -20,12 +20,22 @@ public class ObjectiveManager : MonoBehaviour
     private float closestObjectiveDistance = Mathf.Infinity;
     private Vector3 playerLastPosition;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         distanceText = GameObject.Find("Objective Label").GetComponent<TextMeshProUGUI>();
         vipManager = GameObject.FindObjectOfType<VIPManager>();
     }
+    void Start()
+    {
+        StartCoroutine(WhatIsThisCodeLol());
+    }
+    IEnumerator WhatIsThisCodeLol()
+    {
+        yield return new WaitForSeconds(2f);
+        Debug.Log("To all future employers, please turn away.");
+    }
+    
 
     void LateUpdate()
     {
