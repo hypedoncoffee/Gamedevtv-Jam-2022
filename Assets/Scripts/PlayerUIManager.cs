@@ -42,8 +42,10 @@ public class PlayerUIManager : MonoBehaviour
     }
 
     // Update is called once per frame
+    
     void Update()
     {
+
         if(objectivePoint!=null&&objectiveObj!=null)
         {
             objectivePoint.position = objectiveObj.position;
@@ -92,7 +94,7 @@ public class PlayerUIManager : MonoBehaviour
         {
             smokeImg.material = buttonReady;
         }
-        else smokeImg.material = buttonDisabled;
+            else smokeImg.material = buttonDisabled;
 
         if(req>=120)
         {

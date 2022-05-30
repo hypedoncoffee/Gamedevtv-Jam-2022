@@ -40,6 +40,13 @@ namespace GameJam.Control
         [Space(5)]
         [SerializeField] TextMeshProUGUI textStashValue;
         public float stashAmount;
+
+        [SerializeField] SkinnedMeshRenderer playermodel;
+        [SerializeField] Material[] defaultmat;
+        [SerializeField] Material stealthmat;
+        [SerializeField] Material glowmat;
+
+
         //For music
         [SerializeField] bool isInCombat = false;
         [Header("Combat Vars")]
@@ -70,6 +77,7 @@ namespace GameJam.Control
         private void Start()
         {
             GetComponentInChildren<ObjectiveManager>().GenerateObjectives();
+            defaultmat = playermodel.materials;
         }
         [SerializeField] CursorMapping[] cursorMappings = null;
         void Awake()
@@ -190,9 +198,21 @@ namespace GameJam.Control
         // Update is called once per frame
         void Update()
         {
+
             if (!health.IsAlive()) { return; }
             InteractWithCombat();
             if (InteractWithMovement()) return;
+            
+            if(Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                if(!stealth)
+                stealth=true;
+            }
+            if(Input.GetKeyUp(KeyCode.LeftShift))
+            {
+                if(stealth)
+                stealth=false;
+            }
 
             SetCursor(CursorType.None);
 
@@ -354,11 +374,17 @@ namespace GameJam.Control
             if(enabled)
             {
                 stealth=true;
+                playermodel.materials[0] = stealthmat;
+                playermodel.materials[1] = stealthmat;
+                playermodel.materials[4] = glowmat;
             //change material
             }
             else 
             {
                 stealth=false;
+                playermodel.materials[0] = defaultmat[0];
+                playermodel.materials[1] = defaultmat[1];
+                playermodel.materials[4] = defaultmat[4];
 
             }
         }
