@@ -1243,6 +1243,7 @@ GameObject:
   - component: {fileID: 6876325652600497340}
   - component: {fileID: 5076023636201780524}
   - component: {fileID: 5907844868615522687}
+  - component: {fileID: 6835112082988106141}
   m_Layer: 0
   m_Name: eccFOB_Base-final
   m_TagString: FOB
@@ -1290,8 +1291,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 41.260212, y: 40, z: 47.480145}
-  m_Center: {x: 0.92280954, y: 18, z: -4.3496103}
+  m_Size: {x: 56.754135, y: 40, z: 59.409622}
+  m_Center: {x: -0.4368057, y: 18, z: -2.1976013}
 --- !u!82 &6876325652600497330
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1526,6 +1527,22 @@ MonoBehaviour:
   Position: {x: 0, y: 0, z: 0}
   Materials: []
   InitialAlpha: 0
+--- !u!208 &6835112082988106141
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6029462756419873981}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 17.5, y: 17.5, z: 17.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &6116449266481603464
 GameObject:
   m_ObjectHideFlags: 0

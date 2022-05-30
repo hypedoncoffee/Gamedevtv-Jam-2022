@@ -60,7 +60,7 @@ namespace GameJam.Combat
 
         void OnTriggerEnter(Collider other)
         {
-
+            if (other.gameObject.CompareTag("FOB")) { return; }
             // Destroy if it hits buildings
             if (other.gameObject.layer.Equals(3))
             {
