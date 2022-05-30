@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using GameJam.Attributes;
-
+using GameJam.Combat;
 public class SmokeGrenade : MonoBehaviour
 {
     BoxCollider collisionBox;
@@ -44,19 +44,19 @@ public class SmokeGrenade : MonoBehaviour
          foreach (var c in colliders)
          {
              Transform t = c.transform;
-             while (t.parent != null && t.GetComponent<Health>() == null) t = t.parent;
-             if (t.GetComponent<Health>() != null 
+             while (t.parent != null && t.GetComponent<Suspicion>() == null) t = t.parent;
+             if (t.GetComponent<Suspicion>() != null 
                  && t != collider.transform 
                  && !objectsInBox.Contains(t)) 
                  objectsInBox.Add(t);
          }
-         for (int i = 0; i < objectsInBox.Count; i++) objectsInBox[i].GetComponent<Health>().TakeDamage(laserDamage);
+         for (int i = 0; i < objectsInBox.Count; i++) objectsInBox[i].GetComponent<Suspicion>().Ignorance(true,laserDamage);
      }
 
 
     // Update is called once per frame
     void Update()
     {
-        lasermodel.Translate(Vector3.down*Time.deltaTime*moveSpeed);
+        //lasermodel.Translate(Vector3.down*Time.deltaTime*moveSpeed);
     }
 }

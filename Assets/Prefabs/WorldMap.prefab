@@ -381,9 +381,21 @@ MonoBehaviour:
   - {fileID: 7206369648668740701, guid: 68ee9e822dac0464e81ba0e4c1a37ee7, type: 3}
   - {fileID: 7206369648668740701, guid: eff423f87a3ac1d4cbca1815f46fd9a4, type: 3}
   - {fileID: 7206369648668740701, guid: 03e8a7ac82f43c940a90f00fda5d6a03, type: 3}
+  - {fileID: 7861415084035678444, guid: ec5022c336fd247479201a2ab7debde7, type: 3}
+  - {fileID: 8400647864867373402, guid: 240d383204d27f52897243662e12dbad, type: 3}
+  - {fileID: 7298758848954906125, guid: bbd3e5f96a0f5b4f582c7a72fa2ade94, type: 3}
+  - {fileID: 7861415084035678444, guid: 78d9fbf5d7dff094aae9f34fa5bff11b, type: 3}
+  - {fileID: 6783279937527156798, guid: cbe79810a3c611373be8d68f587f16de, type: 3}
+  - {fileID: 4550353874498713649, guid: 77c113e325a9cfd16b4450cc0164a3a0, type: 3}
+  - {fileID: 4071901783797331351, guid: 05b719533afa11474bfef8b2f672baf9, type: 3}
+  - {fileID: 4290074208037502044, guid: d9210621a0f7ff7919d2ab9efab236aa, type: 3}
+  - {fileID: 4290074208037502044, guid: d9210621a0f7ff7919d2ab9efab236aa, type: 3}
+  - {fileID: 1483166622934010319, guid: 0538a3dcfe3960bae9f95d258eabcd49, type: 3}
   halfSizeBuilding: []
   doubleSizeBuilding: []
   fullSizeProp:
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
 --- !u!114 &1060904680
 MonoBehaviour:

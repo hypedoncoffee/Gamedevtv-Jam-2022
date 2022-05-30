@@ -263,12 +263,12 @@ namespace GameJam.Control
                     }
                     else if(smoke)
                     {
-                        fighter.SpawnOrbitalLaser(hit.point);
+                        fighter.SpawnSmokeGrenade(hit.point);
                         return true;
                     }
                     else if(grenade)
                     {
-                        fighter.SpawnOrbitalLaser(hit.point);
+                        fighter.SpawnGrenade(hit.point);
                         return true;
                     }
                     else

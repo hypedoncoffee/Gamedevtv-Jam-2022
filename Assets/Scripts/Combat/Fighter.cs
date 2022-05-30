@@ -34,6 +34,10 @@ namespace GameJam.Combat
         [SerializeField] Transform projectileSpawnPoint = null;
         [SerializeField] GameObject orbitalLaserPrefab = null;
         [SerializeField] GameObject orbitalLaserParticles = null;
+        [SerializeField] GameObject grenadePrefab = null;
+        [SerializeField] GameObject grenadeParticles = null;
+        [SerializeField] GameObject smokePrefab = null;
+        [SerializeField] GameObject smokeParticles = null;
         [SerializeField] Suspicion sus;
 
         [SerializeField] ParticleSystem fightFX;
@@ -221,13 +225,29 @@ namespace GameJam.Combat
 
         internal void SpawnOrbitalLaser(Vector3 point)
         {
-            if (timeSinceLastAbility > abilityCooldown)
             {
                 Instantiate(orbitalLaserPrefab, point, Quaternion.identity);
                 Instantiate(orbitalLaserParticles, point, Quaternion.identity);
                 timeSinceLastAbility = 0;
             }
         }
+         internal void SpawnGrenade(Vector3 point)
+        {
+            {
+                Instantiate(grenadePrefab, point, Quaternion.identity);
+                Instantiate(grenadeParticles, point, Quaternion.identity);
+                timeSinceLastAbility = 0;
+            }
+        }
+         internal void SpawnSmokeGrenade(Vector3 point)
+        {
+            {
+                Instantiate(smokePrefab, point, Quaternion.identity);
+                Instantiate(smokeParticles, point, Quaternion.identity);
+                timeSinceLastAbility = 0;
+            }
+        }
+        
 
         public void AttackSpam()
         {

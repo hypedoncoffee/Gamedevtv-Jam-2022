@@ -16,7 +16,7 @@ public class BuildingPrefabs : MonoBehaviour
     {
 
         buildings= FindObjectOfType<BuildingPoolManager>();
-        SpawnBuilding();
+       // SpawnBuilding();
     }
 
 
@@ -26,9 +26,9 @@ public class BuildingPrefabs : MonoBehaviour
         startTime = Time.realtimeSinceStartup;
         GameObject spawnBuilding = Instantiate(
             buildings.SpawnBuilding(halfSize,doubleSize),
-            transform.position,transform.rotation);
+            transform.position,transform.rotation,this.transform);
     
-        spawnBuilding.transform.localScale = new Vector3(Random.Range(scaleMult-scaleMinusX,1+scalePlusX),Random.Range(scaleMult-scaleMinusY,1+scalePlusY),Random.Range(scaleMult-scaleMinusZ,1+scalePlusZ));
+        spawnBuilding.transform.localScale = new Vector3(Random.Range(scaleMult-scaleMinusX,scaleMult+scalePlusX),Random.Range(scaleMult-scaleMinusY,scaleMult+scalePlusY),Random.Range(scaleMult-scaleMinusZ,scaleMult+scalePlusZ));
         //Destroy(this.gameObject);
         endTime = Time.realtimeSinceStartup;
         GetObjectsInBoxCollider(GetComponent<BoxCollider>());

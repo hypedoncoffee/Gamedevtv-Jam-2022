@@ -8,7 +8,7 @@ public class PropPrefabs : MonoBehaviour
     [SerializeField] float scaleMinusX,scaleMinusY,scaleMinusZ,scalePlusX,scalePlusY,scalePlusZ;
     [SerializeField] bool halfSize,doubleSize;
     BuildingPoolManager buildings;
-    float scaleMult = 15;
+    [SerializeField] float scaleMult = 1;
 
     GameObject building;
     // Start is called before the first frame update
@@ -28,7 +28,7 @@ public class PropPrefabs : MonoBehaviour
             buildings.SpawnBuilding(halfSize,doubleSize),
             transform.position,transform.rotation);
     
-        spawnBuilding.transform.localScale = new Vector3(Random.Range(scaleMult-scaleMinusX,1+scalePlusX),Random.Range(scaleMult-scaleMinusY,1+scalePlusY),Random.Range(scaleMult-scaleMinusZ,1+scalePlusZ));
+        spawnBuilding.transform.localScale = new Vector3(Random.Range(scaleMult-scaleMinusX,scaleMult+scalePlusX),Random.Range(scaleMult-scaleMinusY,scaleMult+scalePlusY),Random.Range(scaleMult-scaleMinusZ,scaleMult+scalePlusZ));
         //Destroy(this.gameObject);
         endTime = Time.realtimeSinceStartup;
     }

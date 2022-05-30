@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7012458202333018060}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 2344858886121337749}
   - component: {fileID: 4290829842726553365}
   - component: {fileID: 4982607099373679086}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collection|Text_L_ratborger.blend|Dupli|1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -6478536213147159724, guid: 24ca43c5eea72d03dab7f891fb09660a, type: 3}
+  - {fileID: 2100000, guid: 5c2aaa928b18e52518b05e75bac0e74f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -140,7 +140,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6518539397283539054}
   - component: {fileID: 8851260455685152838}
-  m_Layer: 0
+  - component: {fileID: 4381765788373061564}
+  m_Layer: 3
   m_Name: friendly
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,12 +174,25 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_Extents: {x: 7, y: 1.5, z: 6}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!65 &4381765788373061564
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5853924868751962836}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 14, y: 10, z: 12}
+  m_Center: {x: 0, y: 5, z: 0}
 --- !u!1 &6228579418085146081
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,7 +205,7 @@ GameObject:
   - component: {fileID: 1727823189013759381}
   - component: {fileID: 7132712123872139594}
   - component: {fileID: 5236446493083206217}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -291,7 +305,7 @@ GameObject:
   - component: {fileID: 2877319280428935802}
   - component: {fileID: 8722409789123447260}
   - component: {fileID: 7740719625574465000}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collection|Cube_L_ratborger.blend|Dupli|
   m_TagString: Untagged
   m_Icon: {fileID: 0}
