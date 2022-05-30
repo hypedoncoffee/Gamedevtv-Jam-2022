@@ -5,13 +5,13 @@ using UnityEngine;
 public class RevealHQ : MonoBehaviour
 {
     [SerializeField] AudioClip revealAudio;
-    Animator anim;
+    [SerializeField] Animator anim;
     [SerializeField] public bool fobReady;
     [SerializeField] GameObject radiusIndicator;
     // Start is called before the first frame update
     void Awake()
     {
-        anim = GetComponent<Animator>();
+       // anim = GetComponent<Animator>();
 
     }
 
@@ -41,7 +41,7 @@ public class RevealHQ : MonoBehaviour
     }
     public void HideBase()
     {
-        if(anim.GetBool("reveal")==true)
+        if(anim!=null && anim.GetBool("reveal")==true)
         {
 
         anim.SetBool("reveal",false);
