@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18029168, g: 0.22572425, b: 0.30693048, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2635,7 +2635,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 4593948057451981338, guid: ed05a2d0defc72bd4bfb1a0ce54d532a, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -11675,6 +11675,10 @@ PrefabInstance:
     - target: {fileID: 909226174287908716, guid: 983a812209ddde6458fcd38c69481922, type: 3}
       propertyPath: m_Name
       value: RandomPatrol (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1501656086638379344, guid: 983a812209ddde6458fcd38c69481922, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 1894980755178748030, guid: 983a812209ddde6458fcd38c69481922, type: 3}
       propertyPath: m_WarningMessage
@@ -20973,6 +20977,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 225557098116872945, guid: 3f2d1d73aa0e9c5a7b33022a6731860d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 8646421400624142645, guid: 3f2d1d73aa0e9c5a7b33022a6731860d, type: 3}
       propertyPath: m_Materials.Array.data[2]
       value: 

@@ -114,14 +114,14 @@ namespace GameJam.Control
             health.Respawn();
             FindObjectOfType<Scorekeeper>().AssigneeRunEnd(reachedObjective);
             FindObjectOfType<GameStateUIManager>().AssigneeRunEnd(reachedObjective);
-            FindObjectOfType<VoiceManager>().PlayDeathSound(reachedObjective);
+            //FindObjectOfType<VoiceManager>().PlayDeathSound(reachedObjective);
             GetComponent<Mover>().ResetToSpawnPosition();
 
             // STOP ENEMIES FROM TARGETING DURING CUTSCENE
             deathUI.SetPlayerobject(gameObject);
 
             deathUI.DisplayNewCharacter(reachedObjective, firstName, lastName, crime, years.ToString());
-
+            playerUI.SetName(firstName, lastName, crime, years.ToString());
             //StartCoroutine(PlayerDeathWait());
         }
 

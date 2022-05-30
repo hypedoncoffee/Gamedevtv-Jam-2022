@@ -125,6 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e5bdcfa15b3b7a499cbc23988942a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementIcon: {fileID: 0}
   maxSpeed: 6
 --- !u!54 &3436667070790348281
 Rigidbody:
@@ -154,6 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c9a560159e26bc45ab2aa82649c22b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  voices: {fileID: 0}
   currentHealth: -1
   isAlive: 1
   isPlayer: 0
@@ -201,11 +203,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cc4439c7b0e31b40853533f08fc7d21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lastName: 
+  firstName: 
+  isVIP: 0
+  vipID: 9999
   chaseDistance: 15
   patrolPath: {fileID: 0}
   waypointTolerance: 1
   waypointDwellTime: 4
   patrolSpeedFraction: 0.2
+  charNameUI: {fileID: 0}
+  alertFX: {fileID: 0}
+  timeSinceLastCallout: 0
+  voices: {fileID: 0}
+  minTimeBetweenCallouts: 15
 --- !u!114 &7906172408912191566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,6 +245,13 @@ MonoBehaviour:
   projectileSpawnPoint: {fileID: 3436667070790348260}
   orbitalLaserPrefab: {fileID: 0}
   orbitalLaserParticles: {fileID: 0}
+  isPlayer: 0
+  reloadButton: {fileID: 0}
+  reloadSlider: {fileID: 0}
+  reloadSound: {fileID: 0}
+  maxReloadTime: 2
+  maxAmmo: 30
+  currentAmmo: 30
   abilityCooldown: 1.5
 --- !u!114 &3376481441588253931
 MonoBehaviour:
@@ -247,6 +265,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d4dbd1cac65d984b90c7aeecdfa91ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isWatching: 1
+  fight: {fileID: 7906172408912191566}
+  ignoranceTime: 0
   suspicionTime: 3
   timeSinceLastSawPlayer: Infinity
 --- !u!114 &-8870585533279958963
@@ -280,6 +301,7 @@ MonoBehaviour:
   pickupValue: 100
   objectiveName: VIP
   grantsCode: 0
+  requiresCode: 0
 --- !u!1 &4417975282379187319
 GameObject:
   m_ObjectHideFlags: 0
@@ -686,3 +708,4 @@ MonoBehaviour:
   yScrollSpeed: 1
   raw: 0
   isImg: 0
+  isURP: 0

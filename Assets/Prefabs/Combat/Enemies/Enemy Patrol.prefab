@@ -25,7 +25,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2307549143887132901}
-  m_LocalRotation: {x: -0, y: -1, z: -0, w: -0.00000056624407}
+  m_LocalRotation: {x: -0.00000040039504, y: -0.7071068, z: 0.70710677, w: -0.00000040039498}
   m_LocalPosition: {x: 0, y: 0, z: 6.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -5208,6 +5208,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d4dbd1cac65d984b90c7aeecdfa91ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isWatching: 0
+  fight: {fileID: 7906172408912191566}
+  ignoranceTime: 0
   suspicionTime: 3
   timeSinceLastSawPlayer: Infinity
 --- !u!114 &7558732742044203022

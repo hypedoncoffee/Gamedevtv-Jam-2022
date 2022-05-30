@@ -26,7 +26,7 @@ public class PlayerUIManager : MonoBehaviour
     Health healthComponent;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         healthComponent = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
         names = FindObjectOfType<NamePicker>();

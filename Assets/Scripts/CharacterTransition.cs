@@ -44,6 +44,7 @@ public class CharacterTransition : MonoBehaviour
 
     public void DisplayNewCharacter(bool reachedObjective,string fname,string lname,string crime,string years)
     {
+        Debug.Log("Changing Characters Now.");
         textbox.maxVisibleCharacters=0;
         string resultscolor;
         string resultsmessage;
@@ -106,11 +107,11 @@ public class CharacterTransition : MonoBehaviour
             multiplier = 5f;
             charsScrollRate = 5;
         }
-        else
+        if(!firstRun&&reachedObjective)
         {
-            if(reachedObjective) paAudio.PlayOneShot(successVoice[Random.Range(0,successVoice.Length-1)]);
-            else paAudio.PlayOneShot(failureVoice[Random.Range(0,failureVoice.Length-1)]);
+            paAudio.PlayOneShot(successVoice[Random.Range(0,successVoice.Length-1)]);
         }
+        else paAudio.PlayOneShot(failureVoice[Random.Range(0,failureVoice.Length-1)]);
         FindObjectOfType<DynamicMusicManager>().PlayerDeathMusic(true,true);
         deathScreen.Reveal();
         yield return new WaitForSecondsRealtime(1f);
@@ -130,14 +131,13 @@ public class CharacterTransition : MonoBehaviour
                 typing=false;
         }
         if(!firstRun)
-        yield return new WaitForSecondsRealtime(2f);
+        yield return new WaitForSecondsRealtime(1f);
 
         //Get new character name
-        if (!playerUI)
-        {
-            playerUI = FindObjectOfType<PlayerUIManager>();
-            playerUI.SetName(fname, lname, crime, years);
-        }
+        // if (!playerUI)
+        // {
+        //     playerUI = FindObjectOfType<PlayerUIManager>().SetName(fname, lname, crime, years);
+        // }
 
         //Startup screen erase
         typing =true;

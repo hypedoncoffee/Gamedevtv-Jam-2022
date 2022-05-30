@@ -65,7 +65,7 @@ namespace GameJam.Combat
             {
                 fight.CancelAttack();
                 ignoranceTime-=Time.deltaTime;
-                Debug.Log("Time until eyesight returns: "+ignoranceTime);
+                //Debug.Log("Time until eyesight returns: "+ignoranceTime);
                 if(ignoranceTime<0) Ignorance(false);
             }
         }

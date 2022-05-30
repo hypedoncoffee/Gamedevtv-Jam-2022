@@ -119,6 +119,10 @@ PrefabInstance:
       propertyPath: patrolPath
       value: 
       objectReference: {fileID: 1430708052565208784, guid: 02878306b2c8aaf44a84ca772da3d9ac, type: 3}
+    - target: {fileID: 3376481441588253931, guid: 85e83cc64d9f372a6aea6f31ee675727, type: 3}
+      propertyPath: isWatching
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3436667070790348260, guid: 85e83cc64d9f372a6aea6f31ee675727, type: 3}
       propertyPath: m_RootOrder
       value: 0

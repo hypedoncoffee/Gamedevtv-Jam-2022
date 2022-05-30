@@ -13,12 +13,12 @@ public class UIPanelMask : MonoBehaviour
     
     void Awake()
     {
-      foley = GetComponent<AudioSource>();
+      if(foley==null)foley = GetComponent<AudioSource>();
 
     }
     void Start()
     {
-      if(foley==null) foley = this.gameObject.AddComponent<AudioSource>();
+//      if(foley==null) foley = this.gameObject.AddComponent<AudioSource>();
       
           
       if(hiddenByDefault)
@@ -29,12 +29,12 @@ public class UIPanelMask : MonoBehaviour
 
     public void Reveal()
     {
-      foley.PlayOneShot(swishUp);
+      if(foley!=null)foley.PlayOneShot(swishUp);
       StartCoroutine(MaskShow());
     }
     public void Hide()
     {
-      foley.PlayOneShot(swishDown);
+      if(foley!=null)foley.PlayOneShot(swishDown);
       StartCoroutine(MaskHide());
     }
 
