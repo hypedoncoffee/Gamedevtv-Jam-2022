@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18029168, g: 0.22572425, b: 0.30693048, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -21327,6 +21327,17 @@ PrefabInstance:
       objectReference: {fileID: 1738624444}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e0baddfc60136b48883c53a36918cef, type: 3}
+--- !u!114 &7037993860647680435 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7229472535015112039, guid: 9e0baddfc60136b48883c53a36918cef, type: 3}
+  m_PrefabInstance: {fileID: 7037993860647680434}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a15e03d66cec5ac2da60114b5190d524, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7373667945604216063
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21584,6 +21595,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9043143086559473645, guid: e2e8b4a085cf68eb8be8cc3785a2cd9e, type: 3}
+      propertyPath: playerUI
+      value: 
+      objectReference: {fileID: 7037993860647680435}
     - target: {fileID: 9043143086559473647, guid: e2e8b4a085cf68eb8be8cc3785a2cd9e, type: 3}
       propertyPath: m_Camera
       value: 

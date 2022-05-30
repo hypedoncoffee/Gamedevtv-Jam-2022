@@ -17,7 +17,7 @@ public class CharacterTransition : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textbox;
     [SerializeField] private bool firstRun = true;
     [SerializeField] int charsEraseRate = 8;
-    PlayerUIManager playerUI;
+    [SerializeField] PlayerUIManager playerUI;
     [SerializeField] float textScrollRate = .015f;
     [SerializeField] AudioClip textScrollBlip,eraseBlip;
     [SerializeField] AudioSource textAudio;
@@ -27,9 +27,8 @@ public class CharacterTransition : MonoBehaviour
     GameObject playerObject;
 
 
-    void Start()
+    private void Awake()
     {
-        playerUI = FindObjectOfType<PlayerUIManager>();
         textbox.maxVisibleCharacters=0;
     }
 
@@ -132,16 +131,16 @@ public class CharacterTransition : MonoBehaviour
         }
         if(!firstRun)
         yield return new WaitForSecondsRealtime(2f);
-        
+
         //Get new character name
         if (!playerUI)
         {
             playerUI = FindObjectOfType<PlayerUIManager>();
             playerUI.SetName(fname, lname, crime, years);
         }
-        
+
         //Startup screen erase
-        typing=true;
+        typing =true;
         nextmsg = nextmsg + charactermessage;
         if(firstRun)
         {
@@ -177,8 +176,6 @@ public class CharacterTransition : MonoBehaviour
     
         Time.timeScale = 1;
         deathScreen.Hide();
-
-        playerObject.GetComponentInChildren<ObjectiveManager>().GenerateObjectives();
         FindObjectOfType<DynamicMusicManager>().PlayerDeathMusic(false);
     }
 

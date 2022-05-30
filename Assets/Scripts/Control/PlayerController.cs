@@ -55,7 +55,10 @@ namespace GameJam.Control
             public Texture2D texture;
             public Vector2 hotspot;
         }
-
+        private void Start()
+        {
+            GetComponentInChildren<ObjectiveManager>().GenerateObjectives();
+        }
         [SerializeField] CursorMapping[] cursorMappings = null;
         void Awake()
         {
@@ -116,7 +119,6 @@ namespace GameJam.Control
 
             // STOP ENEMIES FROM TARGETING DURING CUTSCENE
             deathUI.SetPlayerobject(gameObject);
-            gameObject.SetActive(false);
 
             deathUI.DisplayNewCharacter(reachedObjective, firstName, lastName, crime, years.ToString());
 
