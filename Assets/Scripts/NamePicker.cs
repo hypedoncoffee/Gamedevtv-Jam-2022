@@ -13,7 +13,7 @@ public class NamePicker : MonoBehaviour
 
     //Call ReadList("firstname"),ReadList("lastname"), or ReadList("crime") to get the respective entry.
 
-    [SerializeField] string pathToLists = "Assets"+Path.DirectorySeparatorChar+"Lists";
+    [SerializeField] string pathToLists = "Lists";
     [SerializeField] string crimePath = "crimes.txt";
     [SerializeField] string lNamePath = "lastnames.txt";
     [SerializeField] string fNamePath = "firstnames.txt";
