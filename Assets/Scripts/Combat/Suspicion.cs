@@ -17,6 +17,9 @@ namespace GameJam.Combat
         [SerializeField] float ignoranceTime;
         [SerializeField] float suspicionTime = 3f;
         [SerializeField] float timeSinceLastSawPlayer = Mathf.Infinity;
+        [SerializeField] bool isSmoked = false;
+        [SerializeField] float coyoteTime;
+        [SerializeField] float maxCoyoteTime = 1f;
         public void CancelAction()
         {
             GetComponent<Animator>().ResetTrigger("Suspicious");
@@ -24,8 +27,15 @@ namespace GameJam.Combat
 
         public void SuspicionBehavior()
         {
-            GetComponent<ActionScheduler>().CancelCurrentAction();
-            GetComponent<Animator>().SetTrigger("Suspicious");
+            if(isWatching)
+            {
+                coyoteTime-=Time.deltaTime;
+                if(coyoteTime<0)
+                {
+                    GetComponent<ActionScheduler>().CancelCurrentAction();
+                    GetComponent<Animator>().SetTrigger("Suspicious");
+                }
+            }
         }
 
         public bool IsSuspicious()
@@ -33,13 +43,19 @@ namespace GameJam.Combat
             return timeSinceLastSawPlayer < suspicionTime;
         }
 
+        public bool IsIgnorant()
+        {
+            return !isWatching;
+        }
+
+
         public void IncreaseTimeSinceLastSawPlayer()
         {
             timeSinceLastSawPlayer += Time.deltaTime;
         }
         public void ResetTimeSinceLastSawPlayer()
         {
-            if(!isWatching)
+            if(isWatching)
                 timeSinceLastSawPlayer = 0;
         }
 
@@ -53,10 +69,22 @@ namespace GameJam.Combat
             }
             else 
             {
+                isSmoked=false;
                 isWatching=true;
                 ignoranceTime = 0;
             }
 
+        }
+        public bool IsSmoked()
+        {
+            return isSmoked;
+        }
+
+        public void Smoke()
+        {
+            ignoranceTime = 15;
+            isSmoked=true;
+            isWatching=false;
         }
 
         void Update()

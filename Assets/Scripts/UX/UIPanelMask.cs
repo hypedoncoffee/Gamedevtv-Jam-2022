@@ -41,20 +41,23 @@ public class UIPanelMask : MonoBehaviour
     // Update is called once per frame
     IEnumerator MaskShow()
     {
+
+      transform.localScale = new Vector3 (0,0,0);
       for(var i = 0f; i < 1f; i+=maskRate)
       {
-        yield return new WaitForSecondsRealtime(0.016f);
-        this.transform.localScale=new Vector3(transform.localScale.x+maskRate,transform.localScale.y+maskRate,1f);
+        yield return new WaitForSecondsRealtime(0.009f);
+        this.transform.localScale=new Vector3(1,transform.localScale.y+maskRate,1f);
       }
         this.transform.localScale = new Vector3(1f,1f,1f);
     }
 
     IEnumerator MaskHide()
     {
+      transform.localScale = new Vector3 (1,1,1);
       for(var i = 1f; i > 0f; i-=maskRate)
         {
-          yield return new WaitForSecondsRealtime(0.016f);
-          this.transform.localScale=new Vector3(transform.localScale.x-maskRate,transform.localScale.y-maskRate,1f);
+          yield return new WaitForSecondsRealtime(0.009f);
+          this.transform.localScale=new Vector3(1,transform.localScale.y-maskRate,1f);
         }
           this.transform.localScale = new Vector3(0,0f,1f);
     }

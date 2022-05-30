@@ -18,6 +18,14 @@ namespace GameJam.Control
         Health health;
         CharacterTransition deathUI;
         NamePicker names;
+        int recquisition;
+
+        //for specials
+        bool orbital,smoke,grenade;
+
+        float maxStealth;
+        float stealthLeft;
+        bool stealth;
 
         [Header("Character Information")]
         [SerializeField] string lastName;
@@ -39,6 +47,10 @@ namespace GameJam.Control
         [SerializeField] GameObject playerProjectile;
         [SerializeField] bool disableIntro;
         [SerializeField] bool hasClearanceCode = false;
+
+        RevealHQ baseOps;
+        float timeToTransition = 4;
+        bool death  = false;
 
         PlayerUIManager playerUI;
         public enum CursorType
@@ -75,13 +87,25 @@ namespace GameJam.Control
 
         public void EnableFOB(bool enabled)
         {
-            if (enabled)
+            if(baseOps==null) baseOps = FindObjectOfType<RevealHQ>();
+            if (enabled&&baseOps!=null)
             {
-                SpawnPickup fobSpawner = GameObject.Find("FOB Base Spawn Zone").GetComponent<SpawnPickup>();
-                fobSpawner.Respawn();
-            } else
+                baseOps.RevealBase();
+                // SpawnPickup fobSpawner = GameObject.Find("FOB Base Spawn Zone").GetComponent<SpawnPickup>();
+                // fobSpawner.Respawn();
+            } else if (baseOps!=null)
             {
-                Destroy(GameObject.FindGameObjectWithTag("FOB"));
+                baseOps.HideBase();
+                // Destroy(GameObject.FindGameObjectWithTag("FOB"));
+            }
+        }
+
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if(other.CompareTag("FOB")&&hasClearanceCode)
+            {
+                other.GetComponent<RevealHQ>().RevealBase();
             }
         }
 
@@ -116,13 +140,36 @@ namespace GameJam.Control
             FindObjectOfType<GameStateUIManager>().AssigneeRunEnd(reachedObjective);
             //FindObjectOfType<VoiceManager>().PlayDeathSound(reachedObjective);
             GetComponent<Mover>().ResetToSpawnPosition();
-
+            
             // STOP ENEMIES FROM TARGETING DURING CUTSCENE
             deathUI.SetPlayerobject(gameObject);
 
-            deathUI.DisplayNewCharacter(reachedObjective, firstName, lastName, crime, years.ToString());
             playerUI.SetName(firstName, lastName, crime, years.ToString());
+            deathUI.DisplayNewCharacter(reachedObjective, firstName, lastName, crime, years.ToString());
             //StartCoroutine(PlayerDeathWait());
+        }
+        void Respawn()
+        {
+
+        }
+
+        public string CharacterInfo(string charInfo)
+        {
+            switch (charInfo)
+            {
+                case "lastname":
+                return lastName;
+                break;
+                case "firstname":
+                return firstName;
+                break;
+                case "crime":
+                return crime;
+                case "years":
+                return years.ToString();
+                break;
+            }
+            return "sampletext";
         }
 
         // public IEnumerator PlayerDeathWait()
@@ -146,6 +193,19 @@ namespace GameJam.Control
             if (InteractWithMovement()) return;
 
             SetCursor(CursorType.None);
+
+            if(death)
+            {
+                timeToTransition -= Time.deltaTime;
+                if(timeToTransition < 0)
+                {
+                    death = false;
+                    timeToTransition = 0;
+
+                }
+            }
+            if(stealth) stealthLeft = Mathf.Clamp(stealthLeft-Time.deltaTime,0,maxStealth);
+            else if(!stealth) stealthLeft = Mathf.Clamp(stealthLeft+(Time.deltaTime*4),0,maxStealth);
         }
 
         private bool InteractWithCombat()
@@ -156,25 +216,45 @@ namespace GameJam.Control
                 RaycastHit[] rays = Physics.RaycastAll(GetMouseRay());
                 foreach (RaycastHit hit in rays)
                 {
-                    fighter.SpawnOrbitalLaser(hit.point);
-                    return true;
+                    // fighter.SpawnOrbitalLaser(hit.point);
+                    // return true;
                 }
             }
             if (Input.GetMouseButton(1))
             {
+                
                 RaycastHit[] rays = Physics.RaycastAll(GetMouseRay());
                 foreach (RaycastHit hit in rays)
                 {
                     Vector3 position = fighter.GetComponent<Transform>().position;
-                    position.z = hit.point.z;
-                    position.x = hit.point.x;
-                    GetComponent<Animator>().SetTrigger("Attack");
-                    Vector3 lookPos = position - transform.position;
-                    lookPos.y = 0;
-                    Quaternion rotation = Quaternion.LookRotation(lookPos);
-                    transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 1);
-                    fighter.LaunchSpamProjectile(position);
-                    return true;
+                    if(orbital)
+                    {
+                        //call strike l command
+                        fighter.SpawnOrbitalLaser(hit.point);
+                        return true;
+                    }
+                    else if(smoke)
+                    {
+                        fighter.SpawnOrbitalLaser(hit.point);
+                        return true;
+                    }
+                    else if(grenade)
+                    {
+                        fighter.SpawnOrbitalLaser(hit.point);
+                        return true;
+                    }
+                    else
+                    {
+                        position.z = hit.point.z;
+                        position.x = hit.point.x;
+                        GetComponent<Animator>().SetTrigger("Attack");
+                        Vector3 lookPos = position - transform.position;
+                        lookPos.y = 0;
+                        Quaternion rotation = Quaternion.LookRotation(lookPos);
+                        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 1);
+                        fighter.LaunchSpamProjectile(position);
+                        return true;
+                    }
                 }
             }
             return false;
@@ -258,6 +338,25 @@ namespace GameJam.Control
         public bool HasClearanceCode()
         {
             return hasClearanceCode;
+        }
+
+        public void StealthMode(bool enabled)
+        {
+            if(enabled)
+            {
+                stealth=true;
+            //change material
+            }
+            else 
+            {
+                stealth=false;
+
+            }
+        }
+
+        public void IncreaseRecquisition(int addreq)
+        {
+            recquisition+=addreq;
         }
     }
 }

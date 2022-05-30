@@ -33,6 +33,8 @@ namespace GameJam.Control
         [SerializeField] PatrolVoice voices;
         [SerializeField] float minTimeBetweenCallouts = 15;
 
+        [SerializeField] bool isPatrolling;
+
         #region
         Vector3 guardLocation;
         Quaternion initialLookDirection;
@@ -49,6 +51,7 @@ namespace GameJam.Control
             guardLocation = transform.position;
             initialLookDirection = transform.rotation;
             if(charNameUI!=null&&!isVIP)SetName();
+            if(isPatrolling && patrolPath==null) SetPatrolPathRandom();
         }
 
 
@@ -63,6 +66,11 @@ namespace GameJam.Control
         public void SetPatrolPath(GameObject newPatrolPath)
         {
             patrolPath = newPatrolPath.GetComponent<PatrolPath>();
+        }
+        public void SetPatrolPathRandom()
+        {   
+            PatrolPath[] paths = FindObjectsOfType<PatrolPath>(); 
+            patrolPath = paths[Random.Range(0,paths.Length-1)];
         }
 
         public void PassVIPInfo(string newname, int id)
@@ -167,7 +175,8 @@ namespace GameJam.Control
             if(timeSinceLastCallout > minTimeBetweenCallouts)
             {
                 timeSinceLastCallout = 0;
-                if(voices!=null) voices.Alert(true);
+                if(voices!=null&&!suspicion.IsIgnorant()) voices.Alert(true);
+                if(voices!=null&&!suspicion.IsSmoked()) voices.HeardSomething();
             }
             suspicion.ResetTimeSinceLastSawPlayer();
             fighter.Attack(player);

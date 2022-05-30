@@ -7,17 +7,49 @@ public class GameStateUIManager : MonoBehaviour
 {
     int successfulRuns;
     int totalRuns;
+    [SerializeField] TextMeshProUGUI hitList;
     [SerializeField] TextMeshProUGUI assigneeBox;
     [SerializeField] Image stashImg;
     [SerializeField] Sprite holdingBox,noBox;
     CountupTimer timer;
+    [SerializeField] TextMeshProUGUI finalHud;
+    VIPManager vipMan;
+    string[] vips;
+    Scorekeeper scoreMan;
     // Start is called before the first frame update
     void Awake()
     {
+        scoreMan = FindObjectOfType<Scorekeeper>();
         timer = FindObjectOfType<CountupTimer>();
         ToggleStashDisplay(false);
+        vipMan = FindObjectOfType<VIPManager>();
+
     }
 
+
+    public void FinalObjective()
+    {
+        hitList.text = "<targeting priorities rerouted>";
+        
+        finalHud.gameObject.SetActive(true);
+        finalHud.text = "ASSIGNMENT: ELIMINATE RESISTANCE LEADER\n"+vipMan.VIPInfo(vipMan.totalVIPS()-1);
+        //music manager: final
+    }
+
+    public void UpdateHitList()
+    {
+        string text = string.Empty;
+        for(int i=0; i < vipMan.totalVIPS(); i++)
+        {
+            bool dead = vipMan.isVipDead(i);
+            if(dead) text= text+"<s>";
+            text= text+i.ToString()+"|";
+            text = text + vipMan.VIPInfo(i);
+            if(dead) text = text+ "</s>";
+            text= text+"\n";
+            hitList.text=text;
+        }
+    }
     // Update is called once per frame
     void Update()
     {

@@ -28,13 +28,8 @@ public class ObjectiveManager : MonoBehaviour
     }
     void Start()
     {
-        StartCoroutine(WhatIsThisCodeLol());
     }
-    IEnumerator WhatIsThisCodeLol()
-    {
-        yield return new WaitForSeconds(2f);
-        Debug.Log("To all future employers, please turn away.");
-    }
+
     
 
     void LateUpdate()

@@ -12,6 +12,7 @@ public class CharacterTransition : MonoBehaviour
     [SerializeField] AudioClip[] successVoice,failureVoice;
     [SerializeField] AudioClip firstRunVoice;
 
+    public bool transition;
     //Main
     [SerializeField] private UIPanelMask deathScreen;
     [SerializeField] private TextMeshProUGUI textbox;
@@ -44,6 +45,8 @@ public class CharacterTransition : MonoBehaviour
 
     public void DisplayNewCharacter(bool reachedObjective,string fname,string lname,string crime,string years)
     {
+        transition=true;
+        foreach (Suspicion sus in FindObjectsOfType<Suspicion>()) sus.Ignorance(true);
         Debug.Log("Changing Characters Now.");
         textbox.maxVisibleCharacters=0;
         string resultscolor;
@@ -102,7 +105,7 @@ public class CharacterTransition : MonoBehaviour
         int charsScrollRate = 3;
         if(firstRun)
         {
-            paAudio.PlayOneShot(firstRunVoice);
+            //paAudio.PlayOneShot(firstRunVoice);
             reducechars += 44;
             multiplier = 5f;
             charsScrollRate = 5;
@@ -175,7 +178,10 @@ public class CharacterTransition : MonoBehaviour
     
     
         Time.timeScale = 1;
+
+        foreach (Suspicion sus in FindObjectsOfType<Suspicion>()) sus.Ignorance(true,5f);
         deathScreen.Hide();
+        transition=false;
         FindObjectOfType<DynamicMusicManager>().PlayerDeathMusic(false);
     }
 

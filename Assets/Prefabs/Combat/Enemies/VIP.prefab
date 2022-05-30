@@ -84,6 +84,102 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &3674417200580562640
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7809287684159708508}
+  - component: {fileID: 4081990995543685860}
+  - component: {fileID: 899111441282855737}
+  - component: {fileID: 2171222817887325404}
+  m_Layer: 8
+  m_Name: Plane
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7809287684159708508
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3674417200580562640}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8819420962419830436}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &4081990995543685860
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3674417200580562640}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &899111441282855737
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3674417200580562640}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 1be9fb02afa781308af0cfdc25e3d44e, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &2171222817887325404
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3674417200580562640}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &7164756043185352037
 GameObject:
   m_ObjectHideFlags: 0
@@ -5368,6 +5464,7 @@ Transform:
   - {fileID: 809853226215693005}
   - {fileID: 4589432881990098864}
   - {fileID: 5735260294689885044}
+  - {fileID: 7809287684159708508}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5511,6 +5608,7 @@ MonoBehaviour:
   timeSinceLastCallout: 0
   voices: {fileID: 1653677308046084616}
   minTimeBetweenCallouts: 15
+  isPatrolling: 0
 --- !u!114 &4066120681826542350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5539,6 +5637,7 @@ MonoBehaviour:
   projectileSpawnPoint: {fileID: 7873607532515691792}
   orbitalLaserPrefab: {fileID: 0}
   orbitalLaserParticles: {fileID: 0}
+  sus: {fileID: 0}
   isPlayer: 0
   reloadButton: {fileID: 0}
   reloadSlider: {fileID: 0}
@@ -5564,6 +5663,7 @@ MonoBehaviour:
   ignoranceTime: 0
   suspicionTime: 3
   timeSinceLastSawPlayer: Infinity
+  isSmoked: 0
 --- !u!114 &5850395448832314125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5813,6 +5913,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 65d473896dfde45b0b1468c5fed09cb5, type: 3}
   - {fileID: 8300000, guid: d36a6b972b675cabb9d2624d544e397c, type: 3}
   - {fileID: 8300000, guid: 4c538db0be2a93a9288009f797a79772, type: 3}
+  susBanter: []
   minIdleBanterTime: 20
   maxIdleBanterTime: 200
 --- !u!1001 &916364097198964006

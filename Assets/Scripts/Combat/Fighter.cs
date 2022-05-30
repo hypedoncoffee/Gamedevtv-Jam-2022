@@ -34,7 +34,7 @@ namespace GameJam.Combat
         [SerializeField] Transform projectileSpawnPoint = null;
         [SerializeField] GameObject orbitalLaserPrefab = null;
         [SerializeField] GameObject orbitalLaserParticles = null;
-
+        [SerializeField] Suspicion sus;
 
         //Ammo management
         [SerializeField] bool isPlayer;
@@ -86,6 +86,7 @@ namespace GameJam.Combat
 
         private void AttackBehaviour()
         {
+            if(!sus || !sus.IsIgnorant())
             if(targetRefPoint != null)
             {
                 targetRefPoint.transform.LookAt(target.transform);
@@ -106,11 +107,16 @@ namespace GameJam.Combat
             }
         }
 
+        void Awake()
+        {
+            sus = GetComponent<Suspicion>();
+        }
+
         private void TriggerAttack()
         {
             if(currentAmmo > 0)
             {
-                currentAmmo -= 1;
+                currentAmmo = currentAmmo - 1;
                 if(reloadSlider != null) reloadSlider.value = currentAmmo;
                 if (target == null) { return; }
                 if (projectileWeapon != null && projectileSpawnPoint != null)
@@ -162,7 +168,7 @@ namespace GameJam.Combat
 
         public void LaunchProjectile()
         {
-            //currentAmmo--;
+            currentAmmo--;
             Projectile projectileInstance;
             if(!isTank)
             {
@@ -178,8 +184,11 @@ namespace GameJam.Combat
 
         public void LaunchSpamProjectile(Vector3 position)
         {
+            if(currentAmmo > 0)
+            {
             if (timeSinceLastAttack > timeBetweenAttacks)
             {
+                currentAmmo--;
                 Projectile projectileInstance = Instantiate(projectileWeapon, projectileSpawnPoint.position, Quaternion.identity);
                 if (isPlayer)
                 {
@@ -192,6 +201,8 @@ namespace GameJam.Combat
                 timeSinceLastAttack = 0;
                 TriggerStopAttack();
             }
+            }
+            else if(reloadButton!=null) reloadButton.gameObject.SetActive(true);
         }
 
         public bool CanAttack(GameObject target)

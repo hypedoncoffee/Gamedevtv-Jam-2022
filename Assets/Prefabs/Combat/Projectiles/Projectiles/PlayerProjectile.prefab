@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 7340459646624649328}
   - component: {fileID: 2859488285258489752}
   - component: {fileID: 6413813251811192475}
-  m_Layer: 9
+  m_Layer: 2
   m_Name: PlayerProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5030,6 +5030,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flickering Spawner
       objectReference: {fileID: 0}
+    - target: {fileID: 504751732233770352, guid: dd20d46fc59ba3e40a749d2df745f786, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7500507878230082710, guid: dd20d46fc59ba3e40a749d2df745f786, type: 3}
       propertyPath: SizeModule.enabled
       value: 1
@@ -5203,6 +5207,10 @@ PrefabInstance:
     - target: {fileID: 3496581171640052760, guid: 4c9c0a1f505b5a44f8fdd1c87a4a7648, type: 3}
       propertyPath: m_Name
       value: Neon Blue Pointlight
+      objectReference: {fileID: 0}
+    - target: {fileID: 3496581171640052760, guid: 4c9c0a1f505b5a44f8fdd1c87a4a7648, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c9c0a1f505b5a44f8fdd1c87a4a7648, type: 3}

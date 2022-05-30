@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 7340459646624649328}
   - component: {fileID: 2859488285258489752}
   - component: {fileID: 5913072725991606990}
-  m_Layer: 9
+  m_Layer: 2
   m_Name: EnemyProjectile New Emitters
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -189,14 +189,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1892744599458023947}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21c87e183400148bda25ee9b5b017846, type: 3}
+  m_Script: {fileID: 11500000, guid: abbd9d22665587a6f86ac5cf95428b2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hitCount: 500
   laserDamage: 50
-  laserTime: 6
+  laserTime: 5
   lasermodel: {fileID: 1892744598117433544}
-  moveSpeed: 250
+  moveSpeed: 20
 --- !u!65 &1892744599458023945
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -7,10 +7,10 @@ public class RevealHQ : MonoBehaviour
     [SerializeField] AudioClip revealAudio;
     Animator anim;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         anim = GetComponent<Animator>();
-        RevealBase();
+
     }
 
     // Update is called once per frame
@@ -26,9 +26,23 @@ public class RevealHQ : MonoBehaviour
         StartCoroutine(SetupLoop());
     }
 
+    public void KillPlayer()
+    {
+
+    }
+    public void HideBase()
+    {
+        if(anim.GetBool("reveal")==true)
+        {
+
+        anim.SetBool("reveal",false);
+        GetComponent<AudioSource>().Stop();
+        }
+    }
+
     IEnumerator SetupLoop()
     {
-        yield return new WaitForSeconds(revealAudio.length-1);
+        yield return new WaitForSeconds(revealAudio.length-2);
         
         GetComponent<AudioSource>().Play();
     }

@@ -16,6 +16,7 @@ public class PlayerUIManager : MonoBehaviour
 
     [SerializeField] string lastname,firstname,crime;
 
+    [SerializeField] Slider reqslider;
     NamePicker names;
 
     float objectivePointerRate=12;
@@ -32,11 +33,17 @@ public class PlayerUIManager : MonoBehaviour
         names = FindObjectOfType<NamePicker>();
     }
 
+    void Start()
+    {
+        SetHealth(healthComponent.GetHealth());
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if(objectivePoint!=null)
+        if(objectivePoint!=null&&objectiveObj!=null)
         {
+            objectivePoint.position = objectiveObj.position;
             objectiveRef.LookAt(objectivePoint);
             objectivePointer.rotation = Quaternion.Slerp(objectivePointer.rotation,objectiveRef.rotation,objectivePointerRate*Time.deltaTime);
         }
@@ -51,9 +58,9 @@ public class PlayerUIManager : MonoBehaviour
         //get objective location
         objectiveObj = objective;
         objectivePoint = new GameObject("Waypoint").transform;
-        objectivePoint.position = objective.position;
         }
     }
+    
 
     public void SetName(string fname,string lname,string crime,string years)
     {
@@ -66,8 +73,6 @@ public class PlayerUIManager : MonoBehaviour
         sentencebar.text = lastcrime + "\n<size=150%>"+years+ "yrs.</size>";
     }
 
-
-
     public void SetHealth(int health)
     {
         
@@ -76,5 +81,9 @@ public class PlayerUIManager : MonoBehaviour
     public void SetAmmo(int ammo)
     {
         ammobar.text=ammo.ToString();
+    }
+    public void Recquisition(int req)
+    {
+        reqslider.value = req;
     }
 }

@@ -10,12 +10,15 @@ namespace GameJam.Movement
     {
         [SerializeField] MovementPointer movementIcon;
         [SerializeField] float maxSpeed = 15f;
-
+        [SerializeField] float focusSpeed = 6f;
+        float currentSpeed;
         NavMeshAgent navMeshAgent;
         Health health;
+        float speedStop = 1;
         // Start is called before the first frame update
         void OnEnable()
         {
+            currentSpeed = maxSpeed;
             movementIcon = FindObjectOfType<MovementPointer>();
             navMeshAgent = GetComponent<NavMeshAgent>();
             health = GetComponent<Health>();
@@ -46,7 +49,7 @@ namespace GameJam.Movement
         {
             movementIcon.Set(destination);
             navMeshAgent.SetDestination(destination);
-            navMeshAgent.speed = maxSpeed * Mathf.Clamp01(speedFraction);
+            navMeshAgent.speed = currentSpeed *speedStop* Mathf.Clamp01(speedFraction);
             navMeshAgent.isStopped = false;
         }
         public void StartRotateAction(Quaternion rotation)
@@ -56,6 +59,18 @@ namespace GameJam.Movement
                 GetComponent<ActionScheduler>().StartAction(this);
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, 5);
             }
+        }
+
+        public void ReduceSpeed(bool enabled)
+        {
+            if(enabled) currentSpeed = focusSpeed;
+            else currentSpeed  = maxSpeed;
+        }
+
+        public void StopSpeed(bool enabled)
+        {
+            if(enabled) speedStop = 0;
+            else speedStop = 1;
         }
 
         public void StopMovement()

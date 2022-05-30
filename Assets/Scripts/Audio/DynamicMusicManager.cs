@@ -9,6 +9,7 @@ public class DynamicMusicManager : MonoBehaviour
     [SerializeField] PlayerController player;
     [SerializeField] AudioSource mainAudio,dangerAudio,hypeAudio,deathAudio,finaleAudio;
     [SerializeField] ObjectiveManager objectiveManager;
+    [SerializeField] CharacterTransition deathScreen;
     [SerializeField] private float fadeRate = 20f;
 
 //    double timeLogged = Time.realtimeSinceStartup;
@@ -69,7 +70,9 @@ public class DynamicMusicManager : MonoBehaviour
     {
         if (player.IsInCombat())
         {
-            ToggleDangerMusic(true);
+            
+                ToggleDangerMusic(true);
+
         }
         else
         {
@@ -81,6 +84,7 @@ public class DynamicMusicManager : MonoBehaviour
         float playerDistance = objectiveManager.distanceValue;
         if (playerDistance < objectiveHypeThreshold)
         {
+            if(!deathScreen.transition)
             ToggleObjectiveMusic(true);
         }
         else

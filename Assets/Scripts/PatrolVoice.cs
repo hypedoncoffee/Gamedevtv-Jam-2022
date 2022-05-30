@@ -8,18 +8,21 @@ public enum PatrolStates
 }
 public class PatrolVoice : MonoBehaviour
 {
+    CharacterTransition deathScreen;
     PatrolStates state;
     [SerializeField] AudioClip[] idleBanter;
     [SerializeField] AudioClip[] combatBanter;
     [SerializeField] AudioClip[] tauntBanter;
     [SerializeField] AudioClip[] hurtBanter;
     [SerializeField] AudioClip[] deathBanter;
+    [SerializeField] AudioClip[] susBanter;
     [SerializeField] float minIdleBanterTime = 20f;
     [SerializeField] float maxIdleBanterTime = 200f;
     AudioSource voicebox;
     // Start is called before the first frame update
     void Awake()
     {
+        deathScreen = FindObjectOfType<CharacterTransition>();
         voicebox = GetComponent<AudioSource>();
     }
 
@@ -46,6 +49,10 @@ public class PatrolVoice : MonoBehaviour
     {
         CallVoice(deathBanter);
     }
+    public void HeardSomething()
+    {
+        CallVoice(susBanter);
+    }
 
     public void HurtSound()
     {
@@ -54,8 +61,12 @@ public class PatrolVoice : MonoBehaviour
 
     void CallVoice(AudioClip[] clips)
     {
+        if(!deathScreen.transition)
+        {
+
         int nextLine = Random.Range(0,clips.Length-1);
         voicebox.PlayOneShot(clips[nextLine]);
+        }
     }
 
     IEnumerator IdleBanter()

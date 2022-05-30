@@ -41,6 +41,7 @@ namespace GameJam.Combat
                 PlayerController playerController = player.GetComponent<PlayerController>();
                 if (grantsCode)
                 {
+                    FindObjectOfType<VoiceManager>().FoundStash();
                     GrantBuff(playerController);
                 } else if (playerController.HasClearanceCode() && requiresCode)
                 {

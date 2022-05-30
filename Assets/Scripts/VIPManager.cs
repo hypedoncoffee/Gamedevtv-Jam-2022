@@ -25,7 +25,7 @@ public class VIPManager : MonoBehaviour
     [SerializeField] info[] vips;
     [SerializeField] GameObject[] vipSpawners;
     [SerializeField] GameObject finalSpawn;
-
+    [SerializeField] GameStateUIManager gamehud;
     [SerializeField] private float spawnMoveRange = 0f;
     [SerializeField] private float spawnOffsetRange = 3f;
 
@@ -113,8 +113,10 @@ public class VIPManager : MonoBehaviour
         }
         else
         {
+            gamehud.FinalObjective();
             Instantiate(finalVIPPrefab,finalSpawn.transform.position,Quaternion.identity);
         }
+        gamehud.UpdateHitList();
         //tankCode
     }
 
@@ -138,6 +140,10 @@ public class VIPManager : MonoBehaviour
     public string VIPInfo(int vipID)
     {
         return vips[vipID].lastName + ", " + vips[vipID].firstName;
+    }
+    public bool isVipDead(int vipID)
+    {
+        return vips[vipID].defeated;
     }
 
     public int nextLivingVIP()

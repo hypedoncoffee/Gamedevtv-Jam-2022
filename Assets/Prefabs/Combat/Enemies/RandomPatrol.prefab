@@ -118,7 +118,11 @@ PrefabInstance:
     - target: {fileID: 731252090282484008, guid: 85e83cc64d9f372a6aea6f31ee675727, type: 3}
       propertyPath: patrolPath
       value: 
-      objectReference: {fileID: 1430708052565208784, guid: 02878306b2c8aaf44a84ca772da3d9ac, type: 3}
+      objectReference: {fileID: 0}
+    - target: {fileID: 731252090282484008, guid: 85e83cc64d9f372a6aea6f31ee675727, type: 3}
+      propertyPath: chaseDistance
+      value: 46
+      objectReference: {fileID: 0}
     - target: {fileID: 3376481441588253931, guid: 85e83cc64d9f372a6aea6f31ee675727, type: 3}
       propertyPath: isWatching
       value: 1
@@ -171,6 +175,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Patrol
       objectReference: {fileID: 0}
+    - target: {fileID: 3436667070790348280, guid: 85e83cc64d9f372a6aea6f31ee675727, type: 3}
+      propertyPath: maxSpeed
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3436667070790348284, guid: 85e83cc64d9f372a6aea6f31ee675727, type: 3}
       propertyPath: m_WarningMessage
       value: "\nBinding warning: Some generic clip(s) animate transforms that are
@@ -180,6 +188,10 @@ PrefabInstance:
         'mixamorig:LeftLeg'\n\tTransform 'mixamorig:LeftShoulder'\n\tTransform 'mixamorig:RightFoot'\n\tTransform
         'mixamorig:Head'\n\tTransform 'mixamorig:LeftUpLeg'\n\tand more ...\n\tFrom
         animation clip 'death'"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7869681972791997011, guid: 85e83cc64d9f372a6aea6f31ee675727, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85e83cc64d9f372a6aea6f31ee675727, type: 3}

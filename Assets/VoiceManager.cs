@@ -11,6 +11,8 @@ public class VoiceManager : MonoBehaviour
     [SerializeField] AudioClip[] tauntBanter;
     [SerializeField] AudioClip[] hurtBanter;
     [SerializeField] AudioClip[] deathBanter;
+    [SerializeField] AudioClip[] stashFoundAnnouncement;
+    [SerializeField] AudioClip[] stashDropAnnouncement;
 
     [Space(5)]
     [SerializeField] AudioClip[] playerDeathAnnouncement;
@@ -27,6 +29,10 @@ public class VoiceManager : MonoBehaviour
         else CallVoice(playerDeathAnnouncement);
     }
 
+    public void FoundStash()
+    {
+        CallVoice(stashFoundAnnouncement);
+    }
 
     void CallVoice(AudioClip[] clips)
     {

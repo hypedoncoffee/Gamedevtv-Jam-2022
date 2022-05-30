@@ -125,8 +125,9 @@ namespace GameJam.Attributes
                  rb.isKinematic=true;
                 rb.velocity = Vector3.zero;
                 rb.angularVelocity = Vector3.zero;
+                GetComponent<CapsuleCollider>().enabled=false;
                  animator.SetTrigger("death");
-                GetComponent<PlayerController>().HandlePlayerDeath(false);
+                GetComponent<PlayerController>().SetNewCharacter(false);
             }
         }
         /// <summary>
