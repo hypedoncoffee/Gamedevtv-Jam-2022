@@ -1492,6 +1492,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   revealAudio: {fileID: 8300000, guid: 092abd683b892540e9c2e75a9e28bbf9, type: 3}
   fobReady: 0
+  radiusIndicator: {fileID: 2985469839943762219}
 --- !u!114 &5076023636201780524
 MonoBehaviour:
   m_ObjectHideFlags: 0

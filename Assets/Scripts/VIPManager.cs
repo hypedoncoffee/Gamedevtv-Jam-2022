@@ -117,6 +117,7 @@ public class VIPManager : MonoBehaviour
             gamehud.FinalObjective();
             Instantiate(finalVIPPrefab,finalSpawn.transform.position,Quaternion.identity);
         }
+        else FindObjectOfType<Scorekeeper>().GameEnd();
         gamehud.UpdateHitList();
         //tankCode
     }

@@ -14,6 +14,7 @@ namespace GameJam.Control
     public class PlayerController : MonoBehaviour
     {
         //references
+        Mover move;
         Fighter fighter;
         Health health;
         CharacterTransition deathUI;
@@ -207,11 +208,13 @@ namespace GameJam.Control
             {
                 if(!stealth)
                 stealth=true;
+                StealthMode(true);
             }
             if(Input.GetKeyUp(KeyCode.LeftShift))
             {
                 if(stealth)
                 stealth=false;
+                StealthMode(false);
             }
 
             SetCursor(CursorType.None);
@@ -377,6 +380,7 @@ namespace GameJam.Control
                 playermodel.materials[0] = stealthmat;
                 playermodel.materials[1] = stealthmat;
                 playermodel.materials[4] = glowmat;
+                move.ReduceSpeed(true);
             //change material
             }
             else 
@@ -385,6 +389,7 @@ namespace GameJam.Control
                 playermodel.materials[0] = defaultmat[0];
                 playermodel.materials[1] = defaultmat[1];
                 playermodel.materials[4] = defaultmat[4];
+                move.ReduceSpeed(false);
 
             }
         }
