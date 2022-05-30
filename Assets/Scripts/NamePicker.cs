@@ -29,28 +29,36 @@ public class NamePicker : MonoBehaviour
         DebugTimer0 = Time.realtimeSinceStartup;
         string nextString;
         string[] lines = new string[0];
-        switch(listName)
+        TextAsset file;
+        string content;
+            switch (listName)
         {
 
             case "firstname":
-            //    nextPath =  System.IO.Path.Join(pathToLists,fNamePath);
-                nextPath = pathToLists+Path.DirectorySeparatorChar +fNamePath;
-                lines = File.ReadAllLines(@nextPath);
-            break;
+                    //    nextPath =  System.IO.Path.Join(pathToLists,fNamePath);
+
+                    //nextPath = pathToLists+Path.DirectorySeparatorChar +fNamePath;
+                    //lines = File.ReadAllLines(@nextPath);
+                lines = File.ReadAllLines(Path.Combine(Application.streamingAssetsPath, fNamePath));
+                break;
             case "lastname":
-//                nextPath =  Path.Join(pathToLists,lNamePath);
-                nextPath = pathToLists+Path.DirectorySeparatorChar +lNamePath;
-                lines = File.ReadAllLines(@nextPath);
-            break;
+                    //                nextPath =  Path.Join(pathToLists,lNamePath);
+                    //nextPath = pathToLists+Path.DirectorySeparatorChar +lNamePath;
+                    //lines = File.ReadAllLines(@nextPath);
+                    lines = File.ReadAllLines(Path.Combine(Application.streamingAssetsPath, lNamePath));
+                    break;
             case "crime":
-  //              nextPath =  Path.Join(pathToLists,crimePath);
-                nextPath = pathToLists+Path.DirectorySeparatorChar +crimePath;
-                lines = File.ReadAllLines(@nextPath);
-            break;
+                    //              nextPath =  Path.Join(pathToLists,crimePath);
+                    //nextPath = pathToLists+Path.DirectorySeparatorChar +crimePath;
+                    //lines = File.ReadAllLines(@nextPath);
+
+                    lines = File.ReadAllLines(Path.Combine(Application.streamingAssetsPath, crimePath));
+                    break;
             case "street":
-                nextPath = pathToLists+Path.DirectorySeparatorChar +streetPath;
-                lines = File.ReadAllLines(@nextPath);
-            break;
+                    lines = File.ReadAllLines(Path.Combine(Application.streamingAssetsPath, streetPath));
+                    //nextPath = pathToLists+Path.DirectorySeparatorChar +streetPath;
+                    //lines = File.ReadAllLines(@nextPath);
+                    break;
             case null:
                 nextString = "null";
             break;
