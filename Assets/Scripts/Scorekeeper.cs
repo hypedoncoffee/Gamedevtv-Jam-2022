@@ -76,6 +76,22 @@ public class Scorekeeper : MonoBehaviour
             }
         }
     }
+    public string GiveName()
+    {
+        int searching = 0;
+        while(searching < 10000)
+        {
+        int rng = Random.Range(0,casualties.Length-1);
+        if(casualties[rng].lname!=string.Empty)
+        {
+            return casualties[rng].lname.ToString()+","+casualties[rng].fname.ToString()+","+casualties[rng].crime+","+casualties[rng].years;
+        }
+        searching++;
+        }
+        Debug.LogError("name check failed");
+        return string.Empty;
+
+    }
     public void KillVIP()
     {
         vipsRouted++;

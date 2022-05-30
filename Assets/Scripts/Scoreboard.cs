@@ -22,6 +22,11 @@ public class Scoreboard : MonoBehaviour
         //mission briefing
         textbox.text = "The mission has concluded and Sector 40 has returned to standard procedure.  Your debriefing will follow shortly.";
         
+        while (textbox.maxVisibleCharacters < textbox.text.Length)
+        {
+            yield return new WaitForSecondsRealtime(0.009f);
+            textbox.maxVisibleCharacters+=3;
+        }
         
         //prompt for click
         while(!Input.anyKeyDown)

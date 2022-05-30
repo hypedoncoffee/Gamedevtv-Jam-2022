@@ -22,11 +22,11 @@ public class SteadycamEffect : MonoBehaviour
       while(steadycam)
       {
 
-      yield return new WaitForSeconds(delayTime);
       steadycamref.position = new Vector3 (
         Random.Range(transform.position.x-boundsX,transform.position.x+boundsX),
         Random.Range(transform.position.y-boundsY,transform.position.y+boundsY),
         Random.Range(transform.position.z-boundsZ,transform.position.z+boundsZ));
+      yield return new WaitForSeconds(delayTime);
       }
     }
 

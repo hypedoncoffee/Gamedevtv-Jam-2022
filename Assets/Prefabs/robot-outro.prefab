@@ -891,6 +891,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minSentence: 20
   maxSentence: 300
+  outro: 1
 --- !u!1 &6134877761103672573
 GameObject:
   m_ObjectHideFlags: 0
