@@ -89,6 +89,11 @@ namespace GameJam.Control
 
 
             if (!health.IsAlive()) { return; }
+            if (!player || !player.activeInHierarchy)
+            {
+                player = GameObject.FindGameObjectWithTag("Player");
+                return;
+            }
             if (InAttackRangeOfPlayer() && fighter.CanAttack(player))
             {
                 AttackBehavior();

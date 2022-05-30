@@ -86,9 +86,8 @@ namespace GameJam.Combat
 
         private void AttackBehaviour()
         {
-            if(targetRefPoint!=null)
+            if(targetRefPoint != null)
             {
-
                 targetRefPoint.transform.LookAt(target.transform);
                 transform.rotation = Quaternion.Slerp(transform.rotation,targetRefPoint.transform.rotation,turnRate*turnMultiplier*Time.deltaTime);
             }
@@ -109,15 +108,15 @@ namespace GameJam.Combat
 
         private void TriggerAttack()
         {
-            if(currentAmmo>0)
+            if(currentAmmo > 0)
             {
-                currentAmmo-=1;
-                if(reloadSlider!=null) reloadSlider.value = currentAmmo;
-                GetComponent<Animator>().ResetTrigger("StopAttack");
-                GetComponent<Animator>().SetTrigger("Attack");
+                currentAmmo -= 1;
+                if(reloadSlider != null) reloadSlider.value = currentAmmo;
                 if (target == null) { return; }
                 if (projectileWeapon != null && projectileSpawnPoint != null)
                 {
+                    GetComponent<Animator>().ResetTrigger("StopAttack");
+                    GetComponent<Animator>().SetTrigger("Attack");
                     LaunchProjectile();
                 } else
                 {
@@ -130,8 +129,8 @@ namespace GameJam.Combat
             }
             else if (reloading)
             {
-                if(reloadTime>0)
-                    reloadTime-=Time.deltaTime;
+                if(reloadTime > 0)
+                    reloadTime -= Time.deltaTime;
                 else 
                 {
                     Reload();
@@ -153,17 +152,17 @@ namespace GameJam.Combat
 
         public void Reload()
         {
-            currentAmmo=maxAmmo;
-            if(reloadButton!=null)reloadButton.gameObject.SetActive(false);
-            if(reloadSlider!=null)reloadSlider.value = maxAmmo;
+            currentAmmo = maxAmmo;
+            if(reloadButton != null) reloadButton.gameObject.SetActive(false);
+            if(reloadSlider != null) reloadSlider.value = maxAmmo;
             GetComponent<AudioSource>().PlayOneShot(reloadSound);
-            reloading=false;
+            reloading = false;
         }
 
 
         public void LaunchProjectile()
         {
-///            currentAmmo--;
+            //currentAmmo--;
             Projectile projectileInstance;
             if(!isTank)
             {
@@ -182,8 +181,16 @@ namespace GameJam.Combat
             if (timeSinceLastAttack > timeBetweenAttacks)
             {
                 Projectile projectileInstance = Instantiate(projectileWeapon, projectileSpawnPoint.position, Quaternion.identity);
+                if (isPlayer)
+                {
+                    projectileInstance.SetShotByEnemy(false);
+                } else
+                {
+                    projectileInstance.SetShotByEnemy(true);
+                }
                 projectileInstance.FireInDirection(position);
                 timeSinceLastAttack = 0;
+                TriggerStopAttack();
             }
         }
 

@@ -40,6 +40,7 @@ namespace GameJam.Control
         [SerializeField] bool disableIntro;
         [SerializeField] bool hasClearanceCode = false;
 
+        PlayerUIManager playerUI;
         public enum CursorType
         {
             Movement,
@@ -62,6 +63,7 @@ namespace GameJam.Control
             names = FindObjectOfType<NamePicker>();
             fighter = GetComponent<Fighter>();
             health = GetComponent<Health>();
+            playerUI = FindObjectOfType<PlayerUIManager>();
             // TODO - Stash == Score? Set
             // textStashValue = GameObject.Find("Stash Value").GetComponent<TextMeshProUGUI>();
             GetComponentInChildren<ObjectiveManager>().GenerateObjectives();
@@ -86,10 +88,12 @@ namespace GameJam.Control
             //call animation
             GetComponent<Mover>().CancelAction();
             GetComponent<Fighter>().CancelAction();
+
             lastName = names.ReadList("lastname");
             firstName = names.ReadList("firstname");
             crime = names.ReadList("crime");
             years = Mathf.RoundToInt(Random.Range(minSentence, maxSentence));
+            playerUI.SetHealth((int)health.GetHealth());
             if (!disableIntro || hasClearanceCode)
             {
                 HandlePlayerDeath(reachedObjective);
@@ -107,12 +111,19 @@ namespace GameJam.Control
             FindObjectOfType<ObjectiveManager>().ResetObjectiveList();
             hasClearanceCode = false;
             health.Respawn();
+            playerUI.SetHealth((int)health.GetHealth());
             FindObjectOfType<Scorekeeper>().AssigneeRunEnd(reachedObjective);
             FindObjectOfType<GameStateUIManager>().AssigneeRunEnd(reachedObjective);
             FindObjectOfType<VoiceManager>().PlayDeathSound(reachedObjective);
             GetComponent<Mover>().ResetToSpawnPosition();
+
+            // STOP ENEMIES FROM TARGETING DURING CUTSCENE
+            deathUI.SetPlayerobject(gameObject);
+            gameObject.SetActive(false);
+
             deathUI.DisplayNewCharacter(reachedObjective, firstName, lastName, crime, years.ToString());
-        //StartCoroutine(PlayerDeathWait());
+
+            //StartCoroutine(PlayerDeathWait());
         }
 
         // public IEnumerator PlayerDeathWait()
@@ -158,6 +169,11 @@ namespace GameJam.Control
                     Vector3 position = fighter.GetComponent<Transform>().position;
                     position.z = hit.point.z;
                     position.x = hit.point.x;
+                    GetComponent<Animator>().SetTrigger("Attack");
+                    Vector3 lookPos = position - transform.position;
+                    lookPos.y = 0;
+                    Quaternion rotation = Quaternion.LookRotation(lookPos);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 1);
                     fighter.LaunchSpamProjectile(position);
                     return true;
                 }

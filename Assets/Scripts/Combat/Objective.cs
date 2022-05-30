@@ -34,6 +34,10 @@ namespace GameJam.Combat
                 // Not a dropped pickup, living objective. Exit
                 Health hasHealth = GetComponent<Health>();
                 if (hasHealth) { return; }
+                if (!player)
+                {
+                    player = GameObject.FindGameObjectWithTag("Player");
+                }
                 PlayerController playerController = player.GetComponent<PlayerController>();
                 if (grantsCode)
                 {
@@ -41,6 +45,9 @@ namespace GameJam.Combat
                 } else if (playerController.HasClearanceCode() && requiresCode)
                 {
                     playerController.SetNewCharacter(true);
+                    return;
+                } else if (requiresCode)
+                {
                     return;
                 }
                 TextMeshProUGUI stashText = playerController.GetStashText();

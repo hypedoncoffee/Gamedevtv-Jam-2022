@@ -25,9 +25,15 @@ namespace GameJam.Attributes
         private void Awake()
         {
             rb= GetComponent<Rigidbody>();
-            if(voices==null) voices = GetComponent<PatrolVoice>();
+            if (voices == null)
+            {
+                voices = GetComponent<PatrolVoice>();
+            }
             animator = GetComponent<Animator>();
-            if(isPlayer) playerUI = FindObjectOfType<PlayerUIManager>();
+            if (isPlayer)
+            {
+                playerUI = FindObjectOfType<PlayerUIManager>();
+            }
         }
 
         private void Start()
@@ -45,7 +51,7 @@ namespace GameJam.Attributes
             return isAlive;
         }
 
-        private void UpdateHealthUI()
+        public void UpdateHealthUI()
         {
             TextMeshPro tmpro = GetComponentInChildren<TextMeshPro>();
             if (tmpro)
@@ -101,20 +107,18 @@ namespace GameJam.Attributes
                 }
             }
             GetComponent<ActionScheduler>().CancelCurrentAction();
-            animator.ResetTrigger("Hit");
-            animator.SetTrigger("Die");
             isAlive = false;
             if(!isPlayer)
             {
-                // TODO : Animation
                 animator.SetTrigger("death");
-                if(voices!=null)
+                if(voices != null)
+                {
                     voices.DeathSound();
-                rb.isKinematic=true;
-                rb.velocity = Vector3.zero;
-                rb.angularVelocity = Vector3.zero;
+                }
+                transform.Find("EnemyUI").gameObject.SetActive(false);
+                transform.Find("Healthbar").gameObject.SetActive(false);
+                //GetComponent<Collider>().enabled = false;
                 Destroy(gameObject,5f);
-                GetComponent<Collider>().enabled = false;
             }
             else
             {
@@ -133,6 +137,7 @@ namespace GameJam.Attributes
             isAlive=true;
             GetComponent<Collider>().enabled = true;
             currentHealth = maxHealth;
+            playerUI.SetHealth((int)GetHealth());
             //TODO: Player character reverts to rigidbody physics.  Should set back to idle with actions enabled.
         }
 
@@ -159,6 +164,11 @@ namespace GameJam.Attributes
             else
                 return "red";
 
+        }
+
+        public string GetMaxHealthString()
+        {
+            return maxHealth.ToString();
         }
     }
 }

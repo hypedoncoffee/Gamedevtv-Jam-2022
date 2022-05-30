@@ -34,8 +34,11 @@ namespace GameJam.Combat
                 spawned = true;
                 GameObject newItem = Instantiate(spawnedItem, randomPosition, transform.rotation);
                 ObjectiveManager objectiveManager = GameObject.FindGameObjectWithTag("Player").gameObject.GetComponentInChildren<ObjectiveManager>();
-                newItem.GetComponent<Objective>().objectiveCompleted += objectiveManager.handleObjectivePickup;
-                objectiveManager.AddObjective(newItem);
+                if (objectiveManager && newItem)
+                {
+                    newItem.GetComponent<Objective>().objectiveCompleted += objectiveManager.handleObjectivePickup;
+                    objectiveManager.AddObjective(newItem);
+                }
             }
         }
 

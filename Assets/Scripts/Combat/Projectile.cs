@@ -23,6 +23,7 @@ namespace GameJam.Combat
         [SerializeField] int lifeAfterImpact = 5;
 
         bool dumbMissile = false;
+        bool shotByEnemy = false;
         Health target = null;
         Vector3 targetPosition;
 
@@ -59,12 +60,22 @@ namespace GameJam.Combat
 
         void OnTriggerEnter(Collider other)
         {
-           // particlesFX.Stop();
+
+            // Destroy if it hits buildings
+            if (other.gameObject.layer.Equals(3))
+            {
+                HandleHitEffects(transform.position);
+                Destroy(gameObject);
+                return;
+            }
+            // particlesFX.Stop();
             if (dumbMissile)
             {
                 Health hasHealth = other.GetComponent<Health>();
-                if (other.CompareTag("Player") || !hasHealth) { return; }
-                HandleHitEffects(other.transform.position);
+                if (other.CompareTag("Player") || !hasHealth) { 
+                    return; 
+                }
+                HandleHitEffects(transform.position);
                 if (hasHealth != null)
                 {
                     hasHealth.TakeDamage(weaponDamage);
@@ -81,7 +92,7 @@ namespace GameJam.Combat
             Health collisionObjectHealth = other.gameObject.GetComponent<Health>();
             if (collisionObjectHealth != target) return;
             if (collisionObjectHealth == null) return;
-            HandleHitEffects(collisionObjectHealth.transform.position);
+            HandleHitEffects(transform.position);
             if (collisionObjectHealth.IsAlive())
             {
                 collisionObjectHealth.TakeDamage(weaponDamage);
@@ -130,6 +141,11 @@ namespace GameJam.Combat
             position.y = transform.position.y;
             transform.LookAt(position);
             Destroy(gameObject, maxLifeTime);
+        }
+
+        public void SetShotByEnemy(bool flag)
+        {
+            shotByEnemy = flag;
         }
     }
 }

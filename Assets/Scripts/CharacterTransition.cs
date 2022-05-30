@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using GameJam.Combat;
 
 public class CharacterTransition : MonoBehaviour
 {   
@@ -23,6 +24,7 @@ public class CharacterTransition : MonoBehaviour
     // Start is called before the first frame update
 
     bool typing;
+    GameObject playerObject;
 
 
     void Start()
@@ -172,7 +174,14 @@ public class CharacterTransition : MonoBehaviour
     
         Time.timeScale = 1;
         deathScreen.Hide();
+
+        // STOP ENEMIES FROM TARGETING DURING CUTSCENE
+        playerObject.SetActive(true);
         FindObjectOfType<DynamicMusicManager>().PlayerDeathMusic(false);
     }
 
+    public void SetPlayerobject(GameObject gameObject)
+    {
+        playerObject = gameObject;
+    }
 }

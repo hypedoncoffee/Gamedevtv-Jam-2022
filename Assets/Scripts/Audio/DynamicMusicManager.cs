@@ -16,8 +16,14 @@ public class DynamicMusicManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(player==null) player = FindObjectOfType<PlayerController>();
-        if(objectiveManager==null) objectiveManager = FindObjectOfType<ObjectiveManager>();
+        if (player == null)
+        {
+            GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+            if (player) {
+                player = playerObject.GetComponent<PlayerController>();
+            }
+        }
+        if (objectiveManager==null) objectiveManager = FindObjectOfType<ObjectiveManager>();
         StartCoroutine(MusicChecker());
         //for debug ToggleObjectiveMusic(true);
     }
@@ -34,25 +40,20 @@ public class DynamicMusicManager : MonoBehaviour
             yield return new WaitForSecondsRealtime(checkTimer);
             if(alive)
             {
-
-                if(player.IsInCombat())
+                // Check if player wasn't active in scene yet
+                if (!player)
                 {
-                    ToggleDangerMusic(true);
-                }
-                else
+                    // Try to get the player
+                    player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+                    if (!player)
+                    {
+                        // No player yet.. try again later
+                        yield return new WaitForSecondsRealtime(checkTimer);
+                    }
+                } else
                 {
-                    ToggleDangerMusic(false);
-                }
-                
-                //Calculate absolute distance from player to objective
-                float playerDistance = objectiveManager.distanceValue;
-                if(playerDistance<objectiveHypeThreshold)
-                {
-                    ToggleObjectiveMusic(true);
-                }
-                else
-                {
-                    ToggleObjectiveMusic(false);
+                    // Have a player, do work
+                    HandleDynamicMusicSincePlayerExists();
                 }
             }
             else 
@@ -63,6 +64,31 @@ public class DynamicMusicManager : MonoBehaviour
         }
 
     }
+
+    private void HandleDynamicMusicSincePlayerExists()
+    {
+        if (player.IsInCombat())
+        {
+            ToggleDangerMusic(true);
+        }
+        else
+        {
+            ToggleDangerMusic(false);
+        }
+
+        //Calculate absolute distance from player to objective
+        if (!objectiveManager) { objectiveManager= FindObjectOfType<ObjectiveManager>(); }
+        float playerDistance = objectiveManager.distanceValue;
+        if (playerDistance < objectiveHypeThreshold)
+        {
+            ToggleObjectiveMusic(true);
+        }
+        else
+        {
+            ToggleObjectiveMusic(false);
+        }
+    }
+
     public void PlayerDeathMusic(bool enabled,bool hardStop=false)
     {
         alive=!enabled;
