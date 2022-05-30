@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class Scoreboard : MonoBehaviour
@@ -20,7 +21,7 @@ public class Scoreboard : MonoBehaviour
     IEnumerator CountTheScore()
     {
         //mission briefing
-        textbox.text = "The mission has concluded and Sector 40 has returned to standard procedure.  Your debriefing will follow shortly.";
+        textbox.text = "The mission has concluded and Sector 40 has returned to standard procedure.  Your debriefing will follow shortly.\n(Press any key.)";
         
         while (textbox.maxVisibleCharacters < textbox.text.Length)
         {
@@ -33,20 +34,33 @@ public class Scoreboard : MonoBehaviour
         yield return null;
         //erase
         while(textbox.maxVisibleCharacters>0)
+        {
+
             yield return new WaitForSecondsRealtime(0.01f);
             textbox.maxVisibleCharacters-=5;
+        }
         scoreboard.CountScore();
         textbox.text = "You destroyed "+scoreboard.VIPKill()+" and completed "+scoreboard.StashesRecovered()+"/10 objectives."+
                         "You used "+scoreboard.SentencesServed()+" assignees.  "+scoreboard.TotalCadavers()+" resolved their pending sentences."+
                         "Efficiency rating: "+scoreboard.Efficiency()+"."+
                         "Operation ended "+scoreboard.TimeLeft()+" before security grid re-enabled."+
                         "Final Score: "+scoreboard.CountScore();
-
+       while (textbox.maxVisibleCharacters < textbox.text.Length)
+        {
+            yield return new WaitForSecondsRealtime(0.009f);
+            textbox.maxVisibleCharacters+=3;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+    public void BackToSart()
+    {
+        Destroy(FindObjectOfType<Difficulty>().gameObject);
+        Destroy(FindObjectOfType<Scorekeeper>().gameObject);
+    SceneManager.LoadScene(0);
     }
 }

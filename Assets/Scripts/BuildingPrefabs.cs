@@ -39,7 +39,7 @@ public class BuildingPrefabs : MonoBehaviour
      {
          Collider[] colliders = Physics.OverlapBox(
              center:collider.transform.position + (collider.transform.rotation * collider.center), 
-             halfExtents:Vector3.Scale(collider.size * 0.5f, collider.transform.lossyScale), 
+             halfExtents:Vector3.Scale(collider.size * 0.3f, collider.transform.lossyScale), 
              orientation:collider.transform.rotation, 
              layerMask:~0);
          List<Transform> objectsInBox = new List<Transform>();
