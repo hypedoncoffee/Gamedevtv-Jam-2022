@@ -83,7 +83,7 @@ public class VIPManager : MonoBehaviour
 
     public void SpawnVIP()
     {
-        if(nextVIP < vips.Length-1)
+        if(nextVIP < vips.Length-2)
         {
             GameObject newVIP = Instantiate(vipPrefab,vipSpawners[nextVIP].transform.position,Quaternion.identity);
             for (int guardsToSpawn = 0; guardsToSpawn < vips[nextVIP].numberOfGuards; guardsToSpawn++)
@@ -111,8 +111,9 @@ public class VIPManager : MonoBehaviour
             newVIP.GetComponent<AIController>().PassVIPInfo(vips[nextVIP].lastName+", "+vips[nextVIP].firstName,vips[nextVIP].id);
             nextVIP++;
         }
-        else
+        else if (nextVIP==vips.Length-1)
         {
+            FindObjectOfType<OpenSesame>().Unlocked();
             gamehud.FinalObjective();
             Instantiate(finalVIPPrefab,finalSpawn.transform.position,Quaternion.identity);
         }

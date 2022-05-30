@@ -5,12 +5,18 @@ using UnityEngine.AI;
 using GameJam.Control;
 public class OpenSesame : MonoBehaviour
 {
+    bool unlocked;
     // Start is called before the first frame update
     void Start()
     {
         
     }
 
+
+    public void Unlocked()
+    {
+        unlocked= true;
+    }
     public void OpenDoor()
     {
         GetComponent<Animator>().SetTrigger("opendoor");
@@ -22,7 +28,7 @@ public class OpenSesame : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            if(other.GetComponent<PlayerController>().HasClearanceCode())
+            if(unlocked)
                 OpenDoor();
         }
     }
