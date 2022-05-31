@@ -43,7 +43,7 @@ public class RevealHQ : MonoBehaviour
     {
         if(anim!=null && anim.GetBool("reveal")==true)
         {
-
+            radiusIndicator.SetActive(false);
         anim.SetBool("reveal",false);
         GetComponent<AudioSource>().Stop();
         }
