@@ -307,6 +307,11 @@ namespace GameJam.Control
             return false;
         }
 
+        public bool IsStealth()
+        {
+            return stealth;
+        }
+
         private bool InteractWithMovement()
         {
             bool hasHit = Physics.Raycast(GetMouseRay(), out RaycastHit hitDetails, Mathf.Infinity, 1 << LayerMask.NameToLayer("Terrain"));
@@ -398,13 +403,13 @@ namespace GameJam.Control
                 if(!stealth)
                 {
 
-                stealth=true;
                 playermodel.materials[0] = stealthmat;
                 playermodel.materials[1] = stealthmat;
                 playermodel.materials[4] = glowmat;
                 GetComponent<AudioSource>().PlayOneShot(stealthUp);
                 move.ReduceSpeed(true);
                 foreach (Suspicion sus in FindObjectsOfType<Suspicion>()) sus.Ignorance(true);
+                stealth=true;
                 }
             //change material
             }
@@ -413,14 +418,13 @@ namespace GameJam.Control
                 if(stealth)
                 {
                     
-                stealth=false;
                 playermodel.materials[0] = defaultmat[0];
                 playermodel.materials[1] = defaultmat[1];
                 playermodel.materials[4] = defaultmat[4];
                 GetComponent<AudioSource>().PlayOneShot(stealthDown);
                 foreach (Suspicion sus in FindObjectsOfType<Suspicion>()) sus.Ignorance(false);
-                
                 move.ReduceSpeed(false);
+                stealth=false;
 
                 }
             }

@@ -125,9 +125,9 @@ public class DynamicMusicManager : MonoBehaviour
     }
     public void ToggleDangerMusic(bool enabled)
     {
-        if(enabled)
+        if(enabled&&!player.IsStealth())
         StartCoroutine(FadeIn(dangerAudio));
-        else StartCoroutine(FadeOut(dangerAudio));
+        else if(!enabled)StartCoroutine(FadeOut(dangerAudio));
     }
 
 
