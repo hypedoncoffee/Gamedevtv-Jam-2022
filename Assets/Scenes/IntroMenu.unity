@@ -4106,6 +4106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86f1befc3d5983a24b01553cd34db307, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deleteOnBuild: 0
   streetPath: streets.txt
 --- !u!4 &416967838
 Transform:
@@ -11708,58 +11709,47 @@ MonoBehaviour:
       m_Calls: []
   m_text: '<align=center><---- v 5.04 ----></align>
 
-    - Menu sliders labelled
-    correctly
+    - Fixed "failure" PA announcer
+    on first assignee run
 
-    - PA Announcer fixes
+    - Pause countdown during transition
 
-    - Fixed difficulty screen not updating
-    after successful dropoff at F.O.B.
+    - Patrol
+    audio curve changes
 
-    - F.O.B. radius now hidden until drop-off
-    is ready
+    - Increase frequency for patrol taunts
 
-    - Fixed "failure" PA announcer on first assignee run
+    - FOB zone
+    only visible when ready to deploy
 
-    - Pause
-    countdown during transition
+    - Increased aggressiveness of procedural
+    buildings to finish faster
 
-    - Patrol audio curve changes
-
-    - Increase
-    frequency for patrol taunts
-
-    - Difficulty affects guard spawn rates
+    <align=center><---- v 5.035 ----></align>
 
     -
-    Better player protection on respawn
+    Added patchnotes screen
 
-    - Force guards to leave/teleport when
-    player dies
+    - F.O.B. radius now hidden until drop-off is ready
 
-    - FOB zone only visible when ready to deploy
-
-    - Fixed lockup
-    on using grenades
-
-    - Increased aggressiveness of procedural buildings to
-    finish faster
+    -
+    Fixed lockup on using grenades
 
     <align=center><---- v 5.03 ----></align>
 
-    - Refactored
-    and optimized name generator for WebGL support
+    -
+    Refactored and optimized name generator for WebGL support
 
-    - Fixed "Cooper, Dale" soft
-    crash on WebGL
+    - Fixed "Cooper,
+    Dale" soft crash on WebGL
 
     - Fixed stealth mode input not being checked
 
-    - Fixed
-    stealth mode sound effects, movespeed
+    -
+    Fixed stealth mode sound effects, movespeed
 
-    - Fixed certain decorations facing
-    the wrong way
+    - Fixed certain decorations
+    facing the wrong way
 
     v 5.0
 
@@ -13423,6 +13413,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef68d4e183309e39180fd0228913bcf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseGuard: 0
+  guardsPerIncrease: 0
+  increaseRate: 0
   NumberOfVips: 15
 --- !u!4 &1425249690
 Transform:

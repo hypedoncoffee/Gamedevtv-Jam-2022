@@ -67,6 +67,7 @@ public class CharacterTransition : MonoBehaviour
             // Died with clearance codes
             if(reachedObjective)
             {
+
                 resultscolor = "<color=green>";
                 resultsmessage = "Assignee has completed their sentence and is now relieved of duty.\n\n";
             }
@@ -105,7 +106,7 @@ public class CharacterTransition : MonoBehaviour
         int charsScrollRate = 3;
         if(firstRun)
         {
-            //paAudio.PlayOneShot(firstRunVoice);
+            paAudio.PlayOneShot(firstRunVoice);
             reducechars += 44;
             multiplier = 5f;
             charsScrollRate = 5;
@@ -114,11 +115,13 @@ public class CharacterTransition : MonoBehaviour
         {
             paAudio.PlayOneShot(successVoice[Random.Range(0,successVoice.Length-1)]);
         }
-        else paAudio.PlayOneShot(failureVoice[Random.Range(0,failureVoice.Length-1)]);
+        else if (!firstRun) paAudio.PlayOneShot(failureVoice[Random.Range(0,failureVoice.Length-1)]);
         FindObjectOfType<DynamicMusicManager>().PlayerDeathMusic(true,true);
         deathScreen.Reveal();
         yield return new WaitForSecondsRealtime(1f);
         typing=true;
+        if(reachedObjective)FindObjectOfType<GameStateUIManager>().ToggleStashDisplay(false);
+
         string nextmsg = firstmessage;
         //scroll text
 
@@ -180,6 +183,8 @@ public class CharacterTransition : MonoBehaviour
         Time.timeScale = 1;
         GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("Respawn",true);
         GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().ResetTrigger("death");
+        if(reachedObjective)FindObjectOfType<ObjectiveManager>().ResetObjectiveList();
+        else FindObjectOfType<ObjectiveManager>().GenerateObjectives();
         foreach (Suspicion sus in FindObjectsOfType<Suspicion>()) sus.Ignorance(true,5f);
         deathScreen.Hide();
         transition=false;

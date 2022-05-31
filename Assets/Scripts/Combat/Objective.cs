@@ -67,6 +67,8 @@ namespace GameJam.Combat
 
         private void GrantBuff(PlayerController target)
         {
+            
+            FindObjectOfType<GameStateUIManager>().ToggleStashDisplay(true);
             target.SetClearanceCode(true);
             target.EnableFOB(true);
         }

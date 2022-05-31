@@ -104,9 +104,11 @@ namespace GameJam.Control
             if(baseOps==null) baseOps = FindObjectOfType<RevealHQ>();
             if (enabled&&baseOps!=null)
             {
+                //SpawnPickup fobSpawner = GameObject.Find("FOB Base Spawn Zone").GetComponent<SpawnPickup>();
+                //fobSpawner.Respawn();
+                //baseOps = FindObjectOfType<RevealHQ>();
                 baseOps.RevealBase();
-                // SpawnPickup fobSpawner = GameObject.Find("FOB Base Spawn Zone").GetComponent<SpawnPickup>();
-                // fobSpawner.Respawn();
+
             } else if (baseOps!=null)
             {
                 baseOps.HideBase();
@@ -405,10 +407,12 @@ namespace GameJam.Control
             {
                 if(!stealth)
                 {
-
-                playermodel.materials[0] = stealthmat;
-                playermodel.materials[1] = stealthmat;
-                playermodel.materials[4] = glowmat;
+                Material[] stealthmats = playermodel.materials;
+                stealthmats[0] = stealthmat;
+                stealthmats[1] = stealthmat;
+                stealthmats[2] = stealthmat;
+                stealthmats[4] = glowmat;
+                playermodel.materials = stealthmats;
                 GetComponent<AudioSource>().PlayOneShot(stealthUp);
                 move.ReduceSpeed(true);
                 foreach (Suspicion sus in FindObjectsOfType<Suspicion>()) sus.Ignorance(true);
@@ -421,9 +425,9 @@ namespace GameJam.Control
                 if(stealth)
                 {
                     
-                playermodel.materials[0] = defaultmat[0];
-                playermodel.materials[1] = defaultmat[1];
-                playermodel.materials[4] = defaultmat[4];
+                playermodel.materials = defaultmat;
+                //playermodel.materials[1] = defaultmat[1];
+                //playermodel.materials[4] = defaultmat[4];
                 GetComponent<AudioSource>().PlayOneShot(stealthDown);
                 foreach (Suspicion sus in FindObjectsOfType<Suspicion>()) sus.Ignorance(false);
                 move.ReduceSpeed(false);

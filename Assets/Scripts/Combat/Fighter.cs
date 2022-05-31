@@ -206,6 +206,8 @@ namespace GameJam.Combat
                 }
                 projectileInstance.FireInDirection(position);
                 timeSinceLastAttack = 0;
+                if(reloadSlider != null) reloadSlider.value = currentAmmo;
+
                 TriggerStopAttack();
             }
             }

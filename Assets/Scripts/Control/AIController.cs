@@ -42,6 +42,7 @@ namespace GameJam.Control
         float timeSinceArrivedAtWaypoint = Mathf.Infinity;
         #endregion        
         ParticleSystem fightFX;
+        [Range(0,100)]int voiceChanceThreshold=40;
 
         private void Start()
         {
@@ -192,8 +193,13 @@ namespace GameJam.Control
             if(timeSinceLastCallout > minTimeBetweenCallouts)
             {
                 timeSinceLastCallout = 0;
-                if(voices!=null&&!suspicion.IsIgnorant()) voices.Alert(true);
-                if(voices!=null&&!suspicion.IsSmoked()) voices.HeardSomething();
+                //5.04: Reduce voice line likelihood
+                int rng = Random.Range(0,100);
+                if(rng < voiceChanceThreshold)
+                { 
+                    if(voices!=null&&!suspicion.IsIgnorant()) voices.Alert(true);
+                    if(voices!=null&&!suspicion.IsSmoked()) voices.HeardSomething();
+                }
             }
             suspicion.ResetTimeSinceLastSawPlayer();
             fighter.Attack(player);

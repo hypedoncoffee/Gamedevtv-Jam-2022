@@ -17,6 +17,8 @@ public class PlayerUIManager : MonoBehaviour
     //Compass
     [SerializeField] Transform objectiveRef,objectivePointer,compassPointer;
 
+    [SerializeField] MeshRenderer objectiveArrow;
+
     [SerializeField] string lastname,firstname,crime;
 
     [SerializeField] Slider reqslider;
@@ -64,6 +66,10 @@ public class PlayerUIManager : MonoBehaviour
         objectiveObj = objective;
         objectivePoint = new GameObject("Waypoint").transform;
         }
+    }
+    public void ObjectiveVisible(bool enabled)
+    {
+        objectiveArrow.enabled=!enabled;
     }
     
 

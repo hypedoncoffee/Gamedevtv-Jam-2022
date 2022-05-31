@@ -86,7 +86,10 @@ public class GameStateUIManager : MonoBehaviour
         return successfulRuns;
     }
 
-    public void TimeExtension()
+    public void TimeExtension(float newtime)
     {
+        //5.03: moved to countup timer, which reports directly to 
+    //if you call it here it passes directly on
+    timer.TimeExtension(newtime);
     }
 }

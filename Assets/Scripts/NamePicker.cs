@@ -8,6 +8,8 @@ namespace UX.CharacterInfo
 
 public class NamePicker : MonoBehaviour
 {
+    [SerializeField] bool deleteOnBuild;
+
     float DebugTimer0;
     float DebugTimer1;
 
@@ -24,6 +26,9 @@ public class NamePicker : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        #if !UNITY_EDITOR
+        if(deleteOnBuild) Destroy(this.gameObject);
+        #endif
         DontDestroyOnLoad(this.gameObject);
         //ReadList("firstname");ReadList("lastname");ReadList("crime");
     

@@ -98,7 +98,7 @@ public class ObjectiveManager : MonoBehaviour
             distanceValue = (int)(closestObjectiveDistance);
             if (HaveNullObjectives()) { return; }
             if (distanceText != null)
-                distanceText.text = String.Format("{0} is your objective. It is {1} m away", closestObjective.GetComponent<Objective>().GetObjectiveName(), closestObjectiveDistance.ToString("N0"));
+                distanceText.text = String.Format("ASSIGNMENT: {0} | {1} m", closestObjective.GetComponent<Objective>().GetObjectiveName(), closestObjectiveDistance.ToString("N0"));
         }
     }
 
@@ -106,6 +106,7 @@ public class ObjectiveManager : MonoBehaviour
     {
         if (closestObjective.gameObject == null)
         {
+            FindObjectOfType<PlayerUIManager>().ObjectiveVisible(false);
             distanceText.text = "No objectives";
             return true;
         }
@@ -113,6 +114,7 @@ public class ObjectiveManager : MonoBehaviour
         if (objective.gameObject == null)
         {
             distanceText.text = "No objectives";
+            FindObjectOfType<PlayerUIManager>().ObjectiveVisible(false);
             return true;
         }
         return false;
@@ -219,5 +221,6 @@ public class ObjectiveManager : MonoBehaviour
         {
             ResetObjectiveList();
         };
+        
     }
 }
