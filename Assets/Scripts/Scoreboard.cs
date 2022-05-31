@@ -1,3 +1,5 @@
+
+using UX.CharacterInfo;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -61,6 +63,7 @@ public class Scoreboard : MonoBehaviour
     {
         Destroy(FindObjectOfType<Difficulty>().gameObject);
         Destroy(FindObjectOfType<Scorekeeper>().gameObject);
+        Destroy(FindObjectOfType<NamePicker>().gameObject);
     SceneManager.LoadScene(0);
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UX.CharacterInfo;
 using UnityEngine.SceneManagement;
 
 public class PauseScreen : MonoBehaviour
@@ -24,6 +25,7 @@ public class PauseScreen : MonoBehaviour
           PauseGame(!paused);
         }
     }
+
 
     public void PauseGame(bool pauseNow)
     {
@@ -68,6 +70,9 @@ public class PauseScreen : MonoBehaviour
     IEnumerator MainMenu()
     {
       Time.timeScale=1;
+              Destroy(FindObjectOfType<Difficulty>().gameObject);
+        Destroy(FindObjectOfType<Scorekeeper>().gameObject);
+        Destroy(FindObjectOfType<NamePicker>().gameObject);
       yield return new WaitForSeconds(1f);
       SceneManager.LoadScene(menuScene);
     }

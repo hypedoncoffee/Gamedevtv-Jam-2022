@@ -11,8 +11,10 @@ using UnityEngine.AI;
 namespace GameJam.Control
 
 {
+    
     public class PlayerController : MonoBehaviour
     {
+        [SerializeField] AudioSource playerAudio;
         //references
         Mover move;
         Fighter fighter;
@@ -25,7 +27,7 @@ namespace GameJam.Control
         bool orbital,smoke,grenade;
 
         [SerializeField] float maxStealth = 100;
-        float stealthLeft;
+        [SerializeField] float stealthLeft;
         bool stealth;
 
         [Header("Character Information")]
@@ -83,6 +85,7 @@ namespace GameJam.Control
         [SerializeField] CursorMapping[] cursorMappings = null;
         void Awake()
         {
+            move = FindObjectOfType<Mover>();
             deathUI = FindObjectOfType<CharacterTransition>();
             names = FindObjectOfType<NamePicker>();
             fighter = GetComponent<Fighter>();
@@ -200,24 +203,39 @@ namespace GameJam.Control
         void Update()
         {
 
+            if(stealth) 
+            {
+                stealthLeft = Mathf.Clamp(stealthLeft-Time.deltaTime,0,maxStealth);
+                if(stealthLeft<1)
+                {
+                    StealthMode(false);
+                }
+            }
+            else stealthLeft = Mathf.Clamp(stealthLeft+(Time.deltaTime*4),0,maxStealth);
+
             if (!health.IsAlive()) { return; }
             InteractWithCombat();
-            if (InteractWithMovement()) return;
-            
-            if(Input.GetKeyDown(KeyCode.LeftShift))
+            Debug.Log("Stealth="+stealthLeft );
+            if(Input.GetButton("Sneak"))
             {
-                if(!stealth)
-                stealth=true;
-                StealthMode(true);
-                Debug.Log("Stealth on!");
-            }
-            if(Input.GetKeyUp(KeyCode.LeftShift))
+                    if(!stealth)
+                    {
+
+                    StealthMode(true);
+                    Debug.Log("Stealth on!");
+                    }
+             }
+            else
             {
                 if(stealth)
-                stealth=false;
-                Debug.Log("Stealth off!");
-                StealthMode(false);
+                
+                {
+                    
+                    Debug.Log("Stealth off!");
+                    StealthMode(false);
+                }
             }
+            if (InteractWithMovement()) return;
 
             SetCursor(CursorType.None);
 
@@ -231,8 +249,6 @@ namespace GameJam.Control
 
                 }
             }
-            if(stealth) stealthLeft = Mathf.Clamp(stealthLeft-Time.deltaTime,0,maxStealth);
-            else if(!stealth) stealthLeft = Mathf.Clamp(stealthLeft+(Time.deltaTime*4),0,maxStealth);
         }
 
         private bool InteractWithCombat()
@@ -379,23 +395,34 @@ namespace GameJam.Control
         {
             if(enabled)
             {
+                if(!stealth)
+                {
+
                 stealth=true;
                 playermodel.materials[0] = stealthmat;
                 playermodel.materials[1] = stealthmat;
                 playermodel.materials[4] = glowmat;
                 GetComponent<AudioSource>().PlayOneShot(stealthUp);
                 move.ReduceSpeed(true);
+                foreach (Suspicion sus in FindObjectsOfType<Suspicion>()) sus.Ignorance(true);
+                }
             //change material
             }
             else 
             {
+                if(stealth)
+                {
+                    
                 stealth=false;
                 playermodel.materials[0] = defaultmat[0];
                 playermodel.materials[1] = defaultmat[1];
                 playermodel.materials[4] = defaultmat[4];
                 GetComponent<AudioSource>().PlayOneShot(stealthDown);
+                foreach (Suspicion sus in FindObjectsOfType<Suspicion>()) sus.Ignorance(false);
+                
                 move.ReduceSpeed(false);
 
+                }
             }
         }
 

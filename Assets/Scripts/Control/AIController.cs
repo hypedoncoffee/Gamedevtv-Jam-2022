@@ -70,9 +70,13 @@ namespace GameJam.Control
         void SetName()
         {
             NamePicker names = FindObjectOfType<NamePicker>();
+            if(names!=null)
+            {
+
             lastName = names.ReadList("lastname");
             firstName = names.ReadList("firstname");
             charNameUI.text = lastName+", "+firstName;
+            }
         }
 
         public void SetPatrolPath(GameObject newPatrolPath)

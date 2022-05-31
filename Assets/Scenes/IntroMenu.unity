@@ -3625,10 +3625,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86f1befc3d5983a24b01553cd34db307, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pathToLists: Lists
-  crimePath: crimes.txt
-  lNamePath: lastnames.txt
-  fNamePath: firstnames.txt
   streetPath: streets.txt
 --- !u!4 &416967838
 Transform:
@@ -9758,7 +9754,7 @@ MonoBehaviour:
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
-  m_DynamicPixelsPerUnit: 1
+  m_DynamicPixelsPerUnit: 0
   m_PresetInfoIsWorld: 1
 --- !u!223 &1218439885
 Canvas:
