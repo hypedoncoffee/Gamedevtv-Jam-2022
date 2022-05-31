@@ -26,7 +26,7 @@ public class PatrolVoice : MonoBehaviour
         voicebox = GetComponent<AudioSource>();
     }
 
-
+int tauntChance = 10;
 
     public void Alert(bool enabled,bool isVIP = false)
     {
@@ -36,7 +36,15 @@ public class PatrolVoice : MonoBehaviour
             if(isVIP)
                 CallVoice(tauntBanter);
             else
+            {
+
+            int rng = Random.Range(0,100);
+            if(rng < tauntChance) CallVoice(tauntBanter);
+            else
+            {
                 CallVoice(combatBanter);
+            }
+            }
         }
         else 
         {

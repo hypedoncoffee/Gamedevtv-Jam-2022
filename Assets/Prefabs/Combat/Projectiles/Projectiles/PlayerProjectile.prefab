@@ -17,6 +17,9 @@ GameObject:
   - component: {fileID: 7340459646624649328}
   - component: {fileID: 2859488285258489752}
   - component: {fileID: 6413813251811192475}
+  - component: {fileID: 36455111864712791}
+  - component: {fileID: 4588302158445640019}
+  - component: {fileID: 9044780504905593792}
   m_Layer: 2
   m_Name: PlayerProjectile
   m_TagString: Untagged
@@ -4933,10 +4936,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 4593948057451981338, guid: ed05a2d0defc72bd4bfb1a0ce54d532a, type: 2}
-  m_audioClip: {fileID: 8300000, guid: d817040b5204aea6791b253c485949c9, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 2835bef2235d8371b8202b14c0782b97, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: 1.2
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -5019,6 +5022,53 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!170 &36455111864712791
+AudioDistortionFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4348660479659510245}
+  m_Enabled: 0
+  m_DistortionLevel: 0.5
+--- !u!166 &4588302158445640019
+AudioChorusFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4348660479659510245}
+  m_Enabled: 1
+  m_DryMix: 0.5
+  m_WetMix1: 0.5
+  m_WetMix2: 0.5
+  m_WetMix3: 0.5
+  m_Delay: 40
+  m_Rate: 0.8
+  m_Depth: 0.03
+--- !u!164 &9044780504905593792
+AudioReverbFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4348660479659510245}
+  m_Enabled: 1
+  m_DryLevel: 0
+  m_Room: 0
+  m_RoomHF: 0
+  m_DecayTime: 1
+  m_DecayHFRatio: 0.5
+  m_ReflectionsLevel: -10000
+  m_ReverbLevel: 0
+  m_ReverbDelay: 0.04
+  m_Diffusion: 100
+  m_Density: 100
+  m_HFReference: 5000
+  m_RoomLF: 0
+  m_LFReference: 250
+  m_ReflectionsDelay: 0
+  m_ReverbPreset: 27
 --- !u!1001 &5763708106664687859
 PrefabInstance:
   m_ObjectHideFlags: 0

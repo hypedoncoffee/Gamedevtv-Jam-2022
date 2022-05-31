@@ -6,6 +6,7 @@ public class BuildingPoolManager : MonoBehaviour
 {
     [SerializeField] GameObject[] fullSizeBuilding,halfSizeBuilding,doubleSizeBuilding;
     [SerializeField] GameObject[] fullSizeProp;
+    [SerializeField] float timeForBuilding = 10f;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +21,7 @@ public class BuildingPoolManager : MonoBehaviour
         {
             if(gameObject.active)
             {
-            yield return new WaitForSecondsRealtime(20f/(float)spawners.Length);
+            yield return new WaitForSecondsRealtime(timeForBuilding/(float)spawners.Length);
             spawner.SpawnBuilding();
             }
 

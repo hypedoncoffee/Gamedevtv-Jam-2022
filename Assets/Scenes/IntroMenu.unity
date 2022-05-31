@@ -3247,7 +3247,7 @@ RectTransform:
   m_GameObject: {fileID: 357649113}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -692}
-  m_LocalScale: {x: 0, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1958040450}
   - {fileID: 42432956}
@@ -3395,6 +3395,8 @@ MonoBehaviour:
   bgmVolumeLabel: {fileID: 1347585272}
   dialogueVolumeLabel: {fileID: 0}
   soundMixing: {fileID: 24100000, guid: ed05a2d0defc72bd4bfb1a0ce54d532a, type: 2}
+  paLabelVolume: {fileID: 0}
+  patrolLabelVolume: {fileID: 0}
 --- !u!114 &357649118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4451,7 +4453,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &435182784
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4462,14 +4464,15 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 533981219}
   m_Father: {fileID: 1519103943}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 20, y: 0}
+  m_SizeDelta: {x: 100, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &435182785
 MonoBehaviour:
@@ -4491,7 +4494,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 8885a2f65a5b60d73a671e319b72165f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5670,6 +5673,140 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 531079798}
+  m_CullTransparentMesh: 1
+--- !u!1 &533981218
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 533981219}
+  - component: {fileID: 533981221}
+  - component: {fileID: 533981220}
+  m_Layer: 5
+  m_Name: label
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &533981219
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 533981218}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 435182784}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 53.7}
+  m_SizeDelta: {x: 200, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &533981220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 533981218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 8
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 7dc2dbabe105bb5b78adbc66b8bb0272, type: 2}
+  m_sharedMaterial: {fileID: -3926219747708537820, guid: 7dc2dbabe105bb5b78adbc66b8bb0272, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 39.15
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &533981221
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 533981218}
   m_CullTransparentMesh: 1
 --- !u!1 &541580379
 GameObject:
@@ -11712,53 +11849,69 @@ MonoBehaviour:
     - Fixed "failure" PA announcer
     on first assignee run
 
+    - Tweaked ammo for player and used enemy firing sound
+
+    -
+    Added missing post-processing to scoreboard scene
+
+    - Fixed continuity error
+    in scoreboard scene
+
+    - Fixed incorrect name pulls for Scoreboard
+
+    - Fixed
+    skipping second-to-lsat VIP
+
     - Pause countdown during transition
 
     - Patrol
     audio curve changes
 
-    - Increase frequency for patrol taunts
+    - Regular Patrols can now taunt (previously only VIPs)
 
-    - FOB zone
-    only visible when ready to deploy
+    -
+    VIPs will continue to spawn until the game concludes
 
-    - Increased aggressiveness of procedural
-    buildings to finish faster
+    - FOB zone only visible
+    when ready to deploy
+
+    - Increased aggressiveness of procedural buildings
+    to finish faster
 
     <align=center><---- v 5.035 ----></align>
 
-    -
-    Added patchnotes screen
+    - Added
+    patchnotes screen and credits
 
-    - F.O.B. radius now hidden until drop-off is ready
+    - F.O.B. radius now hidden until drop-off
+    is ready
 
-    -
-    Fixed lockup on using grenades
+    - Fixed lockup on using grenades
 
-    <align=center><---- v 5.03 ----></align>
+    <align=center><---- v 5.03
+    ----></align>
 
-    -
-    Refactored and optimized name generator for WebGL support
-
-    - Fixed "Cooper,
-    Dale" soft crash on WebGL
-
-    - Fixed stealth mode input not being checked
+    - Refactored and optimized name generator for WebGL support
 
     -
-    Fixed stealth mode sound effects, movespeed
+    Fixed "Cooper, Dale" soft crash on WebGL
 
-    - Fixed certain decorations
-    facing the wrong way
+    - Fixed stealth mode input not
+    being checked
+
+    - Fixed stealth mode sound effects, movespeed
+
+    - Fixed
+    certain decorations facing the wrong way
 
     v 5.0
 
     - Init release
 
-    - Fixed Windows support
-
     -
-    Added credits screen
+    Fixed Windows support
+
+    - Added credits screen
 
     - Added difficulty slider'
   m_isRightToLeft: 0
@@ -12223,6 +12376,8 @@ MonoBehaviour:
   bgmVolumeLabel: {fileID: 0}
   dialogueVolumeLabel: {fileID: 0}
   soundMixing: {fileID: 24100000, guid: ed05a2d0defc72bd4bfb1a0ce54d532a, type: 2}
+  paLabelVolume: {fileID: 0}
+  patrolLabelVolume: {fileID: 0}
 --- !u!114 &1317708105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13413,6 +13568,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef68d4e183309e39180fd0228913bcf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  diffLabel: {fileID: 533981220}
   baseGuard: 0
   guardsPerIncrease: 0
   increaseRate: 0
@@ -16784,6 +16940,8 @@ MonoBehaviour:
   bgmVolumeLabel: {fileID: 582148903}
   dialogueVolumeLabel: {fileID: 0}
   soundMixing: {fileID: 24100000, guid: ed05a2d0defc72bd4bfb1a0ce54d532a, type: 2}
+  paLabelVolume: {fileID: 0}
+  patrolLabelVolume: {fileID: 0}
 --- !u!114 &1714742621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17247,6 +17405,8 @@ MonoBehaviour:
   bgmVolumeLabel: {fileID: 0}
   dialogueVolumeLabel: {fileID: 0}
   soundMixing: {fileID: 24100000, guid: ed05a2d0defc72bd4bfb1a0ce54d532a, type: 2}
+  paLabelVolume: {fileID: 0}
+  patrolLabelVolume: {fileID: 0}
 --- !u!114 &1742875075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20095,6 +20255,8 @@ MonoBehaviour:
   bgmVolumeLabel: {fileID: 1048698377}
   dialogueVolumeLabel: {fileID: 0}
   soundMixing: {fileID: 24100000, guid: ed05a2d0defc72bd4bfb1a0ce54d532a, type: 2}
+  paLabelVolume: {fileID: 0}
+  patrolLabelVolume: {fileID: 0}
 --- !u!82 &2037345547
 AudioSource:
   m_ObjectHideFlags: 0

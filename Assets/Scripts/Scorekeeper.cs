@@ -23,12 +23,12 @@ public class Scorekeeper : MonoBehaviour
         public string years;
     }
 
-    NewAssignee[] casualties;
+    [SerializeField] NewAssignee[] casualties;
 
     // Start is called before the first frame update
     void Awake()
     {
-        casualties = new NewAssignee[256];
+        casualties = new NewAssignee[0];
         stashesTotal = FindObjectOfType<VIPManager>().totalVIPS();
         DontDestroyOnLoad(this);
     }
@@ -63,18 +63,21 @@ public class Scorekeeper : MonoBehaviour
 
     public void LogName(string lname,string fname="default",string crime = "Undisclosed", string years = "default")
     {
-        for (int i = 0; i < casualties.Length-1;i++)
+        NewAssignee[] casu = new NewAssignee[casualties.Length+1];
+        Debug.Log("Logged a casualty");
+        
+        casu[casu.Length-1].lname = lname;
+        if(fname=="default") casu[casu.Length-1].fname = FindObjectOfType<NamePicker>().ReadList("firstname");
+        else casu[casu.Length-1].fname = fname;
+                if(crime=="default") casu[casu.Length-1].crime = FindObjectOfType<NamePicker>().ReadList("crimes");
+                else casu[casu.Length-1].crime = crime;
+                casu[casu.Length-1].years = Mathf.RoundToInt(Random.Range(1,150)).ToString(); 
+            
+        for (int i = 0; i < (casu.Length-1);i++)
         {
-            if(casualties[i].lname==string.Empty)
-            {
-                casualties[i].lname = lname;
-                if(fname=="default") casualties[i].fname = FindObjectOfType<NamePicker>().ReadList("firstname");
-                else casualties[i].fname = fname;
-                if(crime=="default") casualties[i].crime = FindObjectOfType<NamePicker>().ReadList("crimes");
-                else casualties[i].crime = crime;
-                casualties[i].years = Mathf.RoundToInt(Random.Range(1,150)).ToString(); 
-            }
+            casu[i] = casualties[i];
         }
+        casualties = casu;
     }
     public string GiveName()
     {

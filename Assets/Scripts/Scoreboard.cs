@@ -23,7 +23,7 @@ public class Scoreboard : MonoBehaviour
     IEnumerator CountTheScore()
     {
         //mission briefing
-        textbox.text = "The mission has concluded and Sector 40 has returned to standard procedure.  Your debriefing will follow shortly.\n(Press any key.)";
+        textbox.text = "The mission has concluded and District 122 has regained access to communications.\nLast night's events are considered an unknown anomaly and no reports have been made by living witnesses.\n.Your debriefing will follow shortly.\n(Press any key.)";
         
         while (textbox.maxVisibleCharacters < textbox.text.Length)
         {
@@ -46,7 +46,8 @@ public class Scoreboard : MonoBehaviour
                         "You used "+scoreboard.SentencesServed()+" assignees.  "+scoreboard.TotalCadavers()+" resolved their pending sentences."+
                         "Efficiency rating: "+scoreboard.Efficiency()+"."+
                         "Operation ended "+scoreboard.TimeLeft()+" before security grid re-enabled."+
-                        "Final Score: "+scoreboard.CountScore();
+                        "Final Score: "+scoreboard.CountScore()+
+                        "...this scoreboard didn't get functionally completed in time for jam.  We'll get around to it some time after post. Sorry about that.";
        while (textbox.maxVisibleCharacters < textbox.text.Length)
         {
             yield return new WaitForSecondsRealtime(0.009f);

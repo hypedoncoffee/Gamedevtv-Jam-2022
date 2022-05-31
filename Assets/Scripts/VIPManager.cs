@@ -85,7 +85,7 @@ public class VIPManager : MonoBehaviour
 
     public void SpawnVIP()
     {
-        if(nextVIP < vips.Length-2)
+        if(nextVIP < vips.Length-1)
         {
             GameObject newVIP = Instantiate(vipPrefab,vipSpawners[nextVIP].transform.position,Quaternion.identity);
             for (int guardsToSpawn = 0; guardsToSpawn < vips[nextVIP].numberOfGuards; guardsToSpawn++)

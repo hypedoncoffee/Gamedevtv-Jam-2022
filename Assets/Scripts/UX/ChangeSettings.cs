@@ -32,6 +32,7 @@ public class ChangeSettings : MonoBehaviour
         nextPreset = Mathf.RoundToInt(presetDropdown.value);
         //int.TryParse(nextPreset, out preset);
         QualitySettings.SetQualityLevel(nextPreset, true);
+        qualityLabel.text = QualitySettings.names[nextPreset];
     }
     [SerializeField] private TextMeshProUGUI windowModeLabel;
     public void ChangeWindowMode(Slider windowDropdown)
@@ -40,12 +41,13 @@ public class ChangeSettings : MonoBehaviour
         //      int.TryParse(nextWindow, out window);
         switch (nextWindow)
         {
-            case 0:
-                Screen.fullScreen = !Screen.fullScreen;
-                break;
             case 1:
-                Screen.fullScreen = Screen.fullScreen;
-                //        FullScreenMode = FullScreenMode.FullScreenWindow;
+            windowModeLabel.text = "Fullscreen Window";
+                Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+                break;
+            case 0:
+            windowModeLabel.text = "Windowed";
+                Screen.fullScreenMode = FullScreenMode.Windowed;
                 break;
         }
     }
@@ -126,7 +128,23 @@ public class ChangeSettings : MonoBehaviour
         soundMixing.SetFloat("dialogueVolume", nextDialogueVolume.value);
         dialogueVolumeLabel.text = Mathf.RoundToInt(nextDialogueVolume.value * 100f) + " %";
     }
-
+    [SerializeField] TextMeshProUGUI paLabelVolume;
+    public void SetPAVolume(Slider nextPAVolume)
+    {
+        soundMixing.SetFloat("paVolume", nextPAVolume.value);
+        paLabelVolume.text = Mathf.RoundToInt(nextPAVolume.value * 100f) + " %";
+    }
+    public void SetPatrolVoice(Slider nextPatrolVoices)
+    {
+        //number of voices allowed in voice pool, chatter preferences
+    }
+    [SerializeField] TextMeshProUGUI patrolLabelVolume;
+    public void SetPatrolVolume(Slider nextPatrolVolume)
+    {
+        soundMixing.SetFloat("patrolVolume", nextPatrolVolume.value);
+        patrolLabelVolume.text = Mathf.RoundToInt(nextPatrolVolume.value * 100f) + " %";
+        
+    }
 
 
     /*

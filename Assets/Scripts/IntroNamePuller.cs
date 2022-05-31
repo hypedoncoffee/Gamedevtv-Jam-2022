@@ -15,11 +15,11 @@ public class IntroNamePuller : MonoBehaviour
     {
         characterText = GetComponent<TMP_Text>();
         names = FindObjectOfType<NamePicker>();
+         if(outro) score =  FindObjectOfType<Scorekeeper>();
         Generate();
     }
 
     void Start(){
-         if(outro) score =  FindObjectOfType<Scorekeeper>();
 
     }   
 
@@ -41,7 +41,7 @@ public class IntroNamePuller : MonoBehaviour
         }
         else
         {
-            string[] data = score.GiveName().Split();
+            string[] data = score.GiveName().Split(',');
         characterText.text = "NAME: "+data[0]+", "+data[1]+"\n"+
                         "OFFENSE: "+data[2]+"\n"+
                         "BAIL OFFERING: "+System.Globalization.NumberFormatInfo.CurrentInfo.CurrencySymbol+BailOffering()+"\n"+
