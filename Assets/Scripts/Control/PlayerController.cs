@@ -277,16 +277,19 @@ namespace GameJam.Control
                     {
                         //call strike l command
                         fighter.SpawnOrbitalLaser(hit.point);
+                        orbital=false;
                         return true;
                     }
                     else if(smoke)
                     {
                         fighter.SpawnSmokeGrenade(hit.point);
+                        smoke=false;
                         return true;
                     }
                     else if(grenade)
                     {
                         fighter.SpawnGrenade(hit.point);
+                        grenade=false;
                         return true;
                     }
                     else
