@@ -34,7 +34,7 @@ namespace GameJam.Control
         [SerializeField] float minTimeBetweenCallouts = 15;
 
         [SerializeField] bool isPatrolling;
-
+        [SerializeField]public bool isTank;
         #region
         Vector3 guardLocation;
         Quaternion initialLookDirection;
@@ -95,6 +95,11 @@ namespace GameJam.Control
         {
             charNameUI.text = newname;    
             vipID = id;
+        }
+
+        public bool IsTank()
+        {
+            return isTank;
         }
 
         public void KillVIP()

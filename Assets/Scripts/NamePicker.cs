@@ -84,13 +84,13 @@ public class NamePicker : MonoBehaviour
              */
 
             case "firstname":
-            return firstnames[Random.Range(0,firstnames.Length-1)];
+            return firstnames[Random.Range(0,firstnames.Length-1)].Replace("\r","");
             break;
             case "lastname":
-            return lastnames[Random.Range(0,lastnames.Length-1)];
+            return lastnames[Random.Range(0,lastnames.Length-1)].Replace("\r","");
             break;
             case "crime":
-            return crimes[Random.Range(0,crimes.Length-1)];
+            return crimes[Random.Range(0,crimes.Length-1)].Replace("\r","");
             break;
 
         }

@@ -29,7 +29,10 @@ public class OpenSesame : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             if(unlocked)
-                OpenDoor();
+                {
+                    FindObjectOfType<DynamicMusicManager>().ToggleFinaleMusic(true);
+                    OpenDoor();
+                }
         }
     }
     // Update is called once per frame

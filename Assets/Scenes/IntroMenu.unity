@@ -3374,6 +3374,7 @@ MonoBehaviour:
   hiddenByDefault: 1
   maskRate: 0.4
   foley: {fileID: 0}
+  disableWhileClosed: 0
   swishUp: {fileID: 8300000, guid: 34aa8541fa929ddfca956e6eafc7a8de, type: 3}
   swishDown: {fileID: 8300000, guid: de61864ef9034d45d95d7a0f82b4cd0b, type: 3}
 --- !u!114 &357649117
@@ -3388,6 +3389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd7124fb0a0c93e8a879f6351798a459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  difficultyLabel: {fileID: 0}
   qualityLabel: {fileID: 44524030}
   windowModeLabel: {fileID: 642590938}
   renderResLabel: {fileID: 2024299120}
@@ -12665,6 +12667,7 @@ MonoBehaviour:
   hiddenByDefault: 1
   maskRate: 0.4
   foley: {fileID: 0}
+  disableWhileClosed: 0
   swishUp: {fileID: 8300000, guid: 34aa8541fa929ddfca956e6eafc7a8de, type: 3}
   swishDown: {fileID: 8300000, guid: de61864ef9034d45d95d7a0f82b4cd0b, type: 3}
 --- !u!114 &1317708104
@@ -12679,6 +12682,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd7124fb0a0c93e8a879f6351798a459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  difficultyLabel: {fileID: 0}
   qualityLabel: {fileID: 0}
   windowModeLabel: {fileID: 0}
   renderResLabel: {fileID: 0}
@@ -17243,6 +17247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd7124fb0a0c93e8a879f6351798a459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  difficultyLabel: {fileID: 533981220}
   qualityLabel: {fileID: 1227609270}
   windowModeLabel: {fileID: 1713375462}
   renderResLabel: {fileID: 545960922}
@@ -17268,6 +17273,7 @@ MonoBehaviour:
   hiddenByDefault: 1
   maskRate: 0.4
   foley: {fileID: 0}
+  disableWhileClosed: 0
   swishUp: {fileID: 8300000, guid: 34aa8541fa929ddfca956e6eafc7a8de, type: 3}
   swishDown: {fileID: 8300000, guid: de61864ef9034d45d95d7a0f82b4cd0b, type: 3}
 --- !u!82 &1714742622
@@ -17694,6 +17700,7 @@ MonoBehaviour:
   hiddenByDefault: 1
   maskRate: 0.4
   foley: {fileID: 0}
+  disableWhileClosed: 0
   swishUp: {fileID: 8300000, guid: 34aa8541fa929ddfca956e6eafc7a8de, type: 3}
   swishDown: {fileID: 8300000, guid: de61864ef9034d45d95d7a0f82b4cd0b, type: 3}
 --- !u!114 &1742875074
@@ -17708,6 +17715,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd7124fb0a0c93e8a879f6351798a459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  difficultyLabel: {fileID: 0}
   qualityLabel: {fileID: 0}
   windowModeLabel: {fileID: 0}
   renderResLabel: {fileID: 0}
@@ -20583,6 +20591,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd7124fb0a0c93e8a879f6351798a459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  difficultyLabel: {fileID: 0}
   qualityLabel: {fileID: 114154083}
   windowModeLabel: {fileID: 2046178694}
   renderResLabel: {fileID: 1789320149}
@@ -20704,6 +20713,7 @@ MonoBehaviour:
   hiddenByDefault: 1
   maskRate: 0.4
   foley: {fileID: 0}
+  disableWhileClosed: 0
   swishUp: {fileID: 8300000, guid: 34aa8541fa929ddfca956e6eafc7a8de, type: 3}
   swishDown: {fileID: 8300000, guid: de61864ef9034d45d95d7a0f82b4cd0b, type: 3}
 --- !u!114 &2037345549

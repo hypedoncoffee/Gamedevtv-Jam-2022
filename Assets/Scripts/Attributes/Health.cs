@@ -93,14 +93,19 @@ namespace GameJam.Attributes
             {
                 hasItemDrop.Spawn();
                 Objective isObjective = GetComponent<Objective>();
+                AIController aiController = GetComponent<AIController>();
                 if (isObjective)
                 {
-                    if (isObjective.gameObject)
+                    if(aiController.isTank) 
+                    {
+                        aiController.KillVIP();
+                        FindObjectOfType<Scorekeeper>().GameEnd();
+                    }
+                    if (isObjective.gameObject&&!aiController.isTank)
                     {
                         isObjective.objectiveCompleted.Invoke(isObjective.gameObject);
                     }
                 }
-                AIController aiController = GetComponent<AIController>();
                 if (aiController)
                 {
                     FindObjectOfType<PlayerController>().IncreaseRecquisition(30);
