@@ -53,6 +53,7 @@ public class DynamicMusicManager : MonoBehaviour
                     }
                 } else
                 {
+                    if(!deathScreen.transition)
                     // Have a player, do work
                     HandleDynamicMusicSincePlayerExists();
                 }

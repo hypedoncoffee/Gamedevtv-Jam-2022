@@ -12142,54 +12142,65 @@ MonoBehaviour:
     - Fixed final boss not
     triggering endgame
 
-    - Military Base doorway no longer breaks aiming
+    - Fixed music fading in during assignment screen
 
     -
-    Videos now use StreamingAssets
+    Fixed difficulty slider labeling
 
-    - Videos now disabled outside of death screen
+    - Military Base doorway no longer breaks
+    aiming
 
-    -
-    (WebGL) Fixed movies not rendering
+    - Finale music now bound to military base door
 
-    - (WebGL) Movie quality reduced to 25%
+    - Final boss
+    no longer crashes WebGL build
 
-    -
-    (WebGL) Post Processing performance improved
+    - Videos now use StreamingAssets
 
-    <align=center><---- v 5.04
-    ----></align>
+    - Videos
+    now disabled outside of death screen
 
-    - Fixed "failure" PA announcer on first assignee run
-
-    -
-    Tweaked ammo for player and used enemy firing sound
-
-    - Added missing post-processing
-    to scoreboard scene
-
-    - Fixed continuity error in scoreboard scene
+    - (WebGL) Fixed movies not rendering
 
     -
-    Fixed incorrect name pulls for Scoreboard
+    (WebGL) Movie quality reduced to 25%
 
-    - Fixed skipping second-to-lsat
-    VIP
+    - (WebGL) Post Processing performance
+    improved
 
-    - Pause countdown during transition
+    <align=center><---- v 5.04 ----></align>
+
+    - Fixed "failure"
+    PA announcer on first assignee run
+
+    - Tweaked ammo for player and used enemy
+    firing sound
+
+    - Added missing post-processing to scoreboard scene
+
+    -
+    Fixed continuity error in scoreboard scene
+
+    - Fixed incorrect name pulls
+    for Scoreboard
+
+    - Fixed skipping second-to-lsat VIP
+
+    - Pause countdown
+    during transition
 
     - Patrol audio curve changes
 
-    -
-    Regular Patrols can now taunt (previously only VIPs)
+    - Regular Patrols can
+    now taunt (previously only VIPs)
 
-    - VIPs will continue
-    to spawn until the game concludes
+    - VIPs will continue to spawn until the
+    game concludes
 
-    - FOB zone only visible when ready to
-    deploy
+    - FOB zone only visible when ready to deploy
 
-    - Increased aggressiveness of procedural buildings to finish faster
+    - Increased
+    aggressiveness of procedural buildings to finish faster
 
     <align=center><----
     v 5.035 ----></align>
@@ -21297,8 +21308,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Difficulty tweaks will change the number of VIPs spawned and how fast they
-    increase in difficulty.
+  m_text: 'Difficulty tweaks will change the number of VIPs spawned.
+
+    In Postjam
+    this will affect the number and rate of guards spawned as well.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fc13c80e28740c823a2391ae4fae13f6, type: 2}
   m_sharedMaterial: {fileID: 879078119815753230, guid: fc13c80e28740c823a2391ae4fae13f6, type: 2}
@@ -21325,14 +21338,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 63.8
+  m_fontSize: 53.15
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 4
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0

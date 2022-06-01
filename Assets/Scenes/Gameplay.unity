@@ -4843,6 +4843,10 @@ PrefabInstance:
       propertyPath: objectiveManager
       value: 
       objectReference: {fileID: 784504678}
+    - target: {fileID: 1243370436741515731, guid: d666780c3a78aa9c4be7f8dda0fedadb, type: 3}
+      propertyPath: objectiveHypeThreshold
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 1243370437802302431, guid: d666780c3a78aa9c4be7f8dda0fedadb, type: 3}
       propertyPath: m_audioClip
       value: 
