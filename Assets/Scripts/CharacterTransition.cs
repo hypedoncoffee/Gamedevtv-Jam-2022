@@ -117,6 +117,7 @@ public class CharacterTransition : MonoBehaviour
         }
         else if (!firstRun) paAudio.PlayOneShot(failureVoice[Random.Range(0,failureVoice.Length-1)]);
         FindObjectOfType<DynamicMusicManager>().PlayerDeathMusic(true,true);
+        if(!deathScreen.gameObject.active) deathScreen.gameObject.SetActive(true);
         deathScreen.Reveal();
         yield return new WaitForSecondsRealtime(1f);
         typing=true;

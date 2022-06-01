@@ -217,12 +217,12 @@ namespace GameJam.Control
 
             if (!health.IsAlive()) { return; }
             InteractWithCombat();
-            Debug.Log("Stealth="+stealthLeft );
+//            Debug.Log("Stealth="+stealthLeft );
             if(Input.GetButton("Sneak"))
             {
-                    if(!stealth)
+                    if(!stealth && stealthLeft > 5)
                     {
-
+                    
                     StealthMode(true);
                     Debug.Log("Stealth on!");
                     }

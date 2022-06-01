@@ -47,8 +47,8 @@ MonoBehaviour:
     overrideState: 0
     value: 0.25
   quality:
-    overrideState: 0
-    value: 2
+    overrideState: 1
+    value: 0
 --- !u!114 &-5684748852783538979
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -120,7 +120,7 @@ MonoBehaviour:
     value: 0
   postExposure:
     overrideState: 1
-    value: -0.79
+    value: -0.78
   contrast:
     overrideState: 1
     value: 38.1
@@ -1398,8 +1398,8 @@ MonoBehaviour:
     overrideState: 0
     value: {r: 1, g: 1, b: 1, a: 1}
   fastMode:
-    overrideState: 0
-    value: 0
+    overrideState: 1
+    value: 1
   dirtTexture:
     overrideState: 0
     value: {fileID: 0}
@@ -1449,8 +1449,8 @@ MonoBehaviour:
     overrideState: 1
     value: 0.037
   fastMode:
-    overrideState: 0
-    value: 0
+    overrideState: 1
+    value: 1
 --- !u!114 &7739110620570999914
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1469,7 +1469,7 @@ MonoBehaviour:
     value: 1
   shutterAngle:
     overrideState: 1
-    value: 80
+    value: 29
   sampleCount:
     overrideState: 1
-    value: 30
+    value: 10

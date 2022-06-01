@@ -16,8 +16,8 @@ public class PatrolVoice : MonoBehaviour
     [SerializeField] AudioClip[] hurtBanter;
     [SerializeField] AudioClip[] deathBanter;
     [SerializeField] AudioClip[] susBanter;
-    [SerializeField] float minIdleBanterTime = 20f;
-    [SerializeField] float maxIdleBanterTime = 200f;
+    [SerializeField] float minIdleBanterTime = 10f;
+    [SerializeField] float maxIdleBanterTime = 80f;
     AudioSource voicebox;
     // Start is called before the first frame update
     void Awake()

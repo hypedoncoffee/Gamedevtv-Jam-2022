@@ -63,6 +63,7 @@ public class VIPManager : MonoBehaviour
             vips[i].lastName = names.ReadList("lastname");
             vips[i].firstName = names.ReadList("firstname");
             vips[i].numberOfGuards = nextGuards;
+            vips[i].id = (int)i;
         }
     }
 
@@ -118,6 +119,7 @@ public class VIPManager : MonoBehaviour
             FindObjectOfType<OpenSesame>().Unlocked();
             gamehud.FinalObjective();
             Instantiate(finalVIPPrefab,finalSpawn.transform.position,Quaternion.identity);
+            nextVIP++;
         }
         else FindObjectOfType<Scorekeeper>().GameEnd();
         gamehud.UpdateHitList();

@@ -77,6 +77,7 @@ namespace GameJam.Control
             lastName = names.ReadList("lastname");
             firstName = names.ReadList("firstname");
             charNameUI.text = lastName+", "+firstName;
+            charNameUI.text = charNameUI.text.Replace("\r","");
             }
         }
 

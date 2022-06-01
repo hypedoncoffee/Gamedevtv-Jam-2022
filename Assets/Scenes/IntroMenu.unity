@@ -2939,6 +2939,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: -12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 398239311}
   - {fileID: 1208097638}
   - {fileID: 2124740019}
   - {fileID: 702026564}
@@ -3945,6 +3946,140 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 386591310}
   m_CullTransparentMesh: 1
+--- !u!1 &398239310
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 398239311}
+  - component: {fileID: 398239313}
+  - component: {fileID: 398239312}
+  m_Layer: 5
+  m_Name: Settings Menu Title (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &398239311
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 398239310}
+  m_LocalRotation: {x: -0.30646476, y: -0, z: -0, w: 0.951882}
+  m_LocalPosition: {x: 0, y: 0, z: 14.999939}
+  m_LocalScale: {x: 0, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 315686976}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -35.693, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 358.99997}
+  m_SizeDelta: {x: 1000, y: 300}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &398239312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 398239310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: PATCHNOTES
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: acd03bc577616aef9a474feb3a5ede2d, type: 2}
+  m_sharedMaterial: {fileID: -5730950631358926977, guid: acd03bc577616aef9a474feb3a5ede2d, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 164.3
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 18
+  m_fontSizeMax: 210.6
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &398239313
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 398239310}
+  m_CullTransparentMesh: 1
 --- !u!1 &412600722
 GameObject:
   m_ObjectHideFlags: 0
@@ -4435,6 +4570,161 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 432873445}
+  m_CullTransparentMesh: 1
+--- !u!1 &433266580
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 433266581}
+  - component: {fileID: 433266584}
+  - component: {fileID: 433266583}
+  - component: {fileID: 433266582}
+  m_Layer: 5
+  m_Name: Text (TMP) (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &433266581
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433266580}
+  m_LocalRotation: {x: -0.13699207, y: -0, z: -0, w: 0.99057215}
+  m_LocalPosition: {x: 0, y: 0, z: -1125}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1218439886}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: -15.748, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 211, y: 100}
+  m_SizeDelta: {x: 200, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &433266582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433266580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9d696e6a229f0cb6a4a1ed9ef838624, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  windows: 0
+  osx: 0
+  linux: 0
+  webgl: 1
+  android: 0
+--- !u!114 &433266583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433266580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 'WebGL Detected!  Video quality reduced.
+
+    <size=70%>Please download
+    the standalone game for the best experience.'
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 7dc2dbabe105bb5b78adbc66b8bb0272, type: 2}
+  m_sharedMaterial: {fileID: -3926219747708537820, guid: 7dc2dbabe105bb5b78adbc66b8bb0272, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 18
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 1
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &433266584
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433266580}
   m_CullTransparentMesh: 1
 --- !u!1 &435182783
 GameObject:
@@ -7445,7 +7735,7 @@ RectTransform:
   m_Children:
   - {fileID: 1325568539}
   m_Father: {fileID: 315686976}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -11087,7 +11377,7 @@ RectTransform:
   m_Children:
   - {fileID: 1721168925}
   m_Father: {fileID: 315686976}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -11245,6 +11535,7 @@ RectTransform:
   - {fileID: 357649114}
   - {fileID: 1317708101}
   - {fileID: 1742875071}
+  - {fileID: 433266581}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11844,65 +12135,85 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '<align=center><---- v 5.04 ----></align>
+  m_text: '<align=center><---- v 5.045 ----></align>
 
-    - Fixed "failure" PA announcer
-    on first assignee run
+    - Fixed final boss not
+    triggering endgame
 
-    - Tweaked ammo for player and used enemy firing sound
+    - Military Base doorway no longer breaks aiming
 
     -
-    Added missing post-processing to scoreboard scene
+    Videos now use StreamingAssets
 
-    - Fixed continuity error
-    in scoreboard scene
+    - Videos now disabled outside of death screen
 
-    - Fixed incorrect name pulls for Scoreboard
+    -
+    (WebGL) Fixed movies not rendering
 
-    - Fixed
-    skipping second-to-lsat VIP
+    - (WebGL) Movie quality reduced to 25%
+
+    -
+    (WebGL) Post Processing performance improved
+
+    <align=center><---- v 5.04
+    ----></align>
+
+    - Fixed "failure" PA announcer on first assignee run
+
+    -
+    Tweaked ammo for player and used enemy firing sound
+
+    - Added missing post-processing
+    to scoreboard scene
+
+    - Fixed continuity error in scoreboard scene
+
+    -
+    Fixed incorrect name pulls for Scoreboard
+
+    - Fixed skipping second-to-lsat
+    VIP
 
     - Pause countdown during transition
 
-    - Patrol
-    audio curve changes
-
-    - Regular Patrols can now taunt (previously only VIPs)
+    - Patrol audio curve changes
 
     -
-    VIPs will continue to spawn until the game concludes
+    Regular Patrols can now taunt (previously only VIPs)
 
-    - FOB zone only visible
-    when ready to deploy
+    - VIPs will continue
+    to spawn until the game concludes
 
-    - Increased aggressiveness of procedural buildings
-    to finish faster
+    - FOB zone only visible when ready to
+    deploy
 
-    <align=center><---- v 5.035 ----></align>
+    - Increased aggressiveness of procedural buildings to finish faster
 
-    - Added
-    patchnotes screen and credits
+    <align=center><----
+    v 5.035 ----></align>
 
-    - F.O.B. radius now hidden until drop-off
-    is ready
+    - Added patchnotes screen and credits
+
+    - F.O.B.
+    radius now hidden until drop-off is ready
 
     - Fixed lockup on using grenades
 
-    <align=center><---- v 5.03
-    ----></align>
+    <align=center><----
+    v 5.03 ----></align>
 
-    - Refactored and optimized name generator for WebGL support
+    - Refactored and optimized name generator for WebGL
+    support
 
-    -
-    Fixed "Cooper, Dale" soft crash on WebGL
+    - Fixed "Cooper, Dale" soft crash on WebGL
 
-    - Fixed stealth mode input not
-    being checked
+    - Fixed stealth
+    mode input not being checked
 
     - Fixed stealth mode sound effects, movespeed
 
-    - Fixed
-    certain decorations facing the wrong way
+    -
+    Fixed certain decorations facing the wrong way
 
     v 5.0
 
@@ -18674,8 +18985,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1828865835}
   - component: {fileID: 1828865834}
+  - component: {fileID: 1828865836}
   m_Layer: 0
-  m_Name: skull-shotcut 1
+  m_Name: ECCSkull
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18699,16 +19011,16 @@ VideoPlayer:
   m_TargetMaterialProperty: _MainTex
   m_RenderMode: 2
   m_AspectRatio: 4
-  m_DataSource: 0
+  m_DataSource: 1
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 0
   m_TargetAudioSources: []
   m_DirectAudioVolumes: []
-  m_Url: 
+  m_Url: file:///home/nico/Unity/project/Gamedevtv-Jam-2022/Assets/StreamingAssets/Video/Skull.webm
   m_EnabledAudioTracks: 
   m_DirectAudioMutes: 
   m_ControlledAudioTrackCount: 0
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_SkipOnDrop: 1
   m_Looping: 1
   m_WaitForFirstFrame: 1
@@ -18729,6 +19041,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: -25.888, y: 0, z: 0}
+--- !u!114 &1828865836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1828865833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6685bd15933f70e979043d241242f746, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayVideo: 0
+  videoOptions:
+  - videoFile: 0
+    filename: Skull
+  - videoFile: 1
+    filename: Assigning
+  - videoFile: 0
+    filename: 
+  - videoFile: 0
+    filename: 
+  - videoFile: 0
+    filename: 
 --- !u!1 &1833628011
 GameObject:
   m_ObjectHideFlags: 0
@@ -20798,7 +21134,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: PATCHNOTES
+  m_text: SETTINGS
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: acd03bc577616aef9a474feb3a5ede2d, type: 2}
   m_sharedMaterial: {fileID: -5730950631358926977, guid: acd03bc577616aef9a474feb3a5ede2d, type: 2}
@@ -20825,7 +21161,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 164.3
+  m_fontSize: 210.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -26166,7 +26502,7 @@ RectTransform:
   m_Children:
   - {fileID: 1803456246}
   m_Father: {fileID: 315686976}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}

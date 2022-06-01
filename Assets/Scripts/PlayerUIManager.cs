@@ -75,8 +75,8 @@ public class PlayerUIManager : MonoBehaviour
 
     public void SetName(string fname,string lname,string crime,string years)
     {
-        namebar.text = lname+", "+fname;
-        sentencebar.text = crime+"\n<size=150%>"+years + " yrs.</size>";
+        namebar.SetText(lname+","+fname);
+        sentencebar.SetText (crime+"\n<size=150%>"+years + " yrs.</size>");
     }
 
     public void SetYears(string years)

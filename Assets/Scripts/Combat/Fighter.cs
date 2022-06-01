@@ -39,6 +39,8 @@ namespace GameJam.Combat
         [SerializeField] GameObject smokePrefab = null;
         [SerializeField] GameObject smokeParticles = null;
         [SerializeField] Suspicion sus;
+        
+        [SerializeField] CharacterTransition deathUI;
 
         [SerializeField] ParticleSystem fightFX;
         //Ammo management
@@ -63,7 +65,7 @@ namespace GameJam.Combat
             // Time.deltaTime = Time since the last time update is called
             timeSinceLastAttack += Time.deltaTime;
             timeSinceLastAbility += Time.deltaTime;
-            if (target == null || !target.IsAlive()) { target = null; return; }
+            if (target == null || !target.IsAlive())  { target = null; return; }
 
             if (!GetIsInRange())
             {
@@ -115,6 +117,7 @@ namespace GameJam.Combat
 
         void Awake()
         {
+            deathUI = FindObjectOfType<CharacterTransition>();
             sus = GetComponent<Suspicion>();
           //  fightFX = GetComponent<ParticleSystem>();
         }
@@ -217,6 +220,7 @@ namespace GameJam.Combat
         public bool CanAttack(GameObject target)
         {
             if (target == null) { return false; }
+            if (deathUI.transition) { return false;}
             Health targetToTest = target.GetComponent<Health>();
             if (!targetToTest.IsAlive())
             {

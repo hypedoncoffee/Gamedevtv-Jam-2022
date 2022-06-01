@@ -8,6 +8,7 @@ public class UIPanelMask : MonoBehaviour
   [SerializeField] private float maskRate;
   //[SerializeField] private bool useXAxis,useYAxis;
   [SerializeField] AudioSource foley;
+  [SerializeField] bool disableWhileClosed;
 [SerializeField]  AudioClip swishUp,swishDown;
     // Start is called before the first frame update
     
@@ -50,6 +51,10 @@ public class UIPanelMask : MonoBehaviour
       }
         this.transform.localScale = new Vector3(1f,1f,1f);
     }
+    void OnEnable()
+    {
+      
+    }
 
     IEnumerator MaskHide()
     {
@@ -60,5 +65,6 @@ public class UIPanelMask : MonoBehaviour
           this.transform.localScale=new Vector3(1,transform.localScale.y-maskRate,1f);
         }
           this.transform.localScale = new Vector3(0,0f,1f);
+        if(disableWhileClosed) gameObject.SetActive(false);
     }
 }

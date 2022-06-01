@@ -43,6 +43,7 @@ public class GameStateUIManager : MonoBehaviour
         string text = string.Empty;
         for(int i=0; i < vipMan.totalVIPS(); i++)
         {
+            Debug.Log(vipMan.isVipDead(i));
             bool dead = vipMan.isVipDead(i);
             if(dead) text= text+"<s>";
             text= text+i.ToString()+"|";
@@ -73,7 +74,7 @@ public class GameStateUIManager : MonoBehaviour
             successfulRuns++;
         }
         totalRuns++;
-        assigneeBox.text = successfulRuns+"/"+totalRuns;
+        assigneeBox.SetText(successfulRuns+"|"+totalRuns);
         
     }
 

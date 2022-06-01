@@ -158,7 +158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c9a560159e26bc45ab2aa82649c22b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  voices: {fileID: 0}
+  voices: {fileID: 3573144549748755024}
   currentHealth: -1
   isAlive: 1
   isPlayer: 0
@@ -208,7 +208,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lastName: 
   firstName: 
-  isVIP: 0
+  isVIP: 1
   vipID: 9999
   chaseDistance: 15
   patrolPath: {fileID: 0}
@@ -218,7 +218,7 @@ MonoBehaviour:
   charNameUI: {fileID: 0}
   alertFX: {fileID: 5906431854356774903}
   timeSinceLastCallout: 0
-  voices: {fileID: 0}
+  voices: {fileID: 3573144549748755024}
   minTimeBetweenCallouts: 15
   isPatrolling: 0
 --- !u!114 &7906172408912191566
@@ -241,9 +241,9 @@ MonoBehaviour:
   turnMultiplier: 1
   targetRefPoint: {fileID: 348527379049815344}
   target: {fileID: 0}
-  timeBetweenAttacks: 6.22
-  weaponRange: 25
-  weaponDamage: 40
+  timeBetweenAttacks: 3.11
+  weaponRange: 40
+  weaponDamage: 320
   turnRate: 0.032
   projectileWeapon: {fileID: 1103175307221487961, guid: 51929eedc1df05c43a71821723658efc, type: 3}
   projectileSpawnPoint: {fileID: 3436667070790348260}
@@ -254,14 +254,15 @@ MonoBehaviour:
   smokePrefab: {fileID: 0}
   smokeParticles: {fileID: 0}
   sus: {fileID: 0}
+  deathUI: {fileID: 0}
   fightFX: {fileID: 5906431854356774903}
   isPlayer: 0
   reloadButton: {fileID: 0}
   reloadSlider: {fileID: 0}
   reloadSound: {fileID: 0}
-  maxReloadTime: 2
-  maxAmmo: 30
-  currentAmmo: 30
+  maxReloadTime: 3
+  maxAmmo: 1
+  currentAmmo: 1
   abilityCooldown: 1.5
 --- !u!114 &3376481441588253931
 MonoBehaviour:
@@ -278,7 +279,7 @@ MonoBehaviour:
   isWatching: 1
   fight: {fileID: 7906172408912191566}
   ignoranceTime: 0
-  suspicionTime: 3
+  suspicionTime: 25
   timeSinceLastSawPlayer: Infinity
   isSmoked: 0
   coyoteTime: 0

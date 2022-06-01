@@ -19,9 +19,11 @@ public class ChangeSettings : MonoBehaviour
         Application.Quit();
     }
 
+    [SerializeField] TextMeshProUGUI difficultyLabel;
     public void SetDifficulty(Slider diffi)
     {
         FindObjectOfType<Difficulty>().NumberOfVips = (int)diffi.value; 
+        difficultyLabel.SetText(diffi.value.ToString());
     }
 
     
