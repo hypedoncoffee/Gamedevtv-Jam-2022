@@ -46,7 +46,7 @@ public class IntroNamePuller : MonoBehaviour
                         "OFFENSE: "+data[2]+"\n"+
                         "BAIL OFFERING: "+System.Globalization.NumberFormatInfo.CurrentInfo.CurrencySymbol+BailOffering()+"\n"+
                         "PUNISHMENT: "+ (data[3])+" years \n"+
-                        "EXPIRATION DATE: "+8/28/2081+"\n"+
+                        "EXPIRATION DATE: "+"8/28/2081"+"\n"+
                         "REMAINING SENTENCE: "+(data[3])+" years\n";
             
         }
@@ -57,7 +57,7 @@ public class IntroNamePuller : MonoBehaviour
         int m = Mathf.RoundToInt(Random.Range(1,12));
         int d = Mathf.RoundToInt(Random.Range(1,30));
         if(m == 2) Mathf.Clamp(d,1,28);
-        int y = Mathf.RoundToInt(Random.Range(2070,2082));
+        int y = Mathf.RoundToInt(Random.Range(2070,2081));
         return m.ToString()+"/"+d.ToString()+"/"+y.ToString();
         
         

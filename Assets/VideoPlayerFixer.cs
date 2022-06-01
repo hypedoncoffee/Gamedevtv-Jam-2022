@@ -24,6 +24,8 @@ public class VideoPlayerFixer : MonoBehaviour
     
     
     [SerializeField]VideoFile[] videoOptions;
+    [SerializeField] bool restartOnEnable;
+    
     string pathToVideo;
     string extension;
     string currentPlatform;
@@ -34,10 +36,10 @@ public class VideoPlayerFixer : MonoBehaviour
         vp = GetComponent<VideoPlayer>();
 
 
-        #if UNITY_EDITOR_LINUX || UNITY_LINUX
         /*#elif UNITY_STANDALONE_WIN
         vp.url = pathToMyWmvFile;
         */
+        #if UNITY_EDITOR_LINUX || UNITY_LINUX || UNITY_STANDALONE_LINUX
         currentPlatform = "Linux";
         extension = ".webm";
         #elif UNITY_ANDROID
@@ -62,6 +64,17 @@ public class VideoPlayerFixer : MonoBehaviour
         vp.Play();
 
 
+    }
+    void OnEnable()
+    {
+        if(restartOnEnable)
+        {
+            if(pathToVideo!=string.Empty)
+                {
+                vp.url = pathToVideo;
+                vp.Play();
+                }
+        }
     }
 
     // Update is called once per frame

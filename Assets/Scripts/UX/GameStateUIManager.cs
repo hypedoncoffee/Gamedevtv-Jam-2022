@@ -74,7 +74,7 @@ public class GameStateUIManager : MonoBehaviour
             successfulRuns++;
         }
         totalRuns++;
-        assigneeBox.SetText(successfulRuns+"|"+totalRuns);
+        assigneeBox.SetText((successfulRuns+"|"+totalRuns).Replace("\r",""));
         
     }
 

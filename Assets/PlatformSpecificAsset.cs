@@ -11,11 +11,11 @@ public class PlatformSpecificAsset : MonoBehaviour
         #if UNITY_ANDROID
         if(!android)
         Destroy(this.gameObject);
-        #elif UNITY_LINUX_STANDALONE || UNITY_EDITOR_LINUX
+        #elif UNITY_STANDALONE_LINUX || UNITY_EDITOR_LINUX
         Debug.Log("Did this run?");
         if(!linux)
         Destroy(this.gameObject);
-        #elif UNITY_WINDOWS_STANDALONE || UNITY_EDITOR_WINDOWS
+        #elif UNITY_STANDALONE_WIN || UNITY_EDITOR_WIN
         if(!windows)Destroy(this.gameObject);
         #elif UNITY_WEBGL
         if(!webgl) Destroy(this.gameObject);
