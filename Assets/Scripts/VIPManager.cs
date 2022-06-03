@@ -30,7 +30,7 @@ public class VIPManager : MonoBehaviour
     [SerializeField] private float spawnOffsetRange = 3f;
 
     NamePicker names;
-    
+    GameObject livingVIP;
     
     [System.Serializable]
     public struct info
@@ -67,17 +67,6 @@ public class VIPManager : MonoBehaviour
         }
     }
 
-    IEnumerator FirstVIPSpawn()
-    {
-        //just for testing lol
-    yield return new WaitForSeconds(2f);
-        SpawnVIP();
-        SpawnVIP();
-        SpawnVIP();
-        SpawnVIP();
-        SpawnVIP();
-        SpawnVIP();
-    }
 
     public string vipName(int vipIndex)
     {
@@ -86,33 +75,37 @@ public class VIPManager : MonoBehaviour
 
     public void SpawnVIP()
     {
+        //General VIP spawn code
         if(nextVIP < vips.Length-1)
         {
-            GameObject newVIP = Instantiate(vipPrefab,vipSpawners[nextVIP].transform.position,Quaternion.identity);
-            for (int guardsToSpawn = 0; guardsToSpawn < vips[nextVIP].numberOfGuards; guardsToSpawn++)
+            if(livingVIP==null)
             {
-                Vector3 spawnOffset = (Random.insideUnitSphere * spawnOffsetRange);
-                spawnOffset.y = vipSpawners[nextVIP].transform.position.y;
-                vipSpawners[nextVIP].transform.position = vipSpawners[nextVIP].transform.position + spawnOffset;
-
-                NavMeshHit hit;
-                GameObject guard;
-                if (NavMesh.SamplePosition(vipSpawners[nextVIP].transform.position, out hit, 5f, NavMesh.AllAreas)) 
+                livingVIP = Instantiate(vipPrefab,vipSpawners[nextVIP].transform.position,Quaternion.identity);
+                for (int guardsToSpawn = 0; guardsToSpawn < vips[nextVIP].numberOfGuards; guardsToSpawn++)
                 {
-                    guard = Instantiate(guardPrefab, hit.position, Quaternion.identity);
-                    Vector3 walkOffset = Random.insideUnitSphere * spawnMoveRange;
-                    walkOffset.y = vipSpawners[nextVIP].transform.position.y;
+                    Vector3 spawnOffset = (Random.insideUnitSphere * spawnOffsetRange);
+                    spawnOffset.y = vipSpawners[nextVIP].transform.position.y;
+                    vipSpawners[nextVIP].transform.position = vipSpawners[nextVIP].transform.position + spawnOffset;
+                    livingVIP.GetComponent<AIController>().SetPatrolPathRandom();
+                    NavMeshHit hit;
+                    GameObject guard;
+                    if (NavMesh.SamplePosition(vipSpawners[nextVIP].transform.position, out hit, 5f, NavMesh.AllAreas)) 
+                    {
+                        guard = Instantiate(guardPrefab, hit.position, Quaternion.identity);
+                        Vector3 walkOffset = Random.insideUnitSphere * spawnMoveRange;
+                        walkOffset.y = vipSpawners[nextVIP].transform.position.y;
 
-                    Mover guardMove = guard.GetComponent<Mover>();
-                    AIController guardAi = guard.GetComponent<AIController>();
-                    GameObject patrolPath = GameObject.Find("Random FOB Walk");
-                    guardAi.SetPatrolPath(patrolPath);
+                        Mover guardMove = guard.GetComponent<Mover>();
+                        AIController guardAi = guard.GetComponent<AIController>();
+                        GameObject patrolPath = livingVIP.GetComponent<AIController>().PatrolPath();
+                        guardAi.SetPatrolPath(patrolPath);
 
-                    //guardMove.StartMoveAction(vipSpawners[nextVIP].transform.position + walkOffset, 1);
+                        //guardMove.StartMoveAction(vipSpawners[nextVIP].transform.position + walkOffset, 1);
+                    }
                 }
+                livingVIP.GetComponent<AIController>().PassVIPInfo(vips[nextVIP].lastName+", "+vips[nextVIP].firstName,vips[nextVIP].id);
+                nextVIP++;
             }
-            newVIP.GetComponent<AIController>().PassVIPInfo(vips[nextVIP].lastName+", "+vips[nextVIP].firstName,vips[nextVIP].id);
-            nextVIP++;
         }
         else if (nextVIP==vips.Length-1)
         {
@@ -141,6 +134,7 @@ public class VIPManager : MonoBehaviour
             }
         }
         FindObjectOfType<Scorekeeper>().KillVIP();
+        livingVIP=null;
     }
 
     public string VIPInfo(int vipID)

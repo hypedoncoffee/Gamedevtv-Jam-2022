@@ -125,8 +125,12 @@ namespace GameJam.Attributes
                 {
                     voices.DeathSound();
                 }
-                transform.Find("EnemyUI").gameObject.SetActive(false);
-                transform.Find("Healthbar").gameObject.SetActive(false);
+                GameObject uiObj = transform.Find("EnemyUI").gameObject;
+                if (uiObj!=null)
+                    uiObj.SetActive(false);
+                GameObject healthObj = transform.Find("Healthbar").gameObject;
+                if (healthObj!=null)
+                    healthObj.SetActive(false);
                 //GetComponent<Collider>().enabled = false;
                 Destroy(gameObject,5f);
             }
@@ -148,6 +152,7 @@ namespace GameJam.Attributes
             isAlive=true;
             GetComponent<Collider>().enabled = true;
             currentHealth = maxHealth;
+            FindObjectOfType<PlayerUIManager>().SetHealth(currentHealth);   
             //TODO: Player character reverts to rigidbody physics.  Should set back to idle with actions enabled.
         }
 

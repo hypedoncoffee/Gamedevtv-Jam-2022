@@ -7787,7 +7787,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 776892368}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.425
+  m_Size: 0.14782609
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -12136,123 +12136,52 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '<align=center><---- v 5.046 ----></align>
-
-    - Fixed video rendering
-    and platform detection on Linux (5.045 regression)
-
-    - Fixed missing objective
-    tag on final boss
-
-    - Fixed incorrect death date on outro
-
-    - Fixed word
-    wrapping on Hit List
-
-    - Fixed video freezing on subsequent death/objective
-    completions
-
-    <align=center><---- v 5.045 ----></align>
-
-    - Fixed final
-    boss not triggering endgame
-
-    - Fixed music fading in during assignment screen
-
-    -
-    Fixed difficulty slider labeling
-
-    - Military Base doorway no longer breaks
-    aiming
-
-    - Finale music now bound to military base door
-
-    - Final boss
-    no longer crashes WebGL build
-
-    - Videos now use StreamingAssets
-
-    - Videos
-    now disabled outside of death screen
-
-    - (WebGL) Fixed movies not rendering
-
-    -
-    (WebGL) Movie quality reduced to 25%
-
-    - (WebGL) Post Processing performance
-    improved
-
-    <align=center><---- v 5.04 ----></align>
-
-    - Fixed "failure"
-    PA announcer on first assignee run
-
-    - Tweaked ammo for player and used enemy
-    firing sound
-
-    - Added missing post-processing to scoreboard scene
-
-    -
-    Fixed continuity error in scoreboard scene
-
-    - Fixed incorrect name pulls
-    for Scoreboard
-
-    - Fixed skipping second-to-lsat VIP
-
-    - Pause countdown
-    during transition
-
-    - Patrol audio curve changes
-
-    - Regular Patrols can
-    now taunt (previously only VIPs)
-
-    - VIPs will continue to spawn until the
-    game concludes
-
-    - FOB zone only visible when ready to deploy
-
-    - Increased
-    aggressiveness of procedural buildings to finish faster
-
-    <align=center><----
-    v 5.035 ----></align>
-
-    - Added patchnotes screen and credits
-
-    - F.O.B.
-    radius now hidden until drop-off is ready
-
-    - Fixed lockup on using grenades
-
-    <align=center><----
-    v 5.03 ----></align>
-
-    - Refactored and optimized name generator for WebGL
-    support
-
-    - Fixed "Cooper, Dale" soft crash on WebGL
-
-    - Fixed stealth
-    mode input not being checked
-
-    - Fixed stealth mode sound effects, movespeed
-
-    -
-    Fixed certain decorations facing the wrong way
-
-    v 5.0
-
-    - Init release
-
-    -
-    Fixed Windows support
-
-    - Added credits screen
-
-    - Added difficulty slider'
+  m_text: "<align=center><---- v 5.05 ----></align>\n- Fixed movement cursor being
+    controlled by enemies and behaving erratically\n- Fixed duplicate HUD element
+    making assignee success rate unreadable\n- Added four more patrol squads to the
+    base map\n- Altered countdown timer text\n- Moved Hit List to keep text on screen\n-
+    Tank health changed from 10 to 1000\n- Tank move speed reduced\n- Tanks no longer
+    fly into space when shot\n- Reduced audio peaking in finale music track\n- Roaming
+    tanks no longer cause errors calling for enemy HUDs\n- Scoreboard screen no longer
+    claims there are ten objectives total\n- Fixed Pause menu restarting the game
+    on resume\n- Obstructing buildings' alpha decreased\n- Fixed fader system\n-
+    Corrections to building prefabs' camera obstruction box\n- Tuned building pool
+    prefabs for more accurate collision\n- Increased Friendly Edgar's locations to
+    150% previous scale\n- Banana Statue locations flipped 180 degrees\n- Tanks no
+    longer drop briefcases unless explicitly supposed to\n- Fixed objective marker
+    targeting roaming tanks\n- VIP spawn locations moved, can no longer spawn in
+    the military base unless explicitly supposed to\n- Players can no longer slip
+    through the door frame of the military base\n- Moved one of the roaming tanks
+    across the map\n- Guards spawned by VIPs no longer seek the FOB, and will roam
+    the same path as their VIP\n- Removed the AI path that focuses on the FOB\n-
+    Enemy patrol routes moved to take stress away from the F.O.B. zone\n- Reduced
+    the size of the player HUD furnishings\n- Player resets position on death\n-
+    Stopped a duplicate FOB from spawning on start\n- \n\n<align=center><---- v 5.046
+    ----></align>\n- Fixed video rendering and platform detection on Linux (5.045
+    regression)\n- Fixed missing objective tag on final boss\n- Fixed incorrect death
+    date on outro\n- Fixed word wrapping on Hit List\n- Fixed video freezing on subsequent
+    death/objective completions\n<align=center><---- v 5.045 ----></align>\n- Fixed
+    final boss not triggering endgame\n- Fixed music fading in during assignment
+    screen\n- Fixed difficulty slider labeling\n- Military Base doorway no longer
+    breaks aiming\n- Finale music now bound to military base door\n- Final boss no
+    longer crashes WebGL build\n- Videos now use StreamingAssets\n- Videos now disabled
+    outside of death screen\n- (WebGL) Fixed movies not rendering\n- (WebGL) Movie
+    quality reduced to 25%\n- (WebGL) Post Processing performance improved\n<align=center><----
+    v 5.04 ----></align>\n- Fixed \"failure\" PA announcer on first assignee run\n-
+    Tweaked ammo for player and used enemy firing sound\n- Added missing post-processing
+    to scoreboard scene\n- Fixed continuity error in scoreboard scene\n- Fixed incorrect
+    name pulls for Scoreboard\n- Fixed skipping second-to-lsat VIP\n- Pause countdown
+    during transition\n- Patrol audio curve changes\n- Regular Patrols can now taunt
+    (previously only VIPs)\n- VIPs will continue to spawn until the game concludes\n-
+    FOB zone only visible when ready to deploy\n- Increased aggressiveness of procedural
+    buildings to finish faster\n<align=center><---- v 5.035 ----></align>\n- Added
+    patchnotes screen and credits\n- F.O.B. radius now hidden until drop-off is ready\n-
+    Fixed lockup on using grenades\n<align=center><---- v 5.03 ----></align>\n- Refactored
+    and optimized name generator for WebGL support\n- Fixed \"Cooper, Dale\" soft
+    crash on WebGL\n- Fixed stealth mode input not being checked\n- Fixed stealth
+    mode sound effects, movespeed\n- Fixed certain decorations facing the wrong way\nv
+    5.0\n- Init release\n- Fixed Windows support\n- Added credits screen\n- Added
+    difficulty slider"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: aee1d4767bb704c5bb63f0bb8f3c3ed7, type: 2}
   m_sharedMaterial: {fileID: 2201548691500107203, guid: aee1d4767bb704c5bb63f0bb8f3c3ed7, type: 2}
@@ -17512,7 +17441,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 1600}
+  m_SizeDelta: {x: 0, y: 4600}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1733898108
 GameObject:
@@ -19489,11 +19418,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Your assignment is to hunt \ndown key VIPS across District 122.\nKeep
-    your Armored Cadaver \nalive for as long as possible.\n\n<size=70%><align=left>-Take
-    advantage of the environment to sneak around enemies.\n- Avoid patrols and do
-    not directly confront unless you can win.\n- Use gadgets earned upon successful
-    VIP hunts and kills.\n-Destroy the Military Compound when ready."
+  m_text: "Your assignment is to hunt \ndown key VIPS across District 122.\n<size=20%>\n</size><size=70%><align=left>-
+    Use your cloaking device to hide from enemies.\n- Follow the waypoint to find
+    your objective.\n- Avoid the roaming patrols and focus on your target.\n- Fight
+    only when necessary; you will not heal damage.\n- Use gadgets earned upon successful
+    VIP hunts and kills.\n- Hunting VIPs will lure out the commander.\n- You have
+    900 seconds.  Bring order to chaos."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fc13c80e28740c823a2391ae4fae13f6, type: 2}
   m_sharedMaterial: {fileID: 879078119815753230, guid: fc13c80e28740c823a2391ae4fae13f6, type: 2}
@@ -19520,7 +19450,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 43.15
+  m_fontSize: 47.1
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

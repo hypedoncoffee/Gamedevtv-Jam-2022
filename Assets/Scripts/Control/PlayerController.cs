@@ -129,7 +129,8 @@ namespace GameJam.Control
         {
             //restore health to full value
             //call animation
-            GetComponent<Mover>().CancelAction();
+            move.CancelAction();
+            move.ResetToSpawnPosition();
             GetComponent<Fighter>().CancelAction();
 
             lastName = names.ReadList("lastname");

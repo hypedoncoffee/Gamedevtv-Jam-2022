@@ -53,6 +53,17 @@ public class BuildingPrefabs : MonoBehaviour
                  objectsInBox.Add(t);
          }
          for (int i = 0; i < objectsInBox.Count; i++) objectsInBox[i].gameObject.SetActive(false);
+        
+        /*foreach (var c in colliders)
+         {
+             
+             Transform t = c.transform;
+             while (t.parent != null && t.GetComponent<AIController>() == null) t = t.parent;
+             if (t.GetComponent<AIController>() != null 
+                 && t != collider.transform 
+                 && !objectsInBox.Contains(t)) 
+                 objectsInBox.Add(t);
+         }*/
      }
     // Update is called once per frame
     void Update()

@@ -46,7 +46,7 @@ public class CountupTimer : MonoBehaviour
         else 
         {
             timeRemaining -=Time.deltaTime;
-            timerText.text = String.Format("{0:0} until blackout ends", timeRemaining);
+            timerText.text = String.Format("{0:0} seconds <size=80%>until blackout ends</size>", timeRemaining);
             if(timeRemaining<0) FindObjectOfType<Scorekeeper>().GameEnd();
         }
         }

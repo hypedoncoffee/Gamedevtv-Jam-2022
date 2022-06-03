@@ -86,8 +86,8 @@ public class PlayerUIManager : MonoBehaviour
 
     public void SetHealth(int health)
     {
-        
-        healthbar.text="<color=" + healthComponent.nextColor(health) + ">" + health.ToString() + " / " + healthComponent.GetMaxHealthString() + " HP";
+        if(healthComponent!=null)
+            healthbar.text="<color=" + healthComponent.nextColor(health) + ">" + health.ToString() + " / " + healthComponent.GetMaxHealthString() + " HP";
     }
     public void SetAmmo(int ammo)
     {

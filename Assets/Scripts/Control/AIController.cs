@@ -58,6 +58,11 @@ namespace GameJam.Control
             if(isPatrolling && patrolPath==null) SetPatrolPathRandom();
         }
 
+        public GameObject PatrolPath() 
+        {
+            return patrolPath.gameObject;
+        }
+
         public void LogName()
         {
         Scorekeeper score = FindObjectOfType<Scorekeeper>();

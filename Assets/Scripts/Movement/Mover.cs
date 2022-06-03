@@ -19,7 +19,7 @@ namespace GameJam.Movement
         void OnEnable()
         {
             //currentSpeed = maxSpeed;
-            movementIcon = FindObjectOfType<MovementPointer>();
+            //movementIcon = FindObjectOfType<MovementPointer>();
             navMeshAgent = GetComponent<NavMeshAgent>();
             health = GetComponent<Health>();
             navMeshAgent.enabled = health.IsAlive();
@@ -53,7 +53,7 @@ namespace GameJam.Movement
         }
         public void MoveTo(Vector3 destination, float speedFraction)
         {
-            movementIcon.Set(destination);
+            if(movementIcon!=null)movementIcon.Set(destination);
             navMeshAgent.SetDestination(destination);
             navMeshAgent.speed = CurrentSpeed() * speedStop * Mathf.Clamp01(speedFraction);
             navMeshAgent.isStopped = false;
@@ -81,12 +81,12 @@ namespace GameJam.Movement
         public void StopMovement()
         {
             navMeshAgent.isStopped = true;
-            movementIcon.Hide();
+            if(movementIcon!=null)movementIcon.Hide();
         }
         public bool IsAtDestination()
         {
             return navMeshAgent.remainingDistance == 0;
-            movementIcon.Hide();
+            if(movementIcon!=null)movementIcon.Hide();
         }
 
         public void CancelAction()

@@ -5153,7 +5153,7 @@ MonoBehaviour:
   isVIP: 0
   vipID: 9999
   chaseDistance: 60
-  patrolPath: {fileID: 1430708052565208784, guid: 02878306b2c8aaf44a84ca772da3d9ac, type: 3}
+  patrolPath: {fileID: 0}
   waypointTolerance: 5
   waypointDwellTime: 5
   patrolSpeedFraction: 1
@@ -5163,6 +5163,7 @@ MonoBehaviour:
   voices: {fileID: 4838717703258720584}
   minTimeBetweenCallouts: 15
   isPatrolling: 1
+  isTank: 0
 --- !u!114 &7906172408912191566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5191,7 +5192,12 @@ MonoBehaviour:
   projectileSpawnPoint: {fileID: 3436667070790348260}
   orbitalLaserPrefab: {fileID: 0}
   orbitalLaserParticles: {fileID: 0}
+  grenadePrefab: {fileID: 0}
+  grenadeParticles: {fileID: 0}
+  smokePrefab: {fileID: 0}
+  smokeParticles: {fileID: 0}
   sus: {fileID: 0}
+  deathUI: {fileID: 0}
   fightFX: {fileID: 3759423981747242478}
   isPlayer: 0
   reloadButton: {fileID: 0}
@@ -5461,7 +5467,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 02e99afb1938e0f07963ceefc54afc48, type: 3}
   - {fileID: 8300000, guid: b7274677d056d0c0592bac394f90eda6, type: 3}
   minIdleBanterTime: 20
-  maxIdleBanterTime: 200
+  maxIdleBanterTime: 60
 --- !u!1 &3616694945741013864
 GameObject:
   m_ObjectHideFlags: 0
